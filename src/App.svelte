@@ -8,18 +8,7 @@
     import Modal from "./lib/components/Modal.svelte";
     import {navigate, Route, Router} from "svelte-navigator";
 
-    let isHelpOpen = false
-    let isEditOpen = false
-
-    function toggleHelp(): void {
-        isHelpOpen = !isHelpOpen;
-    }
-
-    function toggleEdit(): void {
-        isEditOpen = !isEditOpen;
-    }
-
-    function handleKeydown(event) {
+    function handleKeydown(event: KeyboardEvent) {
         if (event.altKey && event.ctrlKey && event.key === "n") {
             event.preventDefault()
             navigate("/edit")

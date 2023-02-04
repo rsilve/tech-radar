@@ -3,6 +3,7 @@
     import {edited, selected} from "../stores";
     import {toArc} from "../utils/polarCoordinate.js";
     import {navigate} from "svelte-navigator";
+    import BlipDirection from "./BlipDirection.svelte";
 
     export let item: Item
     let isSingleClick = true
@@ -13,7 +14,7 @@
         isSelected = item.index === (value?.index || -1)
     })
 
-    function select(item) {
+    function select(item: Item) {
         return () => {
             isSingleClick = true
             setTimeout(() => {
@@ -25,7 +26,7 @@
         }
     }
 
-    function edit(item) {
+    function edit(item: Item) {
         return () => {
             isSingleClick = false
             $selected = item
@@ -41,6 +42,7 @@
          style="top:{radius + toArc(item, radius/5).x}%; left:{radius + toArc(item, radius/5).y}%;"
          title="{item.name}"></div>
 {/if}
+<BlipDirection item={item} radius={radius}/>
 <div class="absolute bg-slate-800 text-slate-300 border border-slate-900 -mt-3.5 -ml-3.5 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer tooltip tooltip-bottom"
      style="top:{radius + toArc(item, radius/5).x}%; left:{radius + toArc(item, radius/5).y}%;"
      data-tip="{item.name}">

@@ -7,6 +7,8 @@ export type Level = typeof levels[number]
 export type Category = "Language" | "Tools" | "Plateform" | "Technique"
 export type Adoption = "Adopt" | "Trial" | "Assess" | "Hold"
 
+export type Orientation = "right" | "left";
+
 export type Item = {
     index: number;
     name: string;
@@ -14,6 +16,7 @@ export type Item = {
     level: Level;
     x: number;
     y: number;
+    direction?: -1 | 1;
 }
 
 

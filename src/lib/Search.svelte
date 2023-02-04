@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
     import {searchCriteria} from './stores';
 
-   let searchInput
-    function handleKeydown(event) {
+   let searchInput: HTMLInputElement
+    function handleKeydown(event: KeyboardEvent) {
         let key = event.key;
 
         if (key === '/' && searchInput) {

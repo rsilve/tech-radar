@@ -9,6 +9,8 @@
     let name: string = defaultItem.name
     let quarter: Quarter = defaultItem.quarter
     let level: Level = defaultItem.level
+    let direction: -1 | 1 | undefined = defaultItem.direction
+
     const registerFocus = useFocus();
 
     function submit() {
@@ -16,9 +18,9 @@
             return
         }
         if (id) {
-            items.update({...defaultItem, name: name.trim(), quarter, level, index: $selected.index} as Item)
+            items.update({...defaultItem, name: name.trim(), quarter, level, direction, index: $selected.index} as Item)
         } else {
-            items.add({...defaultItem, name: name.trim(), quarter, level, index: $index} as Item)
+            items.add({...defaultItem, name: name.trim(), quarter, level, direction, index: $index} as Item)
         }
         cancel()
     }
@@ -93,6 +95,24 @@
                     <input type="radio" class="radio mr-1" bind:group={quarter} name="quarter" value={4}>
                     Technique
                 </label>
+            </div>
+
+            <span>Direction</span>
+            <div class="flex gap-4 items-center">
+
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={direction} name="direction" value={1}>
+                    Go in
+                </label>
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={direction} name="direction" value={-1}>
+                    Go out
+                </label>
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={direction} name="direction" value={undefined}>
+                    None
+                </label>
+
             </div>
         </div>
         <ModalFooter>
