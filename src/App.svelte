@@ -6,7 +6,7 @@
     import Search from "./lib/Search.svelte";
     import ItemEditor from "./lib/header/ItemEditor.svelte";
     import Modal from "./lib/components/Modal.svelte";
-    import {Route, Router} from "svelte-navigator";
+    import {navigate, Route, Router} from "svelte-navigator";
 
     let isHelpOpen = false
     let isEditOpen = false
@@ -18,7 +18,19 @@
     function toggleEdit(): void {
         isEditOpen = !isEditOpen;
     }
+
+    function handleKeydown(event) {
+        if (event.altKey && event.ctrlKey && event.key === "n") {
+            event.preventDefault()
+            navigate("/edit")
+        }
+        if (event.altKey && event.ctrlKey && event.key === "/") {
+            console.log("Search")
+        }
+    }
 </script>
+
+<svelte:window on:keydown={handleKeydown}/>
 
 <main class="relative">
     <Router>
