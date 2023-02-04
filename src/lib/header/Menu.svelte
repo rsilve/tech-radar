@@ -1,6 +1,7 @@
 <script>
     import Download from "./Download.svelte";
     import Upload from "./Upload.svelte";
+    import MenuIcon from "../components/icons/MenuIcon.svelte";
 
     let isOpen = false
     function toggleOpen() {
@@ -10,11 +11,13 @@
 </script>
 
 <div class="relative">
-    <button class="btn btn-outline text-xl" on:click={toggleOpen} tabIndex="-1">&#9776;</button>
+    <button class="btn btn-outline text-2xl" on:click={toggleOpen} tabIndex="-1">
+        <MenuIcon alt="Application menu"/>
+    </button>
     {#if isOpen}
-        <div class="absolute top-full -ml-2 p-2 pr-4 bg-base-100 border rounded flex flex-col">
-            <Download/>
-            <Upload/>
-        </div>
+        <ul class="menu bg-base-100 w-56 p-2 rounded border absolute top-full ">
+            <li><Download/></li>
+            <li><Upload/></li>
+        </ul>
     {/if}
 </div>
