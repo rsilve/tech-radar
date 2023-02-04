@@ -4,7 +4,7 @@
    let searchInput
     function handleKeydown(event) {
         let key = event.key;
-        console.log(key)
+
         if (key === '/' && searchInput) {
             searchInput.focus()
         }

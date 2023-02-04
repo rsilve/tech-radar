@@ -1,59 +1,102 @@
 <script lang="ts">
-    import type {Quarter, Level} from "../type";
-    import {items, index} from '../stores';
-    import { onMount } from 'svelte'
+    import type {Item, Level, Quarter} from "../type";
+    import {edited, index, items, selected} from '../stores';
+    import ModalFooter from "../components/ModalFooter.svelte";
+    import {navigate, useFocus} from "svelte-navigator";
 
-    const defaultItem = {x: 0, y: 0, quarter: 1, level: 1}
-    let name: string;
-    let quarter: Quarter = 1
-    let level: Level = 1
-    let nameInput: HTMLInputElement
-
+    export let id: number = undefined
+    const defaultItem: Partial<Item> = id ? $selected : {x: 0, y: 0, quarter: 1, level: 1}
+    let name: string = defaultItem.name
+    let quarter: Quarter = defaultItem.quarter
+    let level: Level = defaultItem.level
+    const registerFocus = useFocus();
 
     function submit() {
         if (!name || name.trim().length === 0) {
             return
         }
-        items.add({...defaultItem, name: name.trim(), quarter, level, index: $index})
-        nameInput.focus()
+        if (id) {
+            items.update({...defaultItem, name: name.trim(), quarter, level, index: $selected.index} as Item)
+        } else {
+            items.add({...defaultItem, name: name.trim(), quarter, level, index: $index} as Item)
+        }
+        cancel()
     }
 
-    items.subscribe(() => {
+    function cancel() {
         name = undefined;
         quarter = 1
         level = 1
-    })
-
-    function handleKeydown(event) {
-        let key = event.key;
-
-        if (key === 'Escape' && nameInput) {
-            nameInput.focus()
-        }
+        $edited = undefined
+        $selected = undefined
+        navigate("/")
     }
 
-    onMount(() => nameInput.focus())
 
 </script>
 
-<svelte:window on:keydown={handleKeydown}/>
 
-<form on:submit|preventDefault={submit}>
-    <input type="text"
-           bind:this={nameInput} bind:value={name} class="input input-bordered w-80" placeholder="React, Git, TDD, ...">
-    <select bind:value="{level}" class="select">
-        <option value={1}>Adopt</option>
-        <option value={2}>Trial</option>
-        <option value={3}>Assess</option>
-        <option value={4}>Hold</option>
-    </select>
-    <select bind:value="{quarter}" class="select">
-        <option value={1}>Language</option>
-        <option value={2}>Tools</option>
-        <option value={3}>Plateform</option>
-        <option value={4}>Technique</option>
-    </select>
-    <button type="button" on:click={submit} class="btn">
-        Add</button>
+<div>
+    <form on:submit|preventDefault={submit}>
+        <div class="grid grid-cols-[max-content_1fr] items-center gap-x-4 gap-y-2">
+            <span>Name</span>
+            <input type="text" use:registerFocus
+                   bind:value={name}
+                   class="input input-bordered w-2/3"
+                   placeholder="React, Git, TDD, ...">
 
-</form>
+
+            <span>Level</span>
+            <div class="flex gap-4 items-center">
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={level} name="level" value={1}>
+                    Adopt
+                </label>
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={level} name="level" value={2}>
+                    Trial
+                </label>
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={level} name="level" value={3}>
+                    Assess
+                </label>
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={level} name="level" value={4}>
+                    Hold
+                </label>
+            </div>
+
+            <span>Category</span>
+            <div class="flex gap-4 items-center">
+
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={quarter} name="quarter" value={1}>
+                    Language
+                </label>
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={quarter} name="quarter" value={2}>
+                    Tools
+                </label>
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={quarter} name="quarter" value={3}>
+                    Plateform
+                </label>
+                <label class="label cursor-pointer">
+                    <input type="radio" class="radio mr-1" bind:group={quarter} name="quarter" value={4}>
+                    Technique
+                </label>
+            </div>
+        </div>
+        <ModalFooter>
+            <button type="button" on:click={submit} class="btn">
+                {#if id}Update{:else}Add{/if}
+            </button>
+            <button type="button" on:click={cancel} class="btn btn-outline">
+                Cancel
+            </button>
+        </ModalFooter>
+    </form>
+
+</div>
+
+

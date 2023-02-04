@@ -1,23 +1,22 @@
 <script>
-    import ItemEditor from "./ItemEditor.svelte";
     import Menu from "./Menu.svelte";
+    import {link, useFocus} from "svelte-navigator";
+    import PlusIcon from "../components/icons/PlusIcon.svelte";
+    import QuestionIcon from "../components/icons/QuestionIcon.svelte";
 
-    export let toggleHelp
-
+    const registerFocus = useFocus();
 </script>
 
 <div class="w-full print:hidden mt-4">
-    <div class="flex items-center">
-        <div class="pl-3">
-            <Menu/>
+    <div class="flex gap-4 items-center pr-4 pl-4">
+        <Menu/>
+        <div class="flex-grow">
         </div>
-        <div class="flex-grow text-center whitespace-nowrap">
-            <ItemEditor></ItemEditor>
-        </div>
-        <div class="text-right pr-3">
-            <a href={'#'} on:click={toggleHelp} tabIndex="-1">
-                <span class="border border-slate-900 w-7 h-7 rounded-full flex justify-center items-center">?</span>
-            </a>
-        </div>
+        <a href="/edit" use:link use:registerFocus class="btn btn-circle text-2xl">
+            <PlusIcon alt="Add a new technology"/>
+        </a>
+        <a href="/help" use:link class="btn btn-circle btn-ghost text-4xl">
+            <QuestionIcon alt="What are the rings and the quadrants"></QuestionIcon>
+        </a>
     </div>
 </div>

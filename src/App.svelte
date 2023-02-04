@@ -4,26 +4,48 @@
     import Layout from "./lib/Layout.svelte";
     import Header from "./lib/header/Header.svelte";
     import Search from "./lib/Search.svelte";
+    import ItemEditor from "./lib/header/ItemEditor.svelte";
+    import Modal from "./lib/components/Modal.svelte";
+    import {Route, Router} from "svelte-navigator";
 
     let isHelpOpen = false
+    let isEditOpen = false
 
     function toggleHelp(): void {
         isHelpOpen = !isHelpOpen;
     }
+
+    function toggleEdit(): void {
+        isEditOpen = !isEditOpen;
+    }
 </script>
 
 <main class="relative">
-    <Layout>
-        <Header slot="header" toggleHelp={toggleHelp}></Header>
-        <Radar slot="radar"></Radar>
-        <Search slot="search"/>
-    </Layout>
-    {#if isHelpOpen}
-        <div class="absolute flex h-screen top-0 left-0">
-            <div class="m-auto bg-base-100 w-2/3 p-10 border border-slate-400 rounded-md relative">
-                <div class="absolute top-2 right-4 text-2xl"><a href={"#"} on:click={toggleHelp}>&times;</a></div>
-                <Help></Help>
-            </div>
-        </div>
-    {/if}
+    <Router>
+        <Route path="/*">
+            <Layout>
+                <Header slot="header"></Header>
+                <Radar slot="radar"></Radar>
+                <Search slot="search"/>
+            </Layout>
+            <Route path="/help">
+                <Modal>
+                    <Help></Help>
+                </Modal>
+            </Route>
+            <Route path="/edit/*">
+                <Route path="/">
+                    <Modal>
+                        <ItemEditor></ItemEditor>
+                    </Modal>
+                </Route>
+                <Route path=":id" let:params>
+                    <Modal>
+                        <ItemEditor id={params.id}></ItemEditor>
+                    </Modal>
+                </Route>
+            </Route>
+        </Route>
+    </Router>
+
 </main>
