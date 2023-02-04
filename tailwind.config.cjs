@@ -4,7 +4,12 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  variants: {
+    extend: {
+      visibility: ["group-hover"],
+    },
+  },
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
     styled: true,
     themes: ["light", "dark"],

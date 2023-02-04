@@ -82,8 +82,8 @@ function create() {
                 return [...filtered, {...item}]
             })
         },
-        remove: (item: Item) => {
-            update((list) => list.filter(v => v.index !== item.index))
+        remove: (id: number) => {
+            update((list) => list.filter(v => v.index !== id))
         }
     };
 }

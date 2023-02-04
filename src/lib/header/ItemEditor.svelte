@@ -23,6 +23,12 @@
         cancel()
     }
 
+    function remove() {
+        if (id) {
+            items.remove($selected.index)
+        }
+        cancel()
+    }
     function cancel() {
         name = undefined;
         quarter = 1
@@ -31,6 +37,8 @@
         $selected = undefined
         navigate("/")
     }
+
+
 
 
 </script>
@@ -88,6 +96,12 @@
             </div>
         </div>
         <ModalFooter>
+            {#if id}
+                <button type="button" on:click={remove} class="btn btn-outline">
+                    Delete
+                </button>
+            {/if}
+            <span class="flex-grow"></span>
             <button type="button" on:click={submit} class="btn">
                 {#if id}Update{:else}Add{/if}
             </button>

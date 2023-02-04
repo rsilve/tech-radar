@@ -5,13 +5,7 @@
 
     export let quarter: number;
     export let orientation = "left"
-
-    function remove(item: Item) {
-        return () => {
-            items.remove(item)
-        }
-    }
-
+    
     function onSelect(item: Item) {
         return () => {
             selected.update(() => item)
@@ -26,28 +20,28 @@
         {#if index === 0}
             <li class="title">Adopt</li>
         {/if}
-        <ItemElement item={item} selected={selected} onSelect={onSelect} remove={remove} orientation={orientation}/>
+        <ItemElement item={item} selected={selected} onSelect={onSelect} orientation={orientation}/>
     {/each}
 
     {#each $items.filter(value => value.quarter === quarter && value.level === 2) as item, index}
         {#if index === 0}
             <li class="title">Trial</li>
         {/if}
-        <ItemElement item={item} selected={selected} onSelect={onSelect} remove={remove} orientation={orientation}/>
+        <ItemElement item={item} selected={selected} onSelect={onSelect} orientation={orientation}/>
     {/each}
 
     {#each $items.filter(value => value.quarter === quarter && value.level === 3) as item, index}
         {#if index === 0}
             <li class="title">Assess</li>
         {/if}
-        <ItemElement item={item} selected={selected} onSelect={onSelect} remove={remove} orientation={orientation}/>
+        <ItemElement item={item} selected={selected} onSelect={onSelect} orientation={orientation}/>
     {/each}
 
     {#each $items.filter(value => value.quarter === quarter && value.level === 4) as item, index}
         {#if index === 0}
             <li class="title">Hold</li>
         {/if}
-        <ItemElement item={item} selected={selected} onSelect={onSelect} remove={remove} orientation={orientation}/>
+        <ItemElement item={item} selected={selected} onSelect={onSelect} orientation={orientation}/>
     {/each}
 </ul>
 

@@ -41,9 +41,9 @@
          style="top:{radius + toArc(item, radius/5).x}%; left:{radius + toArc(item, radius/5).y}%;"
          title="{item.name}"></div>
 {/if}
-<div class="absolute bg-slate-800 text-slate-300 border border-slate-900 -mt-3.5 -ml-3.5 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer"
+<div class="absolute bg-slate-800 text-slate-300 border border-slate-900 -mt-3.5 -ml-3.5 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer tooltip tooltip-bottom"
      style="top:{radius + toArc(item, radius/5).x}%; left:{radius + toArc(item, radius/5).y}%;"
-     title="{item.name}">
+     data-tip="{item.name}">
     <span class="cursor-pointer"
           on:dblclick={edit(item)}
           on:click={select(item)}>{item.index}</span></div>
