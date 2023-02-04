@@ -1,3 +1,3 @@
-<div class="flex gap-4 justify-end pt-4">
+<div class="modal-action">
     <slot></slot>
 </div>

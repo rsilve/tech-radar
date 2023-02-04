@@ -1,6 +1,6 @@
 
-<div class="absolute flex h-screen w-screen top-0 left-0">
-    <div class="m-auto bg-base-100 w-2/3 p-8 border border-slate-400 rounded-md relative">
+<div class="modal modal-open">
+    <div class="modal-box m-auto w-11/12 max-w-5xl">
         <slot></slot>
     </div>
 </div>
