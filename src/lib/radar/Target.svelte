@@ -1,4 +1,7 @@
 <script lang="ts">
+    import {adoptionLevels} from "../constants";
+    import Categories from "./Categories.svelte";
+
     function coordTop(radius: number) {
         return 100 / 2 + Math.cos(Math.PI / 6) * 100 * radius / 10
     }
@@ -8,10 +11,7 @@
     }
 </script>
 
-<div class="absolute opacity-50 top-[5%] right-[5%]">Languages &<br> Framework</div>
-<div class="absolute opacity-50 top-[5%] left-[5%]">Tools</div>
-<div class="absolute opacity-50 bottom-[5%] left-[5%]">Plateform &<br> Data</div>
-<div class="absolute opacity-50 bottom-[5%] right-[5%]">Techniques</div>
+<Categories />
 
 <div class="absolute border  border-solid border-slate-400 bg-slate-200 top-1/2 left-1/2 w-1/2 h-1/2 rounded-br-full">
 </div>
@@ -51,17 +51,17 @@
 
 <div class="absolute -translate-y-6 -translate-x-6 -rotate-[30deg] uppercase text-xs opacity-50"
      style="top: {coordTop(2)}%; left: {coordLeft(2)}%; text-shadow: 0 0 20px white;">
-    adopt
+    {adoptionLevels["1"]}
 </div>
 <div class="absolute -translate-y-6 -translate-x-6 -rotate-[30deg] uppercase text-xs opacity-50"
      style="top: {coordTop(3)}%; left: {coordLeft(3)}%; text-shadow: 0 0 20px white;">
-    trial
+    {adoptionLevels["2"]}
 </div>
 <div class="absolute -translate-y-6 -translate-x-6 -rotate-[30deg] uppercase text-xs opacity-50"
      style="top: {coordTop(4)}%; left: {coordLeft(4)}%; text-shadow: 0 0 20px white;">
-    assess
+    {adoptionLevels["3"]}
 </div>
 <div class="absolute -translate-y-6 -translate-x-6 -rotate-[30deg] uppercase text-xs opacity-50"
      style="top: {coordTop(5)}%; left: {coordLeft(5)}%; text-shadow: 0 0 20px white;">
-    hold
+    {adoptionLevels["4"]}
 </div>
