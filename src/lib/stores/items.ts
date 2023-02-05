@@ -45,6 +45,10 @@ function generatePoints(list: Item[]) {
 
 }
 
+function comparator(a: Item, b: Item) {
+    return a.index - b.index;
+}
+
 const STORAGE_KEY = 'technos';
 
 function persist(list: Item[]) {
@@ -55,7 +59,7 @@ function create() {
 
     const {subscribe, update, set} = writable(JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]') as Item[]);
     subscribe((list: Item[]) => {
-        generatePoints(list)
+        generatePoints(list.sort(comparator))
         persist(list)
     })
     return {

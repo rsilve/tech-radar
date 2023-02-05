@@ -17,8 +17,9 @@
             <Blip item={item}/>
         {/each}
     </div>
-    <div class="text-center opacity-50 mt-2"
-         style="grid-area: comment">Double click on a blip to edit it
+    <div class="text-center opacity-50 mt-2 text-xs print:hidden"
+         style="grid-area: comment">
+        Double click on a blip to edit it
     </div>
 </div>
 

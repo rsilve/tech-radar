@@ -8,7 +8,7 @@
             <slot name="radar"></slot>
         </div>
         <div class="divider"></div>
-        <div>
+        <div class="print:hidden">
             <slot name="search"/>
         </div>
     </div>
