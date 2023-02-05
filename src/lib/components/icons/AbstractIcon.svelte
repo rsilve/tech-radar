@@ -2,7 +2,6 @@
 
 <style>
     span :global(svg) {
-        display: inline-block;
         width: 1em;
         height: 1em;
         fill: currentColor;
