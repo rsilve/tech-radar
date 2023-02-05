@@ -4,9 +4,10 @@
     import {toArc} from "../utils/polarCoordinate.js";
     import {navigate} from "svelte-navigator";
     import BlipDirection from "./BlipDirection.svelte";
+    import {useDblClick} from "../utils/singleAndDblClick";
 
     export let item: Item
-    let isSingleClick = true
+    const [singleClick, dblClick] = useDblClick()
 
     let radius = 50
     let isSelected = false
@@ -15,24 +16,18 @@
     })
 
     function select(item: Item) {
-        return () => {
-            isSingleClick = true
-            setTimeout(() => {
-                if (isSingleClick) {
-                    $selected = item
-                    $edited = undefined
-                }
-            }, 200)
-        }
+        return () => singleClick(() => {
+            $selected = item
+            $edited = undefined
+        })
     }
 
     function edit(item: Item) {
-        return () => {
-            isSingleClick = false
+        return () => dblClick(() => {
             $selected = item
             $edited = item
             navigate(`/edit/${item.index}`)
-        }
+        })
     }
 
 </script>
@@ -46,7 +41,7 @@
 <div class="absolute bg-slate-800 text-slate-300 border border-slate-900 -mt-3.5 -ml-3.5 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer tooltip tooltip-bottom"
      style="top:{radius + toArc(item, radius/5).x}%; left:{radius + toArc(item, radius/5).y}%;"
      data-tip="{item.name}">
-    <span class="cursor-pointer"
+    <a href={'#'} tabindex="-1"
           on:dblclick={edit(item)}
-          on:click={select(item)}>{item.index}</span></div>
+          on:click={select(item)}>{item.index}</a></div>
 

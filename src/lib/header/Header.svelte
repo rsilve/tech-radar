@@ -14,9 +14,9 @@
             <h1 class="text-4xl font-bold">Tech Radar</h1>
             <small class="block h-2 leading-none">A map for your team's technologies</small>
         </div>
-        <div>
-            <a href="/edit" use:link>
-                Add a new technology
+        <div class="leading-tight">
+            <a href="/edit" use:link >
+                Add a blip<br>on the radar
             </a>
         </div>
         <div class="pl-2">

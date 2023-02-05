@@ -17,6 +17,11 @@
             console.log("Search")
         }
     }
+
+    function idToInt(id: string): number {
+        let res = parseInt(id, 10);
+        return isNaN(res) ? undefined : res;
+    }
 </script>
 
 <svelte:window on:keydown={handleKeydown}/>
@@ -42,7 +47,7 @@
                 </Route>
                 <Route path=":id" let:params>
                     <Modal>
-                        <ItemEditor id={params.id}></ItemEditor>
+                        <ItemEditor id={idToInt(params.id)}></ItemEditor>
                     </Modal>
                 </Route>
             </Route>
