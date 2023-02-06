@@ -3,21 +3,21 @@
     import Upload from "./Upload.svelte";
     import MenuIcon from "../components/icons/MenuIcon.svelte";
 
-    let isOpen = false
-    function toggleOpen() {
-        isOpen = !isOpen
-    }
-
 </script>
 
 <div class="relative">
-    <button class="btn btn-outline text-2xl" on:click={toggleOpen} tabIndex="-1">
+    <label for="top-left-menu" class="btn btn-outline text-2xl">
         <MenuIcon alt="Application menu"/>
-    </button>
-    {#if isOpen}
-        <ul class="menu bg-base-100 w-56 p-2 rounded border absolute top-full ">
-            <li><Download/></li>
-            <li><Upload/></li>
-        </ul>
-    {/if}
+    </label>
+    <input type="checkbox" id="top-left-menu" class="menu-toggle hidden"/>
+    <label for="top-left-menu" class="modal-menu-background"></label>
+    <ul class="modal-menu menu bg-base-100 w-56 p-2 rounded border absolute top-full ">
+        <li>
+            <Download/>
+        </li>
+        <li>
+            <Upload/>
+        </li>
+    </ul>
+
 </div>
