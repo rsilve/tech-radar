@@ -2,6 +2,8 @@
 
     import {items} from "../stores";
 
+    export let onComplete: () => void = () => {}
+
     let link: HTMLAnchorElement
 
     function download() {
@@ -15,6 +17,7 @@
         link.download = file.name
         link.click()
         URL.revokeObjectURL(url)
+        onComplete()
     }
 </script>
 

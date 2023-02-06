@@ -3,6 +3,8 @@
     import {items} from "../stores";
     import {parse} from "../utils/json_parser";
 
+    export let onComplete: () => void = () => {}
+
     let files: FileList = undefined
     let input: HTMLInputElement
 
@@ -28,6 +30,7 @@
             input.type = ''
             input.type = 'file'
         }
+        onComplete()
     }
 
     $: loadFromFile(files)
