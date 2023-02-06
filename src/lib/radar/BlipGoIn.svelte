@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {Item} from "../type";
+    import type {Item} from "../model";
     import {toArc} from "../utils/polarCoordinate.js";
 
     export let item: Item

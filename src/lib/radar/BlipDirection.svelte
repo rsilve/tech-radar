@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {Item} from "../type";
+    import type {Item} from "../model";
     import BlipGoIn from "./BlipGoIn.svelte";
     import BlipGoOut from "./BlipGoOut.svelte";
 

@@ -1,5 +1,5 @@
-import {levels, quarters} from "../type";
-import type {Item} from "../type"
+import type {Item} from "../model"
+import {levels, quarters} from "../model";
 import {writable} from "svelte/store";
 
 function listToTrapeze(list: Item[], initialLength = 1) {
