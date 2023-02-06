@@ -11,8 +11,6 @@ export type AdoptionLevels = {
     [n in Level]: string;
 };
 
-export type Orientation = "right" | "left";
-
 export type Item = {
     index: number;
     name: string;

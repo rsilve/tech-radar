@@ -1,6 +1,6 @@
 <script lang="ts">
     import type {Item} from "../model";
-    import {edited, selected} from "../stores";
+    import {duplicate, edited, selected} from "../stores";
     import {toArc} from "../utils/polarCoordinate.js";
     import {navigate} from "svelte-navigator";
     import BlipDirection from "./BlipDirection.svelte";
@@ -8,7 +8,7 @@
 
     export let item: Item
     const [singleClick, dblClick] = useDblClick()
-
+    let dup = $duplicate[item?.name.toUpperCase()] || 0
     let radius = 50
     let isSelected = false
     selected.subscribe(value => {
@@ -38,10 +38,16 @@
          title="{item.name}"></div>
 {/if}
 <BlipDirection item={item} radius={radius}/>
-<div class="absolute bg-slate-800 text-slate-300 border border-slate-900 -mt-3.5 -ml-3.5 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer tooltip tooltip-bottom"
+
+<div class="absolute bg-slate-800 text-slate-300 border border-slate-900 -mt-3.5 -ml-3.5 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer drop-shadow-lg tooltip tooltip-bottom"
      style="top:{radius + toArc(item, radius/5).x}%; left:{radius + toArc(item, radius/5).y}%;"
      data-tip="{item.name}">
     <a href={'#'} tabindex="-1"
           on:dblclick={edit(item)}
-          on:click={select(item)}>{item.index}</a></div>
-
+          on:click={select(item)}>{item.index}</a>
+    </div>
+{#if dup > 1}
+    <div class="absolute bg-warning/80 border border-warning -mt-3.5 ml-2 w-3 h-3 rounded-full"
+         style="top:{radius + toArc(item, radius/5).x}%; left:{radius + toArc(item, radius/5).y}%;">
+    </div>
+{/if}

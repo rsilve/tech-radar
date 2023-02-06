@@ -26,3 +26,11 @@ export const filtered = derived([items, searchCriteria], ([$items, $searchCriter
 export const archive = derived(items, ($items) => {
     return createArchive($items)
 })
+
+export const duplicate = derived(items, ($items) => {
+    return $items.reduce((previousValue, currentValue) => {
+        const name = currentValue.name.toUpperCase()
+        const count = previousValue[name] || 0;
+        return {...previousValue, [name]: count + 1 }
+    }, {});
+})
