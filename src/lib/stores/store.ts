@@ -1,5 +1,6 @@
 import {derived, writable} from "svelte/store";
-import type {Item} from "../type";
+import type {Item} from "../model";
+import {createArchive} from "../model";
 import {items} from "./items";
 
 export const selected = writable(null as Item)
@@ -20,4 +21,8 @@ export const filtered = derived([items, searchCriteria], ([$items, $searchCriter
         }
         return true;
     })
+})
+
+export const archive = derived(items, ($items) => {
+    return createArchive($items)
 })

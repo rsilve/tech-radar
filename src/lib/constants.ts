@@ -1,4 +1,4 @@
-import type {AdoptionLevels, Categories} from "./type";
+import type {AdoptionLevels, Categories} from "./model";
 
 export const adoptionLevels: AdoptionLevels = {
     1: "Adopt", 2: "Trial", 3: "Assess", 4: "Hold"

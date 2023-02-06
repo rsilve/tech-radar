@@ -1,6 +1,6 @@
 <script lang="ts">
     import {items} from '../stores';
-    import type {Orientation} from "../type";
+    import type {Orientation} from "../model";
     import ItemElement from "./ItemElement.svelte";
 
     export let quarter: number;

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {Item} from "../type";
+    import type {Item} from "../model";
     import {edited, selected} from "../stores";
     import {toArc} from "../utils/polarCoordinate.js";
     import {navigate} from "svelte-navigator";

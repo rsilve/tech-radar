@@ -23,6 +23,5 @@ export type Item = {
     direction?: -1 | 1;
 }
 
-export type Archive = {items: Item[], categories: string[]}
 
 

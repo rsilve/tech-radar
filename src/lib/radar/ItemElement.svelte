@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import type {Item, Orientation} from "../type";
+    import type {Item, Orientation} from "../model";
     import {edited, selected} from '../stores';
     import {useDblClick} from "../utils/singleAndDblClick";
     import {navigate} from "svelte-navigator";

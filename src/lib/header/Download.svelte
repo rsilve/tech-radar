@@ -1,6 +1,7 @@
 <script lang="ts">
 
-    import {items} from "../stores";
+    import {archive} from "../stores";
+    import {writeArchive} from "../model";
 
     export let onComplete: () => void = () => {}
 
@@ -8,7 +9,7 @@
 
     function download() {
 
-        let str = JSON.stringify($items);
+        let str = writeArchive($archive)
         const file = new File([str], 'tech-radar.json', {
             type: 'application/json',
         })

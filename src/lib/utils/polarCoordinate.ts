@@ -1,4 +1,4 @@
-import type {Item} from "../type";
+import type {Item} from "../model";
 
 type Coord = {x: number, y: number}
 
