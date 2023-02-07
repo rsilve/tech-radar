@@ -24,6 +24,7 @@
     "vite": "^4.0.0"
   },
   "dependencies": {
+    "radash": "^10.7.0",
     "svelte-navigator": "^3.2.2"
   }
 }

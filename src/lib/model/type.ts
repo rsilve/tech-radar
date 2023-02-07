@@ -19,6 +19,7 @@ export type Item = {
     x: number;
     y: number;
     direction?: -1 | 1;
+    tags?: []
 }
 
 

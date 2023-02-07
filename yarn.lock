@@ -843,6 +843,11 @@ quick-lru@^5.1.1:
   resolved "https://registry.npmjs.org/quick-lru/-/quick-lru-5.1.1.tgz"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
 
+radash@^10.7.0:
+  version "10.7.0"
+  resolved "https://registry.yarnpkg.com/radash/-/radash-10.7.0.tgz#aaa164f9697a440d848b88323d51d1bc4f39608a"
+  integrity sha512-dz5NUcGnvn080kKJnyPtqVnP4MWoiwp5qQhEQFK/qMJxCjffQd8tMR4cybxy6y5hupYa5UkSlJRSRY2F7GPBxQ==
+
 read-cache@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/read-cache/-/read-cache-1.0.0.tgz"
