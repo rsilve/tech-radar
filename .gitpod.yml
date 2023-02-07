@@ -1,0 +1,8 @@
+vscode:
+  extensions:
+    - svelte.svelte-vscode
+
+# Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
+tasks:
+  - init: yarn install && yarn run build
+    command: yarn run dev
