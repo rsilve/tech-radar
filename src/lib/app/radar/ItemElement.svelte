@@ -34,13 +34,13 @@
 >
     <a on:click={select} on:dblclick={edit} href={"#"} tabIndex="-1">
         {item.index}&nbsp;-&nbsp;{item.name}
-        <span class="inline-flex gap-1">
+        {#if dup > 1}
+            <span class="badge badge-warning badge-xs" />
+        {/if}
+        <span class="inline-flex items-baseline gap-1">
             {#each item.tags as tag}<span class="badge badge-accent badge-xs"
                     >{tag}</span
                 >{/each}
         </span>
-        {#if dup > 1}
-            <span class="badge badge-warning  badge-xs" />
-        {/if}
     </a>
 </li>

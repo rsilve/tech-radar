@@ -21,7 +21,7 @@
             <Search />
         </div>
         <div class="leading-tight">
-            <a href="/edit" use:link>
+            <a href="/edit" use:link tabindex="-1">
                 Add a blip<br />on the radar
             </a>
         </div>
