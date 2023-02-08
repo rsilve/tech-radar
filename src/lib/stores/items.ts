@@ -55,9 +55,14 @@ function persist(list: Item[]) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
 }
 
-function create() {
+function load(): Item[] {
+    const items = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]') as Item[]
+    items.map(item => item.tags = item.tags ?? [])
+    return items;
+}
 
-    const {subscribe, update, set} = writable(JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]') as Item[]);
+function create() {
+    const {subscribe, update, set} = writable(load());
     subscribe((list: Item[]) => {
         generatePoints(list.sort(comparator))
         persist(list)
