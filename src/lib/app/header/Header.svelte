@@ -3,6 +3,7 @@
     import { link, useFocus } from "svelte-navigator";
     import PlusIcon from "../components/icons/PlusIcon.svelte";
     import QuestionIcon from "../components/icons/QuestionIcon.svelte";
+    import Search from "./Search.svelte";
 
     const registerFocus = useFocus();
 </script>
@@ -10,11 +11,14 @@
 <div class="w-full print:hidden mt-4">
     <div class="flex items-center pr-4 pl-4 ">
         <Menu />
-        <div class="flex-grow ml-4">
+        <div class="ml-4">
             <h1 class="text-4xl font-bold">Tech Radar</h1>
             <small class="block h-2 leading-none"
                 >A map for your team's technologies</small
             >
+        </div>
+        <div class="flex-grow flex justify-end mr-8">
+            <Search />
         </div>
         <div class="leading-tight">
             <a href="/edit" use:link>
