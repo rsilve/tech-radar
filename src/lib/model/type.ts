@@ -11,16 +11,7 @@ export type AdoptionLevels = {
     [n in Level]: string;
 };
 
-export type Item = {
-    index: number;
-    name: string;
-    quarter: Quarter;
-    level: Level;
-    x: number;
-    y: number;
-    direction?: -1 | 1;
-    tags: string[]
-}
+
 
 
 
