@@ -1,7 +1,7 @@
 <script lang="ts">
-    import type { Item } from "../model";
-    import { duplicate, edited, selected } from "../stores";
-    import { useDblClick } from "../utils/singleAndDblClick";
+    import type { Item } from "../../model";
+    import { duplicate, edited, selected } from "../../stores";
+    import { useDblClick } from "../../utils";
     import { navigate } from "svelte-navigator";
 
     export let item: Item;

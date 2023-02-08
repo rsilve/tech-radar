@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {items} from '../stores';
+    import {items} from '../../stores';
     import ItemElement from "./ItemElement.svelte";
 
     export let quarter: number;

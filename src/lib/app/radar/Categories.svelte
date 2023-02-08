@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {categories} from "../constants.js";
+    import { categories } from "../../constants.js";
 </script>
 
 <div class="absolute top-0 right-0">
@@ -16,7 +16,6 @@
     <div class="opacity-50 whitespace-pre text-left">
         {categories["3"]}
     </div>
-
 </div>
 <div class="absolute bottom-0 right-0">
     <div class="opacity-50 whitespace-pre text-right">
