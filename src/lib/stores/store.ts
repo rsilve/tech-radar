@@ -17,7 +17,8 @@ export const index = derived(items, ($items) => {
 export const filtered = derived([items, searchCriteria], ([$items, $searchCriteria]) => {
     return $items.filter((item) => {
         if ($searchCriteria) {
-            return item.name.toUpperCase().includes($searchCriteria.toUpperCase())
+            return item.name.toUpperCase().includes($searchCriteria.toUpperCase()) ||
+            item.tags.map(tag => tag.toUpperCase()).some(tag => tag.includes($searchCriteria.toUpperCase()))
         }
         return true;
     })
