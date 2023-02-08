@@ -1,9 +1,9 @@
 <script lang="ts">
     import Radar from "./lib/app/radar/Radar.svelte";
-    import Help from "./lib/Help.svelte";
-    import Layout from "./lib/Layout.svelte";
+    import Help from "./lib/app/Help.svelte";
+    import Layout from "./lib/app/Layout.svelte";
     import Header from "./lib/app/header/Header.svelte";
-    import Search from "./lib/Search.svelte";
+    import Search from "./lib/app/Search.svelte";
     import ItemEditor from "./lib/app/header/ItemEditor.svelte";
     import Modal from "./lib/app/components/Modal.svelte";
     import { navigate, Route, Router } from "svelte-navigator";

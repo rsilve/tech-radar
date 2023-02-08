@@ -1,6 +1,6 @@
 <script>
     import { navigate, useFocus } from "svelte-navigator";
-    import ModalFooter from "./app/components/ModalFooter.svelte";
+    import ModalFooter from "./components/ModalFooter.svelte";
 
     const registerFocus = useFocus();
 </script>

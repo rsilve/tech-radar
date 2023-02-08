@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {searchCriteria} from './stores';
+    import {searchCriteria} from '../stores';
 
    let searchInput: HTMLInputElement
     function handleKeydown(event: KeyboardEvent) {

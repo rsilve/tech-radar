@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { categories } from "../../constants.js";
+    import { categories } from "../../model/constants.js";
 </script>
 
 <div class="absolute top-0 right-0">
