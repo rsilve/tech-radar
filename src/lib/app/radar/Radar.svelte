@@ -2,7 +2,7 @@
     import Target from "./Target.svelte";
     import Blip from "./Blip.svelte";
     import Quarter from "./Quarter.svelte";
-    import {filtered} from "../stores";
+    import {filtered} from "../../stores";
 </script>
 
 <div class="radar grid h-full justify-start">

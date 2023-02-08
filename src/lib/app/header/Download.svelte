@@ -1,7 +1,7 @@
 <script lang="ts">
 
-    import {archive} from "../stores";
-    import {writeArchive} from "../model";
+    import {archive} from "../../stores";
+    import {writeArchive} from "../../model";
 
     export let onComplete: () => void = () => {}
 

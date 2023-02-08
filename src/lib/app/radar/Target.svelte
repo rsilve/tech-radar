@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {adoptionLevels} from "../constants";
+    import {adoptionLevels} from "../../model/constants";
     import Categories from "./Categories.svelte";
 
     function coordTop(radius: number) {

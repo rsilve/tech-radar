@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { Item, Level, Quarter } from "../model";
-    import { edited, index, items, selected } from "../stores";
+    import type { Item, Level, Quarter } from "../../model";
+    import { edited, index, items, selected } from "../../stores";
     import ModalFooter from "../components/ModalFooter.svelte";
     import { navigate, useFocus } from "svelte-navigator";
     import { unique } from "radash";
