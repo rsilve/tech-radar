@@ -1,15 +1,17 @@
-<div class="w-screen h-screen max-h-screen pb-8">
-    <div class="grid grid-rows-[auto_min-content_1fr_min-content_min-content] h-full w-full">
+<div class="w-screen h-screen max-h-screen pb-6">
+    <div
+        class="grid grid-rows-[auto_min-content_1fr_min-content_min-content] h-full w-full"
+    >
         <div>
-            <slot name="header"></slot>
+            <slot name="header" />
         </div>
-        <div class="divider"></div>
+        <div class="divider" />
         <div>
-            <slot name="radar"></slot>
+            <slot name="radar" />
         </div>
-        <div class="divider"></div>
-        <div class="print:hidden">
-            <slot name="search"/>
+        <div class="divider" />
+        <div>
+            <slot name="search" />
         </div>
     </div>
 </div>
