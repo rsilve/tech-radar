@@ -8,19 +8,24 @@ function comparator(a: Item, b: Item) {
 
 const STORAGE_KEY = 'technos';
 
+function normalize(items: Item[]) {
+    items.map(item => item.tags = item.tags ?? [])
+}
+
 function persist(list: Item[]) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
 }
 
 function load(): Item[] {
     const items = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]') as Item[]
-    items.map(item => item.tags = item.tags ?? [])
+    normalize(items)
     return items;
 }
 
 function create() {
     const {subscribe, update, set} = writable(load());
     subscribe((list: Item[]) => {
+        normalize(list)
         generatePoints(list.sort(comparator))
         persist(list)
     })
