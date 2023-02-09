@@ -42,6 +42,15 @@
     />
 {/if}
 <BlipDirection {item} {radius} />
+{#if dup > 1}
+    <div
+        class="absolute bg-warning text-slate-300 border border-warning -mt-3.5 -ml-3 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer drop-shadow-lg tooltip tooltip-bottom"
+        style="top:{radius + toArc(item, radius / 5).x}%; left:{radius +
+            toArc(item, radius / 5).y}%;"
+        data-tip={item.name}
+    >
+    </div>
+{/if}
 
 <div
     class="absolute bg-slate-800 text-slate-300 border border-slate-900 -mt-3.5 -ml-3.5 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer drop-shadow-lg tooltip tooltip-bottom"
@@ -53,10 +62,3 @@
         >{item.index}</a
     >
 </div>
-{#if dup > 1}
-    <div
-        class="absolute bg-warning/80 border border-warning -mt-3.5 ml-2 w-3 h-3 rounded-full"
-        style="top:{radius + toArc(item, radius / 5).x}%; left:{radius +
-            toArc(item, radius / 5).y}%;"
-    />
-{/if}
