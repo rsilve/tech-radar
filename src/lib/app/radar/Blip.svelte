@@ -5,12 +5,14 @@
     import { navigate } from "svelte-navigator";
     import BlipDirection from "./BlipDirection.svelte";
     import { useDblClick } from "../../utils";
+    import BlipStack from "./BlipStack.svelte";
 
     export let item: Item;
     const [singleClick, dblClick] = useDblClick();
     let dup = $duplicate[item?.name.toUpperCase()] || 0;
     let radius = 50;
     let isSelected = false;
+
     selected.subscribe((value) => {
         isSelected = item.index === (value?.index || -1);
     });
@@ -33,32 +35,32 @@
     }
 </script>
 
-{#if isSelected}
-    <div
-        class="absolute border-2 border-slate-900 -mt-5 -ml-5 w-10 h-10 rounded-full flex justify-center items-center"
-        style="top:{radius + toArc(item, radius / 5).x}%; left:{radius +
-            toArc(item, radius / 5).y}%;"
-        title={item.name}
-    />
-{/if}
-<BlipDirection {item} {radius} />
-{#if dup > 1}
-    <div
-        class="absolute bg-warning text-slate-300 border border-warning -mt-3.5 -ml-3 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer drop-shadow-lg tooltip tooltip-bottom"
-        style="top:{radius + toArc(item, radius / 5).x}%; left:{radius +
-            toArc(item, radius / 5).y}%;"
-        data-tip={item.name}
-    >
-    </div>
-{/if}
+<BlipStack {radius} {item}>
+    {#if dup > 1}
+        <div
+            class="w-7 h-7 -mr-[1.9rem] bg-warning border border-warning rounded-full"
+        />
+    {/if}
+    {#each item.tags as _}
+        <div
+            class="w-7 h-7 -mr-[1.9rem] bg-slate-500 border border-slate-700 rounded-full"
+        />
+    {/each}
 
-<div
-    class="absolute bg-slate-800 text-slate-300 border border-slate-900 -mt-3.5 -ml-3.5 w-7 h-7 rounded-full flex justify-center items-center cursor-pointer drop-shadow-lg tooltip tooltip-bottom"
-    style="top:{radius + toArc(item, radius / 5).x}%; left:{radius +
-        toArc(item, radius / 5).y}%;"
-    data-tip={item.name}
->
-    <a href={"#"} tabindex="-1" on:dblclick={edit(item)} on:click={select(item)}
-        >{item.index}</a
+    {#if isSelected}
+        <div
+            class="border-2 border-slate-900 w-9 h-9 -mr-8 rounded-full flex justify-center items-center"
+        />
+    {/if}
+    <BlipDirection {item} />
+    <div
+        class="w-7 h-7 bg-slate-800 text-slate-300 border border-slate-900 rounded-full tooltip tooltip-bottom z-[2]"
     >
-</div>
+        <a
+            href={"#"}
+            tabindex="-1"
+            on:dblclick={edit(item)}
+            on:click={select(item)}>{item.index}</a
+        >
+    </div>
+</BlipStack>
