@@ -38,23 +38,23 @@
 <BlipStack radius="{radius}" item="{item}">
     {#if dup > 1}
         <div
-            class="w-7 h-7 -mr-[1.9rem] bg-warning border border-warning rounded-full"
+            class="-mr-[1.9rem] h-7 w-7 rounded-full border border-warning bg-warning"
         ></div>
     {/if}
     {#each item.tags as _}
         <div
-            class="w-7 h-7 -mr-[1.9rem] bg-transparent border border-secondary rounded-full"
+            class="-mr-[1.9rem] h-7 w-7 rounded-full border border-secondary bg-transparent"
         ></div>
     {/each}
 
     {#if isSelected}
         <div
-            class="border-2 border-slate-900 w-9 h-9 -mr-8 rounded-full flex justify-center items-center"
+            class="-mr-8 flex h-9 w-9 items-center justify-center rounded-full border-2 border-slate-900"
         ></div>
     {/if}
     <BlipDirection item="{item}" />
     <div
-        class="w-7 h-7 bg-slate-800 text-slate-300 border border-slate-900 rounded-full tooltip tooltip-bottom z-[2]"
+        class="tooltip tooltip-bottom z-[2] h-7 w-7 rounded-full border border-slate-900 bg-slate-800 text-slate-300"
     >
         <a
             href="{'#'}"

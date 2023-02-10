@@ -11,7 +11,7 @@
     <Quarter quarter="{3}" />
     <Quarter quarter="{4}" />
     <div
-        class="relative aspect-square justify-self-center landscape:h-full landscape:max-h-full portrait:w-full portrait:max-w-full"
+        class="relative aspect-square justify-self-center portrait:w-full portrait:max-w-full landscape:h-full landscape:max-h-full"
         style="grid-area: target"
     >
         <Target />
@@ -20,7 +20,7 @@
         {/each}
     </div>
     <div
-        class="text-center opacity-50 mt-2 text-xs print:hidden"
+        class="mt-2 text-center text-xs opacity-50 print:hidden"
         style="grid-area: comment"
     >
         Double click on a blip to edit it

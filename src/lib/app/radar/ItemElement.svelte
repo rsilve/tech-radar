@@ -27,7 +27,7 @@
 </script>
 
 <li
-    class="hover:bg-accent-focus/50 pr-1 pl-1 rounded-sm m-0 p-0 whitespace-nowrap"
+    class="m-0 whitespace-nowrap rounded-sm p-0 pr-1 pl-1 hover:bg-accent-focus/50"
     style="text-decoration: {item.index === ($selected?.index || -1)
         ? 'underline'
         : 'none'}"

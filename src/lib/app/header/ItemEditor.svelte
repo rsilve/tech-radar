@@ -92,12 +92,12 @@
                 type="text"
                 use:registerFocus
                 bind:value="{name}"
-                class="input input-bordered w-2/3"
+                class="input-bordered input w-2/3"
                 placeholder="React, Git, TDD, ..."
             />
 
             <span>Level</span>
-            <div class="flex gap-4 items-center">
+            <div class="flex items-center gap-4">
                 <label class="label cursor-pointer">
                     <input
                         type="radio"
@@ -141,7 +141,7 @@
             </div>
 
             <span>Category</span>
-            <div class="flex gap-4 items-center">
+            <div class="flex items-center gap-4">
                 <label class="label cursor-pointer">
                     <input
                         type="radio"
@@ -185,7 +185,7 @@
             </div>
 
             <span>Direction</span>
-            <div class="flex gap-4 items-center">
+            <div class="flex items-center gap-4">
                 <label class="label cursor-pointer">
                     <input
                         type="radio"
@@ -223,7 +223,7 @@
                 <label class="label">
                     <input
                         type="text"
-                        class="input input-bordered w-2/3"
+                        class="input-bordered input w-2/3"
                         placeholder=""
                         on:keydown="{addTag}"
                     />
@@ -232,7 +232,7 @@
             <span></span>
             <div class="flex gap-4">
                 {#each tags as tag}
-                    <span class="badge badge-accent">
+                    <span class="badge-accent badge">
                         {tag}
                         <a
                             href="{'#'}"
@@ -243,7 +243,7 @@
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                class="inline-block w-4 h-4 stroke-current"
+                                class="inline-block h-4 w-4 stroke-current"
                                 ><path
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
@@ -260,7 +260,7 @@
                 <button
                     type="button"
                     on:click="{remove}"
-                    class="btn btn-outline"
+                    class="btn-outline btn"
                     tabindex="-1"
                 >
                     Delete
@@ -270,7 +270,7 @@
             <button type="button" on:click="{submit}" class="btn">
                 {#if id}Update{:else}Add{/if}
             </button>
-            <button type="button" on:click="{cancel}" class="btn btn-outline">
+            <button type="button" on:click="{cancel}" class="btn-outline btn">
                 Cancel
             </button>
         </ModalFooter>

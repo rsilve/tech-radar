@@ -8,7 +8,7 @@
     const registerFocus = useFocus()
 </script>
 
-<div class="w-full print:hidden mt-4">
+<div class="mt-4 w-full print:hidden">
     <div class="flex items-center pr-4 pl-4 ">
         <Menu />
         <div class="ml-4">
@@ -17,7 +17,7 @@
                 >A map for your team's technologies</small
             >
         </div>
-        <div class="flex-grow flex justify-end mr-8">
+        <div class="mr-8 flex flex-grow justify-end">
             <Search />
         </div>
         <div class="leading-tight">
@@ -30,13 +30,13 @@
                 href="/edit"
                 use:link
                 use:registerFocus
-                class="btn btn-circle text-2xl"
+                class="btn-circle btn text-2xl"
             >
                 <PlusIcon alt="Ctrl-Alt-n" />
             </a>
         </div>
 
-        <a href="/help" use:link class="btn btn-circle btn-ghost text-4xl ml-4">
+        <a href="/help" use:link class="btn-ghost btn-circle btn ml-4 text-4xl">
             <QuestionIcon alt="What are the rings and the quadrants" />
         </a>
     </div>

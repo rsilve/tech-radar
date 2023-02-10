@@ -4,7 +4,7 @@
 </script>
 
 <div
-    class="text-xs ml-2 pb-2 h-full max-h-full flex"
+    class="ml-2 flex h-full max-h-full pb-2 text-xs"
     style="grid-area: quarter-{quarter}"
 >
     <ItemsList quarter="{quarter}" />

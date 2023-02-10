@@ -8,7 +8,7 @@
 </script>
 
 <div
-    class="absolute -mt-3.5 -ml-3.5 flex justify-center items-center"
+    class="absolute -mt-3.5 -ml-3.5 flex items-center justify-center"
     style="top:{radius + toArc(item, radius / 5).x}%; left:{radius +
         toArc(item, radius / 5).y}%; transform: translateX({translateX});"
     data-tip="{item.name}"

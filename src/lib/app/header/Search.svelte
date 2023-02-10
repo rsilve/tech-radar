@@ -20,7 +20,7 @@
             bind:this="{searchInput}"
             bind:value="{$searchCriteria}"
             placeholder="Search ..."
-            class="input input-bordered w-full"
+            class="input-bordered input w-full"
         />
         <span>
             <svg

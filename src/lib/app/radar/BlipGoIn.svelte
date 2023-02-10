@@ -6,18 +6,18 @@
 
 {#if item.quarter === 1}
     <div
-        class=" bg-slate-800  -mr-7 w-7 h-7 rounded-full rounded-bl-none flex justify-center items-center z-[1]"
+        class=" z-[1]  -mr-7 flex h-7 w-7 items-center justify-center rounded-full rounded-bl-none bg-slate-800"
     ></div>
 {:else if item.quarter === 2}
     <div
-        class=" bg-slate-800  -mr-7 w-7 h-7 rounded-full rounded-br-none flex justify-center items-center z-[1]"
+        class=" z-[1]  -mr-7 flex h-7 w-7 items-center justify-center rounded-full rounded-br-none bg-slate-800"
     ></div>
 {:else if item.quarter === 3}
     <div
-        class=" bg-slate-800  -mr-7 w-7 h-7 rounded-full rounded-tr-none flex justify-center items-center z-[1]"
+        class=" z-[1]  -mr-7 flex h-7 w-7 items-center justify-center rounded-full rounded-tr-none bg-slate-800"
     ></div>
 {:else}
     <div
-        class=" bg-slate-800  -mr-7 w-7 h-7 rounded-full rounded-tl-none flex justify-center items-center z-[1]"
+        class=" z-[1]  -mr-7 flex h-7 w-7 items-center justify-center rounded-full rounded-tl-none bg-slate-800"
     ></div>
 {/if}

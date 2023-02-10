@@ -21,7 +21,7 @@
 </script>
 
 <div
-    class="whitespace-nowrap cursor-pointer pt-2 pb-2"
+    class="cursor-pointer whitespace-nowrap pt-2 pb-2"
     on:click="{download}"
     on:keydown="{download}"
 >
