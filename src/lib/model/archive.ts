@@ -1,4 +1,4 @@
-import type {Item} from "./type";
+import type {Item} from "./item";
 
 export type Archive = {items: Item[], categories: string[]}
 
