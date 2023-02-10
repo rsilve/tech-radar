@@ -1,11 +1,11 @@
 <script>
-    import Menu from "./Menu.svelte";
-    import { link, useFocus } from "svelte-navigator";
-    import PlusIcon from "../components/icons/PlusIcon.svelte";
-    import QuestionIcon from "../components/icons/QuestionIcon.svelte";
-    import Search from "./Search.svelte";
+    import Menu from './Menu.svelte'
+    import { link, useFocus } from 'svelte-navigator'
+    import PlusIcon from '../components/icons/PlusIcon.svelte'
+    import QuestionIcon from '../components/icons/QuestionIcon.svelte'
+    import Search from './Search.svelte'
 
-    const registerFocus = useFocus();
+    const registerFocus = useFocus()
 </script>
 
 <div class="w-full print:hidden mt-4">

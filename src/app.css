@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
     margin: 0;
 }
@@ -22,9 +21,13 @@
     z-index: 9998;
 }
 
-input[type="checkbox"]:checked ~ .modal-menu,
-input[type="checkbox"]:checked ~ .modal-menu-background {
+input[type='checkbox']:checked ~ .modal-menu,
+input[type='checkbox']:checked ~ .modal-menu-background {
     display: block;
 }
 
-@media print{@page {size: landscape}}
+@media print {
+    @page {
+        size: landscape;
+    }
+}

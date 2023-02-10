@@ -1,8 +1,8 @@
 <script>
-    import { navigate, useFocus } from "svelte-navigator";
-    import ModalFooter from "./components/ModalFooter.svelte";
+    import { navigate, useFocus } from 'svelte-navigator'
+    import ModalFooter from './components/ModalFooter.svelte'
 
-    const registerFocus = useFocus();
+    const registerFocus = useFocus()
 </script>
 
 <div>
@@ -22,7 +22,7 @@
         <h2 class="font-bold mb-0.5 mt-2">Techniques</h2>
         These include elements of a software development process, such as experience
         design; and ways of structuring software, such as microservices.
-        <div class="break-after-column" />
+        <div class="break-after-column"></div>
 
         <h1 class="font-bold mb-0.5 mt-2 text-xl">What are the rings ?</h1>
         <h2 class="font-bold mb-0.5 mt-2">Adopt</h2>
@@ -50,7 +50,7 @@
     <ModalFooter>
         <button
             class="btn btn-outline"
-            on:click={() => navigate("/")}
+            on:click="{() => navigate('/')}"
             use:registerFocus>Close</button
         >
     </ModalFooter>

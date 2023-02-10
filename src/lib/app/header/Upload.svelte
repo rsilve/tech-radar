@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { items } from "../../stores";
-    import { readArchive } from "../../model";
+    import { items } from '../../stores'
+    import { readArchive } from '../../model'
 
-    export let onComplete: () => void = () => {};
+    export let onComplete: () => void = () => {}
 
-    let files: FileList = undefined;
-    let input: HTMLInputElement;
+    let files: FileList = undefined
+    let input: HTMLInputElement
 
     function upload() {
-        input.click();
+        input.click()
     }
 
     async function loadFromFile(fileList?: FileList) {
@@ -16,37 +16,37 @@
             // Note that `fileList` is of type `FileList`, not an Array:
             // https://developer.mozilla.org/en-US/docs/Web/API/FileList
             for (const file of fileList) {
-                const text = await file.text();
-                const archive = readArchive(text);
+                const text = await file.text()
+                const archive = readArchive(text)
                 if (archive) {
-                    items.set(archive.items);
+                    items.set(archive.items)
                 }
-                break;
+                break
             }
         }
         // reset input element
         if (input) {
-            input.type = "";
-            input.type = "file";
+            input.type = ''
+            input.type = 'file'
         }
-        onComplete();
+        onComplete()
     }
 
-    $: loadFromFile(files);
+    $: loadFromFile(files)
 </script>
 
 <div
     class="whitespace-nowrap cursor-pointer pt-2 pb-2"
-    on:click={upload}
-    on:keydown={upload}
+    on:click="{upload}"
+    on:keydown="{upload}"
 >
     <u>↑</u>
     Upload
     <input
         type="file"
         class="hidden"
-        bind:this={input}
-        bind:files
+        bind:this="{input}"
+        bind:files="{files}"
         accept="application/json"
     />
 </div>
