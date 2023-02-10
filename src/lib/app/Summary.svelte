@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { adoptionLevels } from "../model";
-    import { items } from "../stores";
+    import { adoptionLevels } from '../model'
+    import { items } from '../stores'
 </script>
 
 <div class="text-center">

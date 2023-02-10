@@ -1,3 +1,3 @@
 <div class="modal-action">
-    <slot></slot>
+    <slot />
 </div>

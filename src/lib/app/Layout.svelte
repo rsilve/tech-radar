@@ -5,11 +5,11 @@
         <div>
             <slot name="header" />
         </div>
-        <div class="divider" />
+        <div class="divider"></div>
         <div>
             <slot name="radar" />
         </div>
-        <div class="divider" />
+        <div class="divider"></div>
         <div>
             <slot name="search" />
         </div>

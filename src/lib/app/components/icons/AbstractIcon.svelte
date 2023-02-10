@@ -1,4 +1,4 @@
-<span><slot></slot></span>
+<span><slot /></span>
 
 <style>
     span :global(svg) {
@@ -9,4 +9,3 @@
         overflow: visible;
     }
 </style>
-

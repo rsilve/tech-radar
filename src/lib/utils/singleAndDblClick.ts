@@ -1,4 +1,3 @@
-
 export function useDblClick() {
     let isSingleClick = true
     const single = (callback: () => void) => {
@@ -16,4 +15,3 @@ export function useDblClick() {
     }
     return [single, dbl]
 }
-
