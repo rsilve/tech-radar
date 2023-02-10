@@ -43,7 +43,7 @@
     {/if}
     {#each item.tags as _}
         <div
-            class="w-7 h-7 -mr-[1.9rem] bg-slate-500 border border-slate-700 rounded-full"
+            class="w-7 h-7 -mr-[1.9rem] bg-transparent border border-secondary rounded-full"
         />
     {/each}
 
