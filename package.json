@@ -8,14 +8,19 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "prettier": "prettier --write --plugin-search-dir=. index.html 'src/**'"
+    "prettier": "prettier --write --plugin-search-dir=. index.html 'src/**'",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
   },
   "devDependencies": {
+    "@histoire/plugin-svelte": "^0.14.2",
     "@sveltejs/vite-plugin-svelte": "^2.0.0",
     "@tailwindcss/typography": "^0.5.9",
     "@tsconfig/svelte": "^3.0.0",
     "autoprefixer": "^10.4.13",
     "daisyui": "^2.49.0",
+    "histoire": "^0.14.2",
     "postcss": "^8.4.21",
     "svelte": "^3.54.0",
     "svelte-check": "^2.10.0",
