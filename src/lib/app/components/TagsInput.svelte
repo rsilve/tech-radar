@@ -62,17 +62,19 @@
             </a>
         </span>
     {/each}
-    <input
-        type="text"
-        list="tag_editor"
-        autocomplete="false"
-        class="input-bordered input w-full"
-        placeholder="Add a tag"
-        on:keydown={add}
-    />
-    <datalist id="tag_editor">
-        {#each existingTags as tag}
-            <option value={tag}>{tag}</option>
-        {/each}
-    </datalist>
+    {#if tags.length >= 4}
+        <input
+            type="text"
+            list="tag_editor"
+            autocomplete="false"
+            class="input-bordered input w-full"
+            placeholder="Add a tag"
+            on:keydown={add}
+        />
+        <datalist id="tag_editor">
+            {#each existingTags as tag}
+                <option value={tag}>{tag}</option>
+            {/each}
+        </datalist>
+    {/if}
 </div>
