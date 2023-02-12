@@ -1,11 +1,16 @@
 <script lang="ts">
     import { addTag } from '../../model'
     import { createEventDispatcher } from 'svelte'
+    import type { TagColors } from '../../model'
 
     const dispatch = createEventDispatcher()
 
     export let tags: string[]
     export let existingTags: string[] = []
+    export let colorMap: TagColors = {}
+
+    console.log(tags)
+    console.log(colorMap)
 
     function change(newTags: string[]) {
         dispatch('change', {
@@ -38,7 +43,10 @@
 
 <div class="flex items-center gap-2">
     {#each tags as tag}
-        <span class="badge badge-accent badge-lg whitespace-nowrap">
+        <span
+            class="badge badge-accent badge-lg whitespace-nowrap"
+            style="background-color: {colorMap[tag] || '#cccccc'}"
+        >
             {tag}
             <a href={'#'} on:click={remove(tag)} tabindex="-1">
                 <svg

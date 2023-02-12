@@ -1,6 +1,13 @@
 <script lang="ts">
     import type { Item, Level, Quarter } from '../../model'
-    import { edited, index, items, selected, tags } from '../../stores'
+    import {
+        colorMap,
+        edited,
+        index,
+        items,
+        selected,
+        tags,
+    } from '../../stores'
     import ModalFooter from '../components/ModalFooter.svelte'
     import { navigate, useFocus } from 'svelte-navigator'
     import TagsInput from '../components/TagsInput.svelte'
@@ -206,6 +213,7 @@
                 <TagsInput
                     tags={itemTags}
                     existingTags={$tags}
+                    colorMap={$colorMap}
                     on:change={onTagsChange}
                 />
             </div>
