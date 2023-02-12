@@ -62,7 +62,7 @@
             </a>
         </span>
     {/each}
-    {#if tags.length >= 4}
+    {#if tags.length < 4}
         <input
             type="text"
             list="tag_editor"
@@ -76,5 +76,7 @@
                 <option value={tag}>{tag}</option>
             {/each}
         </datalist>
+    {:else}
+        <span class="text-accent">No more than 4 tags per blip</span>
     {/if}
 </div>
