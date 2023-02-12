@@ -3,7 +3,8 @@
     import Target from './Target.svelte'
     import BlipStack from './BlipStack.svelte'
     import BlipNumber from './BlipNumber.svelte'
-    import { adoptionLevels, type Item, type Level } from '../../../model'
+    import type { Item } from '../../../model'
+
     export let Hst: Hst
 
     let radius = 50
