@@ -1,6 +1,6 @@
 <script lang="ts">
     import { adoptionLevels } from '../model'
-    import { colorMap, items, tags, tagsCount } from '../stores'
+    import { colorMap, items, tagsCount } from '../stores'
     import TagBadge from './components/TagBadge.svelte'
 </script>
 
