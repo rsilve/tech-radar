@@ -9,14 +9,12 @@
     export let existingTags: string[] = []
     export let colorMap: TagColors = {}
 
-    console.log(tags)
-    console.log(colorMap)
-
     function change(newTags: string[]) {
         dispatch('change', {
             tags: newTags,
         })
     }
+
     function add(
         event: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }
     ) {
@@ -44,7 +42,7 @@
 <div class="flex items-center gap-2">
     {#each tags as tag}
         <span
-            class="badge badge-accent badge-lg whitespace-nowrap"
+            class="badge-accent badge badge-lg whitespace-nowrap"
             style="background-color: {colorMap[tag] || '#cccccc'}"
         >
             {tag}

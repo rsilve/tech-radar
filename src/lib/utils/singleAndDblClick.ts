@@ -1,5 +1,6 @@
 export function useDblClick() {
     let isSingleClick = true
+
     const single = (callback: () => void) => {
         isSingleClick = true
         setTimeout(() => {
@@ -10,7 +11,7 @@ export function useDblClick() {
     }
 
     const dbl = (callback: () => void) => {
-        isSingleClick = true
+        isSingleClick = false
         callback()
     }
     return [single, dbl]

@@ -18,7 +18,6 @@ type Color = (typeof TAG_COLORS)[number]
 export type TagColors = Record<string, Color>
 
 export function colorsMapFactory(tags: string[]): TagColors {
-    console.log(tags)
     return tags.reduce((previousValue, currentValue, currentIndex) => {
         const color =
             currentIndex < TAG_COLORS.length
