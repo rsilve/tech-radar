@@ -21,7 +21,7 @@
 
     function select(item: Item) {
         return () => {
-            $selected = item
+            $selected = $selected ? undefined : item
             $edited = undefined
         }
     }
