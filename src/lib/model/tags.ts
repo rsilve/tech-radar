@@ -34,3 +34,16 @@ export function tagsFactory(items: Item[]) {
         }, [])
     ).sort()
 }
+
+export function tagsCountFromItems(items: Item[]): {name: string, count: number}[] {
+    const maps: Record<string, number> = items
+    .map(item => item.tags)
+    .flat()
+    .reduce((prev, curr) => {
+        prev[curr] = (prev[curr] || 0) + 1
+        return prev 
+    }, {})
+    return Object.entries(maps).map(([key, value]) => {
+        return {name: key, count: value}
+    }).sort((a, b) => a.name.localeCompare(b.name))
+}

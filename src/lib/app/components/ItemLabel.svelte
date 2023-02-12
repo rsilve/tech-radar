@@ -2,6 +2,7 @@
     import { createEventDispatcher } from 'svelte'
     import type { Item, TagColors } from '../../model'
     import { useDblClick } from '../../utils'
+    import TagBadge from './TagBadge.svelte'
 
     const dispatch = createEventDispatcher()
     const [singleClick, dblClick] = useDblClick()
@@ -32,11 +33,7 @@
         {/if}
         <span class="inline-flex items-baseline gap-1">
             {#each item.tags as tag}
-                <span
-                    class="badge-accent badge badge-xs"
-                    style="background-color: {colorMap[tag] || '#cccccc'}"
-                    >{tag}</span
-                >
+                <TagBadge {tag} {colorMap} />
             {/each}
         </span>
     </a>
