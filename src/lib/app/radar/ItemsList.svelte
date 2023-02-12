@@ -10,8 +10,8 @@
         return ($duplicate[item?.name.toUpperCase()] || 0) > 1
     }
 
-    function isSelected(item: Item) {
-        return item.index === ($selected?.index || -1)
+    function isSelected(item: Item, selected: Item) {
+        return item.index === (selected?.index || -1)
     }
 
     function select(item: Item) {
@@ -39,7 +39,7 @@
             <ItemLabel
                 {item}
                 duplicate={isDuplicate(item)}
-                selected={isSelected(item)}
+                selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
                 on:edit={edit(item)}
@@ -55,7 +55,7 @@
             <ItemLabel
                 {item}
                 duplicate={isDuplicate(item)}
-                selected={isSelected(item)}
+                selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
                 on:edit={edit(item)}
@@ -71,7 +71,7 @@
             <ItemLabel
                 {item}
                 duplicate={isDuplicate(item)}
-                selected={isSelected(item)}
+                selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
                 on:edit={edit(item)}
@@ -87,7 +87,7 @@
             <ItemLabel
                 {item}
                 duplicate={isDuplicate(item)}
-                selected={isSelected(item)}
+                selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
                 on:edit={edit(item)}
