@@ -1,10 +1,13 @@
 <script lang="ts">
     import type { Item } from '../../model'
-    import { duplicate, edited, selected } from '../../stores'
+    import { colorMap, duplicate, edited, selected } from '../../stores'
     import { navigate } from 'svelte-navigator'
-    import BlipDirection from './BlipDirection.svelte'
+    import BlipDirection from '../components/blip/BlipDirection.svelte'
     import { useDblClick } from '../../utils'
-    import BlipStack from './BlipStack.svelte'
+    import BlipStack from '../components/blip/BlipStack.svelte'
+    import BlipNumber from '../components/blip/BlipNumber.svelte'
+    import BlipDuplicate from '../components/blip/BlipDuplicate.svelte'
+    import BlipTag from '../components/blip/BlipTag.svelte'
 
     export let item: Item
     const [singleClick, dblClick] = useDblClick()
@@ -17,49 +20,33 @@
     })
 
     function select(item: Item) {
-        return () =>
-            singleClick(() => {
-                $selected = item
-                $edited = undefined
-            })
+        return () => {
+            $selected = item
+            $edited = undefined
+        }
     }
 
     function edit(item: Item) {
-        return () =>
-            dblClick(() => {
-                $selected = item
-                $edited = item
-                navigate(`/edit/${item.index}`)
-            })
+        return () => {
+            $selected = item
+            $edited = item
+            navigate(`/edit/${item.index}`)
+        }
     }
 </script>
 
 <BlipStack {radius} {item}>
     {#if dup > 1}
-        <div
-            class="-mr-[1.9rem] h-7 w-7 rounded-full border border-warning bg-warning"
-        />
+        <BlipDuplicate />
     {/if}
-    {#each item.tags as _}
-        <div
-            class="-mr-[1.9rem] h-7 w-7 rounded-full border border-secondary bg-transparent"
-        />
+    {#each item.tags as tag}
+        <BlipTag color={$colorMap[tag] || '#cccc'} />
     {/each}
-
     {#if isSelected}
         <div
             class="-mr-8 flex h-9 w-9 items-center justify-center rounded-full border-2 border-slate-900"
         />
     {/if}
     <BlipDirection {item} />
-    <div
-        class="tooltip tooltip-bottom z-[2] h-7 w-7 rounded-full border border-slate-900 bg-slate-800 text-slate-300"
-    >
-        <a
-            href={'#'}
-            tabindex="-1"
-            on:dblclick={edit(item)}
-            on:click={select(item)}>{item.index}</a
-        >
-    </div>
+    <BlipNumber {item} on:select={select(item)} on:edit={edit(item)} />
 </BlipStack>
