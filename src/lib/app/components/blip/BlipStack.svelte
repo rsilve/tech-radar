@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { Item } from '../../model'
-    import { toArc } from '../../utils'
+    import type { Item } from '../../../model'
+    import { toArc } from '../../../utils'
 
     export let radius: number
     export let item: Item

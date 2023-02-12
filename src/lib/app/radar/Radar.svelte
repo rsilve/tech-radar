@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Target from './Target.svelte'
+    import Target from '../components/blip/Target.svelte'
     import Blip from './Blip.svelte'
     import Quarter from './Quarter.svelte'
     import { filtered } from '../../stores'

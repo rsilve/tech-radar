@@ -1,4 +1,5 @@
 import { levels, quarters, type Level, type Quarter } from './type'
+import { unique } from 'radash'
 
 export type Item = {
     index: number
@@ -9,6 +10,10 @@ export type Item = {
     y: number
     direction?: -1 | 1
     tags: string[]
+}
+
+export function addTag(tag: string, tags: string[]): string[] {
+    return unique([...tags, tag], (item) => item.toUpperCase()).sort()
 }
 
 function listToTrapeze(list: Item[], initialLength = 1) {
