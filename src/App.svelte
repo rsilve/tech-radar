@@ -24,7 +24,7 @@
     }
 </script>
 
-<svelte:window on:keydown="{handleKeydown}" />
+<svelte:window on:keydown={handleKeydown} />
 
 <main class="relative">
     <Router>
@@ -47,7 +47,7 @@
                 </Route>
                 <Route path=":id" let:params>
                     <Modal>
-                        <ItemEditor id="{idToInt(params.id)}" />
+                        <ItemEditor id={idToInt(params.id)} />
                     </Modal>
                 </Route>
             </Route>

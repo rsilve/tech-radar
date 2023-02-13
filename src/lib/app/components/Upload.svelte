@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { items } from '../../stores'
-    import { readArchive } from '../../model'
+    import { readArchive, type Item } from '../../model'
 
+    export let onLoad: (items: Item[]) => void = () => {}
     export let onComplete: () => void = () => {}
 
     let files: FileList = undefined
@@ -19,7 +19,7 @@
                 const text = await file.text()
                 const archive = readArchive(text)
                 if (archive) {
-                    items.set(archive.items)
+                    onLoad(archive.items)
                 }
                 break
             }
@@ -37,16 +37,16 @@
 
 <div
     class="cursor-pointer whitespace-nowrap pt-2 pb-2"
-    on:click="{upload}"
-    on:keydown="{upload}"
+    on:click={upload}
+    on:keydown={upload}
 >
     <u>↑</u>
     Upload
     <input
         type="file"
         class="hidden"
-        bind:this="{input}"
-        bind:files="{files}"
+        bind:this={input}
+        bind:files
         accept="application/json"
     />
 </div>

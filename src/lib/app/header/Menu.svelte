@@ -1,6 +1,6 @@
 <script>
-    import Download from './Download.svelte'
-    import Upload from './Upload.svelte'
+    import Download from '../components/Download.svelte'
+    import Upload from '../components/Upload.svelte'
     import MenuIcon from '../components/icons/MenuIcon.svelte'
 
     let labelElement
