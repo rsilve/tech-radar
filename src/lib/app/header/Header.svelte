@@ -1,5 +1,4 @@
 <script>
-    import Menu from './Menu.svelte'
     import { link, useFocus } from 'svelte-navigator'
     import PlusIcon from '../components/icons/PlusIcon.svelte'
     import QuestionIcon from '../components/icons/QuestionIcon.svelte'
@@ -24,7 +23,7 @@
             href="/edit"
             use:link
             use:registerFocus
-            class="btn-circle btn text-2xl"
+            class="btn-primary btn-circle btn text-2xl"
         >
             <PlusIcon alt="Ctrl-Alt-n" />
         </a>
