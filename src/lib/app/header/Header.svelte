@@ -10,7 +10,7 @@
 
 <div class="navbar mb-4 w-full bg-base-100 p-3 drop-shadow-md print:hidden">
     <Home />
-    <div class="mr-8 flex flex-1 justify-end">
+    <div class="mr-8  flex-1 justify-end">
         <Search />
     </div>
     <div class="flex-none leading-tight">
