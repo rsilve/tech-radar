@@ -11,6 +11,7 @@
     import ModalFooter from '../components/ModalFooter.svelte'
     import { navigate, useFocus } from 'svelte-navigator'
     import TagsInput from '../components/TagsInput.svelte'
+    import CheatSheet from '../components/CheatSheet.svelte'
 
     export let id: number = undefined
     const defaultItem: Partial<Item> = id
@@ -21,6 +22,8 @@
     let level: Level = defaultItem.level
     let direction: -1 | 1 | undefined = defaultItem.direction
     let itemTags: string[] = defaultItem.tags || []
+
+    let cheatSheet = false
 
     const registerFocus = useFocus()
 
@@ -128,7 +131,17 @@
                     />
                     Hold
                 </label>
+                <label class="swap text-accent-focus">
+                    <input type="checkbox" bind:checked={cheatSheet} />
+                    <div class="swap-on">Close the cheat sheet</div>
+                    <div class="swap-off">Show the cheat sheet</div>
+                </label>
             </div>
+            {#if cheatSheet}
+                <div class="col-span-2">
+                    <CheatSheet />
+                </div>
+            {/if}
 
             <span>Category</span>
             <div class="flex items-center gap-4">
