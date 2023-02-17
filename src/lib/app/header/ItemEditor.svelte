@@ -1,27 +1,27 @@
 <script lang="ts">
     import type { Item, Level, Quarter } from '../../model'
-    import {
-        colorMap,
-        edited,
-        index,
-        items,
-        selected,
-        tags,
-    } from '../../stores'
+    import { colorMap, index, items, selected, tags } from '../../stores'
     import ModalFooter from '../components/ModalFooter.svelte'
     import { navigate, useFocus } from 'svelte-navigator'
     import TagsInput from '../components/TagsInput.svelte'
     import CheatSheet from '../components/CheatSheet.svelte'
 
     export let id: number = undefined
+
+    items.select(id)
+
     const defaultItem: Partial<Item> = id
         ? $selected
-        : { x: 0, y: 0, quarter: 1, level: 1 }
-    let name: string = defaultItem.name
-    let quarter: Quarter = defaultItem.quarter
-    let level: Level = defaultItem.level
-    let direction: -1 | 1 | undefined = defaultItem.direction
-    let itemTags: string[] = defaultItem.tags || []
+        : { name: '', x: 0, y: 0, quarter: 1, level: 1 }
+    let name: string = defaultItem?.name
+    let quarter: Quarter = defaultItem?.quarter || 1
+    let level: Level = defaultItem?.level || 1
+    let direction: -1 | 1 | undefined = defaultItem?.direction
+    let itemTags: string[] = defaultItem?.tags || []
+
+    if (id && !$selected) {
+        cancel()
+    }
 
     const registerFocus = useFocus()
 
@@ -63,7 +63,6 @@
         name = undefined
         quarter = 1
         level = 1
-        $edited = undefined
         $selected = undefined
         navigate('/')
     }

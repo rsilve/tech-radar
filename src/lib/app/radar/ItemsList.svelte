@@ -1,7 +1,7 @@
 <script lang="ts">
     import { navigate } from 'svelte-navigator'
     import type { Item } from '../../model'
-    import { colorMap, duplicate, edited, items, selected } from '../../stores'
+    import { colorMap, duplicate, items, selected } from '../../stores'
     import ItemLabel from '../components/ItemLabel.svelte'
 
     export let quarter: number
@@ -17,14 +17,11 @@
     function select(item: Item) {
         return () => {
             $selected = item
-            $edited = undefined
         }
     }
 
     function edit(item: Item) {
         return () => {
-            $selected = item
-            $edited = item
             navigate(`/edit/${item.index}`)
         }
     }

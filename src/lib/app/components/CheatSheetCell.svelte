@@ -28,13 +28,16 @@
     td {
         white-space: normal;
         cursor: pointer;
+        font-size: smaller;
+        line-height: 1.2em;
+        vertical-align: top;
     }
     .content {
         border: 1px solid rgba(0, 0, 0, 0);
         border-radius: 0.3rem;
         width: 100%;
         height: 100%;
-        padding: 0.2rem 0.5rem;
+        padding: 0.2rem;
         box-sizing: border-box;
     }
     .active div {

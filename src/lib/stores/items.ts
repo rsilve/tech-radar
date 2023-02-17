@@ -1,5 +1,7 @@
 import { generatePoints, type Item } from '../model'
-import { writable } from 'svelte/store'
+import { get, writable } from 'svelte/store'
+
+export const selected = writable(null as Item)
 
 function comparator(a: Item, b: Item) {
     return a.index - b.index
@@ -34,7 +36,6 @@ function create() {
         subscribe,
         set,
         add: (item: Item) => {
-            console.log('add')
             update((list: Item[]) => {
                 if (
                     list.some(
@@ -51,7 +52,6 @@ function create() {
             })
         },
         update: (item: Item) => {
-            console.log('update', item)
             update((list: Item[]) => {
                 const filtered = list.filter((v) => v.index !== item.index)
                 if (
@@ -70,6 +70,13 @@ function create() {
         },
         remove: (id: number) => {
             update((list) => list.filter((v) => v.index !== id))
+        },
+        select: (id: number) => {
+            selected.update(() => {
+                return get(items)
+                    .filter((v) => v.index === id)
+                    .at(0)
+            })
         },
     }
 }

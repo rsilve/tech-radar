@@ -18,11 +18,17 @@
 </script>
 
 <div class="overflow-x-auto">
-    Use the suggestion: {adoptionLevels[score] || ''}
-    <table class="table-compact table w-full text-sm">
+    Use the suggestion: {#if score}
+        <strong>{adoptionLevels[score] || ''}</strong>
+    {:else}
+        <span class="text-accent"
+            >Select the items that fit with your perception</span
+        >
+    {/if}
+    <table class="table-compact table w-full text-xs">
         <thead>
             <tr>
-                <th>Stage (of activity)</th>
+                <th>Stage (of adoption)</th>
                 <th>Hold</th>
                 <th>Assess</th>
                 <th>Trial</th>
@@ -274,5 +280,9 @@
 <style>
     th {
         white-space: normal;
+        font-size: smaller;
+        line-height: 1.2em;
+        vertical-align: top;
+        padding: 0.7rem;
     }
 </style>

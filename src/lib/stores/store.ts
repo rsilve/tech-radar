@@ -1,11 +1,6 @@
 import { derived, writable } from 'svelte/store'
-import type { Item } from '../model'
 import { createArchive } from '../model'
 import { items } from './items'
-
-export const selected = writable(null as Item)
-
-export const edited = writable(null as Item)
 
 export const searchCriteria = writable(null as string)
 

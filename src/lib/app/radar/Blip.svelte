@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Item } from '../../model'
-    import { colorMap, duplicate, edited, selected } from '../../stores'
+    import { colorMap, duplicate, selected } from '../../stores'
     import { navigate } from 'svelte-navigator'
     import BlipDirection from '../components/blip/BlipDirection.svelte'
     import BlipStack from '../components/blip/BlipStack.svelte'
@@ -21,14 +21,11 @@
     function select(item: Item) {
         return () => {
             $selected = $selected ? undefined : item
-            $edited = undefined
         }
     }
 
     function edit(item: Item) {
         return () => {
-            $selected = item
-            $edited = item
             navigate(`/edit/${item.index}`)
         }
     }
