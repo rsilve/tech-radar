@@ -23,8 +23,6 @@
     let direction: -1 | 1 | undefined = defaultItem.direction
     let itemTags: string[] = defaultItem.tags || []
 
-    let cheatSheet = false
-
     const registerFocus = useFocus()
 
     function submit() {
@@ -131,17 +129,16 @@
                     />
                     Hold
                 </label>
-                <label class="swap text-accent-focus">
-                    <input type="checkbox" bind:checked={cheatSheet} />
-                    <div class="swap-on">Close the cheat sheet</div>
-                    <div class="swap-off">Show the cheat sheet</div>
-                </label>
+                <label for="cheatsheet" class="cursor-pointer"
+                    >Cheat sheet suggestion</label
+                >
             </div>
-            {#if cheatSheet}
-                <div class="col-span-2">
+            <div class="col-span-2 hidden">
+                <input id="cheatsheet" type="checkbox" class="hidden" />
+                <div>
                     <CheatSheet />
                 </div>
-            {/if}
+            </div>
 
             <span>Category</span>
             <div class="flex items-center gap-4">
@@ -252,3 +249,9 @@
         </ModalFooter>
     </form>
 </div>
+
+<style>
+    div:has(> input[type='checkbox']:checked) {
+        display: block;
+    }
+</style>

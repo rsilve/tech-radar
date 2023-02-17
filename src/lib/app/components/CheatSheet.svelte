@@ -1,12 +1,32 @@
+<script lang="ts">
+    import CheatSheetCell from './CheatSheetCell.svelte'
+    import { writable } from 'svelte/store'
+    import { adoptionLevels } from '../../model'
+
+    let state = writable(new Array(15).fill(0))
+    let score = 0
+    state.subscribe((list) => {
+        const defined = list.filter((value) => value > 0)
+        if (defined.length > 0) {
+            const sum = defined.reduce((previousValue, currentValue) => {
+                return currentValue + previousValue
+            }, 0)
+            score = Math.round(sum / defined.length)
+        }
+        return 0
+    })
+</script>
+
 <div class="overflow-x-auto">
-    <table class="table-zebra table-compact table w-full text-sm">
+    Use the suggestion: {adoptionLevels[score] || ''}
+    <table class="table-compact table w-full text-sm">
         <thead>
             <tr>
                 <th>Stage (of activity)</th>
-                <th>Genesis</th>
-                <th>Custom</th>
-                <th>Product (+rental)</th>
-                <th>Commodity (+utility)</th>
+                <th>Hold</th>
+                <th>Assess</th>
+                <th>Trial</th>
+                <th>Adopt</th>
             </tr>
             <tr>
                 <th colspan="5">Characteristics</th>
@@ -15,24 +35,48 @@
         <tbody>
             <tr>
                 <th>Ubiquity</th>
-                <td>Rare</td>
-                <td>Slowly increasing consumption</td>
-                <td>Rapidly increasing consumption</td>
-                <td>Widespread and stabilising</td>
+                <CheatSheetCell stage={0} maturity={4} {state}
+                    >Rare</CheatSheetCell
+                >
+                <CheatSheetCell stage={0} maturity={3} {state}
+                    >Slowly increasing consumption</CheatSheetCell
+                >
+                <CheatSheetCell stage={0} maturity={2} {state}
+                    >Rapidly increasing consumption</CheatSheetCell
+                >
+                <CheatSheetCell stage={0} maturity={1} {state}
+                    >Widespread and stabilising</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th>Certainty</th>
-                <td>Poorly understood</td>
-                <td>Rapid increases in learning</td>
-                <td>Rapid increases in use / fit for purpose</td>
-                <td>Commonly understood (in terms of use)</td>
+                <CheatSheetCell stage={1} maturity={4} {state}
+                    >Poorly understood</CheatSheetCell
+                >
+                <CheatSheetCell stage={1} maturity={3} {state}
+                    >Rapid increases in learning</CheatSheetCell
+                >
+                <CheatSheetCell stage={1} maturity={2} {state}
+                    >Rapid increases in use / fit for purpose</CheatSheetCell
+                >
+                <CheatSheetCell stage={1} maturity={1} {state}
+                    >Commonly understood (in terms of use)</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th>Publication Types</th>
-                <td>Normally decribe the wonder of the thing</td>
-                <td>Build / construct / awareness and learning</td>
-                <td>Maintenance / operations / installation / feature</td>
-                <td>Focused on use</td>
+                <CheatSheetCell stage={2} maturity={4} {state}
+                    >Normally decribe the wonder of the thing</CheatSheetCell
+                >
+                <CheatSheetCell stage={2} maturity={3} {state}
+                    >Build / construct / awareness and learning</CheatSheetCell
+                >
+                <CheatSheetCell stage={2} maturity={2} {state}
+                    >Maintenance / operations / installation / feature</CheatSheetCell
+                >
+                <CheatSheetCell stage={2} maturity={1} {state}
+                    >Focused on use</CheatSheetCell
+                >
             </tr>
         </tbody>
         <thead>
@@ -43,100 +87,192 @@
         <tbody>
             <tr>
                 <th>Market</th>
-                <td>Undefined market</td>
-                <td>Forming market</td>
-                <td>Growing market</td>
-                <td>Mature market</td>
+                <CheatSheetCell stage={3} maturity={4} {state}
+                    >Undefined market</CheatSheetCell
+                >
+                <CheatSheetCell stage={3} maturity={3} {state}
+                    >Forming market</CheatSheetCell
+                >
+                <CheatSheetCell stage={3} maturity={2} {state}
+                    >Growing market</CheatSheetCell
+                >
+                <CheatSheetCell stage={3} maturity={1} {state}
+                    >Mature market</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th>Knowledge management</th>
-                <td>Uncertain</td>
-                <td>Learning on use</td>
-                <td>Learning on operation</td>
-                <td>known / accepted</td>
+                <CheatSheetCell stage={4} maturity={4} {state}
+                    >Uncertain</CheatSheetCell
+                >
+                <CheatSheetCell stage={4} maturity={3} {state}
+                    >Learning on use</CheatSheetCell
+                >
+                <CheatSheetCell stage={4} maturity={2} {state}
+                    >Learning on operation</CheatSheetCell
+                >
+                <CheatSheetCell stage={4} maturity={1} {state}
+                    >known / accepted</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th>Market Perception</th>
-                <td>Chaotic (non linear)</td>
-                <td>Domain of experts</td>
-                <td>Increasing expectation of use</td>
-                <td>Ordered (appearance of being linear) / trivial</td>
+                <CheatSheetCell stage={5} maturity={4} {state}
+                    >Chaotic (non linear)</CheatSheetCell
+                >
+                <CheatSheetCell stage={5} maturity={3} {state}
+                    >Domain of experts</CheatSheetCell
+                >
+                <CheatSheetCell stage={5} maturity={2} {state}
+                    >Increasing expectation of use</CheatSheetCell
+                >
+                <CheatSheetCell stage={5} maturity={1} {state}
+                    >Ordered (appearance of being linear) / trivial</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th>User perception</th>
-                <td>Different / confusing / exciting / surprising</td>
-                <td>Leading edge / emerging</td>
-                <td>Common / disappointed if not used or available</td>
-                <td>Standard / expected</td>
+                <CheatSheetCell stage={6} maturity={4} {state}
+                    >Different / confusing / exciting / surprising</CheatSheetCell
+                >
+                <CheatSheetCell stage={6} maturity={3} {state}
+                    >Leading edge / emerging</CheatSheetCell
+                >
+                <CheatSheetCell stage={6} maturity={2} {state}
+                    >Common / disappointed if not used or available</CheatSheetCell
+                >
+                <CheatSheetCell stage={6} maturity={1} {state}
+                    >Standard / expected</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th>Perception in Indusry</th>
-                <td>Competitive advantage / unpredictable / unknown</td>
-                <td>Competitive advantage / ROl / case example</td>
-                <td>Advantage through implementation features</td>
-                <td> Cost of doing business / accepted</td>
+                <CheatSheetCell stage={7} maturity={4} {state}
+                    >Competitive advantage / unpredictable / unknown</CheatSheetCell
+                >
+                <CheatSheetCell stage={7} maturity={3} {state}
+                    >Competitive advantage / ROl / case example</CheatSheetCell
+                >
+                <CheatSheetCell stage={7} maturity={2} {state}
+                    >Advantage through implementation features</CheatSheetCell
+                >
+                <CheatSheetCell stage={7} maturity={1} {state}>
+                    Cost of doing business / accepted</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th> Focus of value</th>
-                <td>High future worth</td>
-                <td>Seeking profit / ROI?</td>
-                <td>High profitability</td>
-                <td>High volume / reducing margin</td>
+                <CheatSheetCell stage={8} maturity={4} {state}
+                    >High future worth</CheatSheetCell
+                >
+                <CheatSheetCell stage={8} maturity={3} {state}
+                    >Seeking profit / ROI?</CheatSheetCell
+                >
+                <CheatSheetCell stage={8} maturity={2} {state}
+                    >High profitability</CheatSheetCell
+                >
+                <CheatSheetCell stage={8} maturity={1} {state}
+                    >High volume / reducing margin</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th>Understanding</th>
-                <td>Poorly understood / unpredictable</td>
-                <td>Increasing understanding / development of measures</td>
-                <td>
+                <CheatSheetCell stage={9} maturity={4} {state}
+                    >Poorly understood / unpredictable</CheatSheetCell
+                >
+                <CheatSheetCell stage={9} maturity={3} {state}
+                    >Increasing understanding / development of measures</CheatSheetCell
+                >
+                <CheatSheetCell stage={9} maturity={2} {state}>
                     Increasing education / constant refinement of needs /
                     measures
-                </td>
-                <td>Believed to be well defined / stable / measurable</td>
+                </CheatSheetCell>
+                <CheatSheetCell stage={9} maturity={1} {state}
+                    >Believed to be well defined / stable / measurable</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th>Comparison</th>
-                <td>Constantly changing / a differential / unstable</td>
-                <td
+                <CheatSheetCell stage={10} maturity={4} {state}
+                    >Constantly changing / a differential / unstable</CheatSheetCell
+                >
+                <CheatSheetCell stage={10} maturity={3} {state}
                     >Learning from others / testing the water / some evidential
                     support
-                </td>
-                <td>Feature difference</td>
-                <td>Essential / operational advantage </td>
+                </CheatSheetCell>
+                <CheatSheetCell stage={10} maturity={2} {state}
+                    >Feature difference</CheatSheetCell
+                >
+                <CheatSheetCell stage={10} maturity={1} {state}
+                    >Essential / operational advantage
+                </CheatSheetCell>
             </tr>
             <tr>
                 <th>Failure</th>
-                <td>High / tolerated / assumed</td>
-                <td>Moderate / unsurprising but disappointed</td>
-                <td>Not tolerated, focus on constant improvement</td>
-                <td>Operational efficiency and surprised by failure</td>
+                <CheatSheetCell stage={11} maturity={4} {state}
+                    >High / tolerated / assumed</CheatSheetCell
+                >
+                <CheatSheetCell stage={11} maturity={3} {state}
+                    >Moderate / unsurprising but disappointed</CheatSheetCell
+                >
+                <CheatSheetCell stage={11} maturity={2} {state}
+                    >Not tolerated, focus on constant improvement</CheatSheetCell
+                >
+                <CheatSheetCell stage={11} maturity={1} {state}
+                    >Operational efficiency and surprised by failure</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th> Market action</th>
-                <td> Gambling / driven by gut</td>
-                <td>Exploring a "found" value</td>
-                <td>Market analysis / listening to customers</td>
-                <td>Metric driven / build what is needed </td>
+                <CheatSheetCell stage={12} maturity={4} {state}
+                    >Gambling / driven by gut</CheatSheetCell
+                >
+                <CheatSheetCell stage={12} maturity={3} {state}
+                    >Exploring a "found" value</CheatSheetCell
+                >
+                <CheatSheetCell stage={12} maturity={2} {state}
+                    >Market analysis / listening to customers</CheatSheetCell
+                >
+                <CheatSheetCell stage={12} maturity={1} {state}
+                    >Metric driven / build what is needed
+                </CheatSheetCell>
             </tr>
             <tr>
                 <th>Efficiency</th>
-                <td>Reducing the cost of change (experimentation)</td>
-                <td>Reducing cost of waste (Learning)</td>
-                <td>Reducing cost of waste (Learning)</td>
-                <td>Reducing cost of deviation (Volume)</td>
+                <CheatSheetCell stage={13} maturity={4} {state}
+                    >Reducing the cost of change (experimentation)</CheatSheetCell
+                >
+                <CheatSheetCell stage={13} maturity={3} {state}
+                    >Reducing cost of waste (Learning)</CheatSheetCell
+                >
+                <CheatSheetCell stage={13} maturity={2} {state}
+                    >Reducing cost of waste (Learning)</CheatSheetCell
+                >
+                <CheatSheetCell stage={13} maturity={1} {state}
+                    >Reducing cost of deviation (Volume)</CheatSheetCell
+                >
             </tr>
             <tr>
                 <th> Decision Drivers</th>
-                <td>Heritage / culture</td>
-                <td>Analysis & synthesis</td>
-                <td>Analysis & synthesis</td>
-                <td>Previous experience</td>
+                <CheatSheetCell stage={14} maturity={4} {state}
+                    >Heritage / culture</CheatSheetCell
+                >
+                <CheatSheetCell stage={14} maturity={3} {state}
+                    >Analysis & synthesis</CheatSheetCell
+                >
+                <CheatSheetCell stage={14} maturity={2} {state}
+                    >Analysis & synthesis</CheatSheetCell
+                >
+                <CheatSheetCell stage={14} maturity={1} {state}
+                    >Previous experience</CheatSheetCell
+                >
             </tr>
         </tbody>
     </table>
 </div>
 
 <style>
-    td {
+    th {
         white-space: normal;
     }
 </style>
