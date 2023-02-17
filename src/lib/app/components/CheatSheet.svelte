@@ -3,7 +3,10 @@
     import { writable } from 'svelte/store'
     import { adoptionLevels } from '../../model'
 
-    let state = writable(new Array(15).fill(0))
+    export let level = 0
+
+    const state = writable(new Array(15).fill(0))
+    $: $state = new Array(15).fill(level)
     let score = 0
     state.subscribe((list) => {
         const defined = list.filter((value) => value > 0)

@@ -128,14 +128,16 @@
                     />
                     Hold
                 </label>
-                <label for="cheatsheet" class="cursor-pointer"
+                <label
+                    for="cheatsheet"
+                    class="btn-outline btn-sm btn ml-10 cursor-pointer"
                     >Cheat sheet suggestion</label
                 >
             </div>
             <div class="col-span-2 hidden">
                 <input id="cheatsheet" type="checkbox" class="hidden" />
                 <div>
-                    <CheatSheet />
+                    <CheatSheet {level} />
                 </div>
             </div>
 
