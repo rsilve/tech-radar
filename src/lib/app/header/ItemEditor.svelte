@@ -5,6 +5,7 @@
     import { navigate, useFocus } from 'svelte-navigator'
     import TagsInput from '../components/TagsInput.svelte'
     import CheatSheet from '../components/CheatSheet.svelte'
+    import ArrowLabel from '../components/ArrowLabel.svelte'
 
     export let id: number = undefined
 
@@ -129,17 +130,20 @@
                     Hold
                 </label>
                 <div class="flex-grow text-right">
-                    <label
-                        for="cheatsheet"
-                        class="btn-outline btn-sm btn ml-10 cursor-pointer"
-                        >Cheat sheet suggestion</label
-                    >
+                    <ArrowLabel for="cheatsheet">
+                        Cheat sheet suggestion
+                    </ArrowLabel>
                 </div>
             </div>
             <div
                 class="col-span-2 h-0 overflow-hidden transition-all duration-1000"
             >
-                <input id="cheatsheet" type="checkbox" class="hidden" />
+                <input
+                    id="cheatsheet"
+                    type="checkbox"
+                    class="hidden"
+                    tabindex="-1"
+                />
                 <div>
                     <CheatSheet bind:level />
                 </div>

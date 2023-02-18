@@ -33,6 +33,7 @@
             Suggestion:
             {#if adoptionLevels[score]}
                 <button
+                    tabindex="-1"
                     class="btn-outline btn-xs btn"
                     on:click|preventDefault={select}
                     >{adoptionLevels[score]}</button
