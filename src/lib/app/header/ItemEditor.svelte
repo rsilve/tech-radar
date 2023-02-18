@@ -87,7 +87,7 @@
             />
 
             <span>Level</span>
-            <div class="flex items-center gap-4">
+            <div class="flex w-full items-center gap-4">
                 <label class="label cursor-pointer">
                     <input
                         type="radio"
@@ -128,16 +128,20 @@
                     />
                     Hold
                 </label>
-                <label
-                    for="cheatsheet"
-                    class="btn-outline btn-sm btn ml-10 cursor-pointer"
-                    >Cheat sheet suggestion</label
-                >
+                <div class="flex-grow text-right">
+                    <label
+                        for="cheatsheet"
+                        class="btn-outline btn-sm btn ml-10 cursor-pointer"
+                        >Cheat sheet suggestion</label
+                    >
+                </div>
             </div>
-            <div class="col-span-2 hidden">
+            <div
+                class="col-span-2 h-0 overflow-hidden transition-all duration-1000"
+            >
                 <input id="cheatsheet" type="checkbox" class="hidden" />
                 <div>
-                    <CheatSheet {level} />
+                    <CheatSheet bind:level />
                 </div>
             </div>
 
@@ -253,6 +257,6 @@
 
 <style>
     div:has(> input[type='checkbox']:checked) {
-        display: block;
+        height: auto;
     }
 </style>
