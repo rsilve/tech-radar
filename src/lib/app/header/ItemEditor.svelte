@@ -1,26 +1,28 @@
 <script lang="ts">
     import type { Item, Level, Quarter } from '../../model'
-    import {
-        colorMap,
-        edited,
-        index,
-        items,
-        selected,
-        tags,
-    } from '../../stores'
+    import { colorMap, index, items, selected, tags } from '../../stores'
     import ModalFooter from '../components/ModalFooter.svelte'
     import { navigate, useFocus } from 'svelte-navigator'
     import TagsInput from '../components/TagsInput.svelte'
+    import CheatSheet from '../components/CheatSheet.svelte'
+    import ArrowLabel from '../components/ArrowLabel.svelte'
 
     export let id: number = undefined
+
+    items.select(id)
+
     const defaultItem: Partial<Item> = id
         ? $selected
-        : { x: 0, y: 0, quarter: 1, level: 1 }
-    let name: string = defaultItem.name
-    let quarter: Quarter = defaultItem.quarter
-    let level: Level = defaultItem.level
-    let direction: -1 | 1 | undefined = defaultItem.direction
-    let itemTags: string[] = defaultItem.tags || []
+        : { name: '', x: 0, y: 0, quarter: 1, level: 1 }
+    let name: string = defaultItem?.name
+    let quarter: Quarter = defaultItem?.quarter || 1
+    let level: Level = defaultItem?.level || 1
+    let direction: -1 | 1 | undefined = defaultItem?.direction
+    let itemTags: string[] = defaultItem?.tags || []
+
+    if (id && !$selected) {
+        cancel()
+    }
 
     const registerFocus = useFocus()
 
@@ -62,7 +64,6 @@
         name = undefined
         quarter = 1
         level = 1
-        $edited = undefined
         $selected = undefined
         navigate('/')
     }
@@ -87,7 +88,7 @@
             />
 
             <span>Level</span>
-            <div class="flex items-center gap-4">
+            <div class="flex w-full items-center gap-4">
                 <label class="label cursor-pointer">
                     <input
                         type="radio"
@@ -128,6 +129,24 @@
                     />
                     Hold
                 </label>
+                <div class="flex-grow text-right">
+                    <ArrowLabel for="cheatsheet">
+                        Cheat sheet suggestion
+                    </ArrowLabel>
+                </div>
+            </div>
+            <div
+                class="col-span-2 h-0 overflow-hidden transition-all duration-1000"
+            >
+                <input
+                    id="cheatsheet"
+                    type="checkbox"
+                    class="hidden"
+                    tabindex="-1"
+                />
+                <div>
+                    <CheatSheet bind:level />
+                </div>
             </div>
 
             <span>Category</span>
@@ -239,3 +258,9 @@
         </ModalFooter>
     </form>
 </div>
+
+<style>
+    div:has(> input[type='checkbox']:checked) {
+        height: auto;
+    }
+</style>

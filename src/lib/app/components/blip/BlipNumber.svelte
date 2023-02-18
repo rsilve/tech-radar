@@ -36,7 +36,9 @@
             href={'#'}
             tabindex="-1"
             on:dblclick={edit(item)}
-            on:click={select(item)}>{item.index}</a
+            on:click={select(item)}
+            class="overflow-hidden whitespace-nowrap pl-2 hover:overflow-visible hover:pl-0"
+            style="text-shadow: 0px 0px 4px black">{item.name}</a
         >
     </div>
 </div>

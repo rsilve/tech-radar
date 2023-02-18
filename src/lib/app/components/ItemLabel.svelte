@@ -27,7 +27,7 @@
 
 <div style="text-decoration: {selected ? 'underline' : 'none'}">
     <a on:click={select} on:dblclick={edit} href={'#'} tabIndex="-1">
-        {item.index}&nbsp;-&nbsp;{item.name}
+        {item.name}
         {#if duplicate}
             <span class="badge-warning badge badge-xs" />
         {/if}

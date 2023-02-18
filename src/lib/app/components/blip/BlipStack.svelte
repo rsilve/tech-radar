@@ -7,7 +7,7 @@
 </script>
 
 <div
-    class="absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+    class="absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center hover:z-50"
     style="top:{radius + toArc(item, radius / 5).x}%; left:{radius +
         toArc(item, radius / 5).y}%;"
     data-tip={item.name}
