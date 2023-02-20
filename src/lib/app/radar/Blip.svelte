@@ -35,7 +35,7 @@
     {#if dup > 1}
         <BlipDuplicate />
     {/if}
-    {#each item.tags as tag}
+    {#each item.tags.reverse() as tag}
         <BlipTag color={$colorMap[tag] || '#cccc'} />
     {/each}
     <BlipDirection {item} />

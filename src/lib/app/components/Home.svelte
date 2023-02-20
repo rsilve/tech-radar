@@ -1,6 +1,4 @@
 <script lang="ts">
-    import MenuIcon from './icons/MenuIcon.svelte'
-
     export let id: string = 'app-drawer'
 </script>
 

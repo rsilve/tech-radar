@@ -29,7 +29,7 @@
     style:border-width={selected ? '2px' : '0'}
 >
     <div
-        class="tooltip tooltip-bottom flex h-7 w-7 items-center justify-center rounded-full border border-slate-900 bg-slate-800 text-slate-300"
+        class="border-box tooltip tooltip-bottom flex h-7 w-7 items-center justify-center rounded-full border border-slate-900/30 bg-transparent text-slate-800"
         data-tip={item.name}
     >
         <a
@@ -38,7 +38,7 @@
             on:dblclick={edit(item)}
             on:click={select(item)}
             class="overflow-hidden whitespace-nowrap pl-2 hover:overflow-visible hover:pl-0"
-            style="text-shadow: 0px 0px 4px black">{item.name}</a
+            style="text-shadow: 0px 0px 6px white">{item.name}</a
         >
     </div>
 </div>
