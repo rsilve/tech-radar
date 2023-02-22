@@ -7,7 +7,6 @@
     const [singleClick, dblClick] = useDblClick()
 
     export let item: Item
-    export let selected: boolean = false
 
     function select(item: Item) {
         return () =>
@@ -25,20 +24,17 @@
 </script>
 
 <div
-    class="-ml-[0.15rem] flex h-9 w-9 items-center justify-center rounded-full border border-slate-900"
-    style:border-width={selected ? '2px' : '0'}
+    class="tooltip tooltip-bottom flex h-7 w-7 content-around items-center overflow-hidden rounded-full border border-slate-900/30 pl-1 pr-1 text-slate-100 hover:justify-center hover:overflow-visible hover:pl-0"
+    class:bg-slate-500={item.tags.length <= 0}
+    class:bg-transparent={item.tags.length > 0}
+    data-tip={item.name}
 >
-    <div
-        class="border-box tooltip tooltip-bottom flex h-7 w-7 items-center justify-center rounded-full border border-slate-900/30 bg-transparent text-slate-800"
-        data-tip={item.name}
+    <a
+        href={'#'}
+        tabindex="-1"
+        on:dblclick={edit(item)}
+        on:click={select(item)}
+        class="whitespace-nowrap"
+        style="text-shadow: 0 0 6px rgba(0,0,0,.5)">{item.name}</a
     >
-        <a
-            href={'#'}
-            tabindex="-1"
-            on:dblclick={edit(item)}
-            on:click={select(item)}
-            class="overflow-hidden whitespace-nowrap pl-2 hover:overflow-visible hover:pl-0"
-            style="text-shadow: 0px 0px 6px white">{item.name}</a
-        >
-    </div>
 </div>

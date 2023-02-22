@@ -35,7 +35,7 @@
                     <BlipTag color={TAG_COLORS[1]} />
                     <BlipTag color={TAG_COLORS[2]} />
 
-                    <BlipNumber {item} selected={false} />
+                    <BlipNumber {item} />
                 </BlipStack>
                 <BlipStack {radius} item={{ ...item }}>
                     <div class="h-1 w-1 rounded-full border border-slate-200" />

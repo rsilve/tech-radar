@@ -1,16 +1,23 @@
 <script lang="ts">
     import type { Item } from '../../../model'
     import { toArc } from '../../../utils'
+    import { selected } from '../../../stores'
 
     export let radius: number
     export let item: Item
+    let isSelected = false
+    $: isSelected = $selected?.index === item.index
 </script>
 
 <div
-    class="absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center hover:z-50"
+    class="absolute -translate-x-1/2 -translate-y-1/2 transition"
+    class:scale-[1.2]={isSelected}
+    class:brightness-125={isSelected}
     style="top:{radius + toArc(item, radius / 5).x}%; left:{radius +
         toArc(item, radius / 5).y}%;"
     data-tip={item.name}
 >
-    <slot />
+    <div class="relative flex items-center -space-x-[1.5rem] hover:z-50">
+        <slot />
+    </div>
 </div>
