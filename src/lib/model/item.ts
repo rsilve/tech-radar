@@ -1,5 +1,6 @@
 import { levels, quarters, type Level, type Quarter } from './type'
 import { unique } from 'radash'
+import { sortByTags } from '../utils/sortByTags'
 
 export type Item = {
     index: number
@@ -13,13 +14,21 @@ export type Item = {
 }
 
 export function addTag(tag: string, tags: string[]): string[] {
-    return unique([...tags, tag], (item) => item.toUpperCase()).sort()
+    return unique([...tags, tag], (item) => item.toUpperCase()).sort((a, b) =>
+        b.toUpperCase().localeCompare(a.toUpperCase())
+    )
+}
+
+function sortMatrix(matrix: Item[][]) {
+    return matrix.map((row) => {
+        return row.sort(sortByTags)
+    })
 }
 
 function listToTrapeze(list: Item[], initialLength = 1) {
     let length = initialLength
-    let current = []
-    const result = []
+    let current: Item[] = []
+    const result: Item[][] = []
     list.forEach((value) => {
         if (length === current.length) {
             result.push(current)
@@ -29,7 +38,7 @@ function listToTrapeze(list: Item[], initialLength = 1) {
         current.push(value)
     })
     result.push(current)
-    return result
+    return sortMatrix(result)
 }
 
 function getRandomArbitrary(min: number, max: number) {

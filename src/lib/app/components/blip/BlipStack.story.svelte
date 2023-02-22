@@ -6,7 +6,6 @@
     import { type Item, TAG_COLORS } from '../../../model'
     import BlipDuplicate from './BlipDuplicate.svelte'
     import BlipTag from './BlipTag.svelte'
-    import BlipDirection from './BlipDirection.svelte'
 
     export let Hst: Hst
 
@@ -35,8 +34,8 @@
                     <BlipDuplicate />
                     <BlipTag color={TAG_COLORS[1]} />
                     <BlipTag color={TAG_COLORS[2]} />
-                    <BlipDirection {item} />
-                    <BlipNumber {item} selected={false} />
+
+                    <BlipNumber {item} />
                 </BlipStack>
                 <BlipStack {radius} item={{ ...item }}>
                     <div class="h-1 w-1 rounded-full border border-slate-200" />

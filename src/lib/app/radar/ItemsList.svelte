@@ -1,14 +1,10 @@
 <script lang="ts">
     import { navigate } from 'svelte-navigator'
     import type { Item } from '../../model'
-    import { colorMap, duplicate, items, selected } from '../../stores'
+    import { colorMap, items, selected, hasDuplicate } from '../../stores'
     import ItemLabel from '../components/ItemLabel.svelte'
 
     export let quarter: number
-
-    function isDuplicate(item: Item) {
-        return ($duplicate[item?.name.toUpperCase()] || 0) > 1
-    }
 
     function isSelected(item: Item, selected: Item) {
         return item.index === (selected?.index || -1)
@@ -16,7 +12,7 @@
 
     function select(item: Item) {
         return () => {
-            $selected = item
+            $selected = $selected ? undefined : item
         }
     }
 
@@ -35,7 +31,7 @@
         <li>
             <ItemLabel
                 {item}
-                duplicate={isDuplicate(item)}
+                duplicate={hasDuplicate(item)}
                 selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
@@ -51,7 +47,7 @@
         <li>
             <ItemLabel
                 {item}
-                duplicate={isDuplicate(item)}
+                duplicate={hasDuplicate(item)}
                 selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
@@ -67,7 +63,7 @@
         <li>
             <ItemLabel
                 {item}
-                duplicate={isDuplicate(item)}
+                duplicate={hasDuplicate(item)}
                 selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
@@ -83,7 +79,7 @@
         <li>
             <ItemLabel
                 {item}
-                duplicate={isDuplicate(item)}
+                duplicate={hasDuplicate(item)}
                 selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
