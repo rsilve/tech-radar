@@ -15,7 +15,7 @@ export type Item = {
 
 export function addTag(tag: string, tags: string[]): string[] {
     return unique([...tags, tag], (item) => item.toUpperCase()).sort((a, b) =>
-        a.toUpperCase().localeCompare(b.toUpperCase())
+        b.toUpperCase().localeCompare(a.toUpperCase())
     )
 }
 

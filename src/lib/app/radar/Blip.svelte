@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Item } from '../../model'
-    import { colorMap, duplicate, selected } from '../../stores'
+    import { colorMap, hasDuplicate, selected } from '../../stores'
     import { navigate } from 'svelte-navigator'
     import BlipDirection from '../components/blip/BlipDirection.svelte'
     import BlipStack from '../components/blip/BlipStack.svelte'
@@ -10,7 +10,7 @@
 
     export let item: Item
 
-    let dup = $duplicate[item?.name.toUpperCase()] || 0
+    let dup = hasDuplicate(item)
     let radius = 50
 
     function select(item: Item) {
@@ -27,7 +27,7 @@
 </script>
 
 <BlipStack {radius} {item}>
-    {#if dup > 1}
+    {#if dup}
         <BlipDuplicate />
     {/if}
     {#each item.tags.reverse() as tag}

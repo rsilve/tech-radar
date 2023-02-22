@@ -1,5 +1,5 @@
-import { derived, writable } from 'svelte/store'
-import { createArchive } from '../model'
+import { derived, get, writable } from 'svelte/store'
+import { createArchive, type Item } from '../model'
 import { items } from './items'
 
 export const searchCriteria = writable(null as string)
@@ -48,3 +48,15 @@ export const duplicate = derived(items, ($items) => {
         return { ...previousValue, [name]: count + 1 }
     }, {})
 })
+
+export function hasDuplicate(item?: Item) {
+    if (!item) return false
+    return (get(duplicate)[item?.name.toUpperCase()] || 0) > 1
+}
+
+export function hasTagsOrDuplicate(item: Item) {
+    return (
+        item.tags.length > 0 ||
+        (get(duplicate)[item?.name.toUpperCase()] || 0) > 1
+    )
+}
