@@ -14,7 +14,7 @@
     const item: Item = {
         name: 'name',
         level: 1,
-        quarter: 1,
+        quarter: 4,
         index: 1,
         x: 0.5,
         y: 0.5,
@@ -34,7 +34,6 @@
                     <BlipDuplicate />
                     <BlipTag color={TAG_COLORS[1]} />
                     <BlipTag color={TAG_COLORS[2]} />
-
                     <BlipNumber {item} />
                 </BlipStack>
                 <BlipStack {radius} item={{ ...item }}>
