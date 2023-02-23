@@ -1,23 +1,23 @@
 <script lang="ts">
-    import type { Item } from '../../../model'
+    import type { Quarter } from '../../../model'
 
-    export let item: Item
+    export let quarter: Quarter
 </script>
 
-{#if item.quarter === 1}
+{#if quarter === 1}
     <div
-        class="-mr-[1.85rem] flex h-7 w-7 items-center justify-center rounded-full rounded-bl-none border border-slate-800"
+        class="absolute bottom-0 left-0 h-0 w-0 border-2 border-t-0 border-r-0 border-slate-800/60 p-1"
     />
-{:else if item.quarter === 2}
+{:else if quarter === 2}
     <div
-        class="-mr-[1.85rem]  flex h-7 w-7 items-center justify-center rounded-full rounded-br-none border border-slate-800"
+        class="absolute bottom-0 right-0 h-0 w-0 border-2 border-t-0 border-l-0 border-slate-800/60 p-1"
     />
-{:else if item.quarter === 3}
+{:else if quarter === 3}
     <div
-        class="-mr-[1.85rem]  flex h-7 w-7 items-center justify-center rounded-full rounded-tr-none border border-slate-800"
+        class="absolute top-0 right-0 h-0 w-0 border-2 border-b-0 border-l-0 border-slate-800/60 p-1"
     />
 {:else}
     <div
-        class="-mr-[1.85rem]  flex h-7 w-7 items-center justify-center rounded-full rounded-tl-none border border-slate-800"
+        class="absolute top-0 left-0 h-0 w-0 border-2 border-b-0 border-r-0 border-slate-800/60 p-1"
     />
 {/if}
