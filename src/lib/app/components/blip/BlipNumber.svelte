@@ -1,14 +1,12 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte'
-    import type { Item } from '../../../model'
+    import type { Item, ItemEnhanced } from '../../../model'
     import { useDblClick } from '../../../utils'
-    import { hasTagsOrDuplicate } from '../../../stores'
     import BlipDirection from './BlipDirection.svelte'
-
     const dispatch = createEventDispatcher()
     const [singleClick, dblClick] = useDblClick()
 
-    export let item: Item
+    export let item: ItemEnhanced
 
     function select(item: Item) {
         return () =>
@@ -22,6 +20,10 @@
             dblClick(() => {
                 dispatch('edit', { value: item })
             })
+    }
+
+    function hasTagsOrDuplicate(item: ItemEnhanced) {
+        return item.tags.length > 0 || item.duplicate
     }
 </script>
 

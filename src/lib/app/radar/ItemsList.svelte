@@ -1,7 +1,7 @@
 <script lang="ts">
     import { navigate } from 'svelte-navigator'
     import type { Item } from '../../model'
-    import { colorMap, items, selected, hasDuplicate } from '../../stores'
+    import { colorMap, enhanced, selected } from '../../stores'
     import ItemLabel from '../components/ItemLabel.svelte'
 
     export let quarter: number
@@ -24,14 +24,13 @@
 </script>
 
 <ul class="items-list columns-2">
-    {#each $items.filter((value) => value.quarter === quarter && value.level === 1) as item, index}
+    {#each $enhanced.filter((value) => value.quarter === quarter && value.level === 1) as item, index}
         {#if index === 0}
             <li class="title">Adopt</li>
         {/if}
         <li>
             <ItemLabel
                 {item}
-                duplicate={hasDuplicate(item)}
                 selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
@@ -40,14 +39,13 @@
         </li>
     {/each}
 
-    {#each $items.filter((value) => value.quarter === quarter && value.level === 2) as item, index}
+    {#each $enhanced.filter((value) => value.quarter === quarter && value.level === 2) as item, index}
         {#if index === 0}
             <li class="title">Trial</li>
         {/if}
         <li>
             <ItemLabel
                 {item}
-                duplicate={hasDuplicate(item)}
                 selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
@@ -56,14 +54,13 @@
         </li>
     {/each}
 
-    {#each $items.filter((value) => value.quarter === quarter && value.level === 3) as item, index}
+    {#each $enhanced.filter((value) => value.quarter === quarter && value.level === 3) as item, index}
         {#if index === 0}
             <li class="title">Assess</li>
         {/if}
         <li>
             <ItemLabel
                 {item}
-                duplicate={hasDuplicate(item)}
                 selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}
@@ -72,14 +69,13 @@
         </li>
     {/each}
 
-    {#each $items.filter((value) => value.quarter === quarter && value.level === 4) as item, index}
+    {#each $enhanced.filter((value) => value.quarter === quarter && value.level === 4) as item, index}
         {#if index === 0}
             <li class="title">Hold</li>
         {/if}
         <li>
             <ItemLabel
                 {item}
-                duplicate={hasDuplicate(item)}
                 selected={isSelected(item, $selected)}
                 colorMap={$colorMap}
                 on:select={select(item)}

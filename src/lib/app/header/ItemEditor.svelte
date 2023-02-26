@@ -31,7 +31,7 @@
             return
         }
         if (id) {
-            items.update({
+            enhanced.update({
                 ...defaultItem,
                 name: name.trim(),
                 quarter,
@@ -41,7 +41,7 @@
                 tags: itemTags,
             } as Item)
         } else {
-            items.add({
+            enhanced.add({
                 ...defaultItem,
                 name: name.trim(),
                 quarter,
@@ -56,7 +56,7 @@
 
     function remove() {
         if (id) {
-            items.remove($selected.index)
+            enhanced.remove($selected.index)
         }
         cancel()
     }

@@ -1,5 +1,5 @@
-import { derived, get, writable } from 'svelte/store'
-import { createArchive, type Item } from '../model'
+import { derived, writable } from 'svelte/store'
+import { createArchive } from '../model'
 import { items } from './items'
 
 export const searchCriteria = writable(null as string)
@@ -13,10 +13,29 @@ export const index = derived(items, ($items) => {
     return last + 1
 })
 
+export const archive = derived(items, ($items) => {
+    return createArchive($items)
+})
+
+export const duplicate = derived(items, ($items) => {
+    return $items.reduce((previousValue, currentValue) => {
+        const name = currentValue.name.toUpperCase()
+        const count = previousValue[name] || 0
+        return { ...previousValue, [name]: count + 1 }
+    }, {})
+})
+
+export const enhanced = derived([items, duplicate], ([$items, $duplicate]) => {
+    return $items.map((item) => ({
+        ...item,
+        duplicate: $duplicate[item.name.toUpperCase()] > 1,
+    }))
+})
+
 export const filtered = derived(
-    [items, searchCriteria],
-    ([$items, $searchCriteria]) => {
-        return $items.filter((item) => {
+    [enhanced, searchCriteria],
+    ([$enhanced, $searchCriteria]) => {
+        return $enhanced.filter((item) => {
             if ($searchCriteria) {
                 return $searchCriteria
                     .trim()
@@ -36,27 +55,3 @@ export const filtered = derived(
         })
     }
 )
-
-export const archive = derived(items, ($items) => {
-    return createArchive($items)
-})
-
-export const duplicate = derived(items, ($items) => {
-    return $items.reduce((previousValue, currentValue) => {
-        const name = currentValue.name.toUpperCase()
-        const count = previousValue[name] || 0
-        return { ...previousValue, [name]: count + 1 }
-    }, {})
-})
-
-export function hasDuplicate(item?: Item) {
-    if (!item) return false
-    return (get(duplicate)[item?.name.toUpperCase()] || 0) > 1
-}
-
-export function hasTagsOrDuplicate(item: Item) {
-    return (
-        item.tags.length > 0 ||
-        (get(duplicate)[item?.name.toUpperCase()] || 0) > 1
-    )
-}
