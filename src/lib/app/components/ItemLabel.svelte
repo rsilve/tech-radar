@@ -1,14 +1,13 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte'
-    import type { Item, TagColors } from '../../model'
+    import type { ItemEnhanced, TagColors } from '../../model'
     import { useDblClick } from '../../utils'
     import TagBadge from './TagBadge.svelte'
 
     const dispatch = createEventDispatcher()
     const [singleClick, dblClick] = useDblClick()
 
-    export let item: Item
-    export let duplicate: boolean = false
+    export let item: ItemEnhanced
     export let selected: boolean = false
     export let colorMap: TagColors = {}
 
@@ -28,7 +27,7 @@
 <div style="text-decoration: {selected ? 'underline' : 'none'}">
     <a on:click={select} on:dblclick={edit} href={'#'} tabIndex="-1">
         {item.name}
-        {#if duplicate}
+        {#if item.duplicate}
             <span class="badge-warning badge badge-xs" />
         {/if}
         <span class="inline-flex items-baseline gap-1">
