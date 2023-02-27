@@ -2,7 +2,9 @@
 	import { writeArchive, type Archive } from '../../model';
 
 	export let archive: Archive;
-	export let onComplete: () => void = () => {};
+	export let onComplete: () => void = () => {
+		/* do nothing */
+	};
 
 	let link: HTMLAnchorElement;
 
