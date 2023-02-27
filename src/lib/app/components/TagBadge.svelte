@@ -1,16 +1,15 @@
 <script lang="ts">
-    import type { TagColors } from '../../model'
+	import type { TagColors } from '../../model';
 
-    export let tag: string
-    export let count: number = undefined
-    export let colorMap: TagColors = {}
+	export let tag: string;
+	export let count: number = undefined;
+	export let colorMap: TagColors = {};
 </script>
 
 <span
-    class="badge badge-xs"
-    style="text-shadow: 0 0 1px black; background-color: {colorMap[tag] ||
-        '#cccccc'}"
+	class="badge badge-xs"
+	style="text-shadow: 0 0 1px black; background-color: {colorMap[tag] || '#cccccc'}"
 >
-    {tag}
-    {count ?? ''}
+	{tag}
+	{count ?? ''}
 </span>
