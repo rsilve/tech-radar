@@ -1,11 +1,8 @@
 <script>
-    import ItemsList from './ItemsList.svelte'
-    export let quarter = 0
+	import ItemsList from './ItemsList.svelte';
+	export let quarter = 0;
 </script>
 
-<div
-    class="ml-2 flex h-full max-h-full pb-2 text-xs"
-    style="grid-area: quarter-{quarter}"
->
-    <ItemsList quarter="{quarter}" />
+<div class="ml-2 flex h-full max-h-full pb-2 text-xs" style="grid-area: quarter-{quarter}">
+	<ItemsList {quarter} />
 </div>
