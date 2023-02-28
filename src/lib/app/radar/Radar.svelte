@@ -27,6 +27,8 @@
 	</div>
 	<div class="mt-2 text-center text-xs opacity-50 print:hidden" style="grid-area: comment">
 		Double click on a blip to edit it
+		<br />
+		Drag'n drop blip to move it
 	</div>
 </div>
 
