@@ -7,7 +7,6 @@
 
 	function handleDropBlip(e) {
 		const updated = { ...dragged.get(), ...e.detail };
-		dragged.update(() => null);
 		items.update(updated);
 	}
 </script>
