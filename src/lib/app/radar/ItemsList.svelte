@@ -12,7 +12,7 @@
 
 	function select(item: Item) {
 		return () => {
-			$selected = $selected ? undefined : item;
+			selected.toggle(item);
 		};
 	}
 

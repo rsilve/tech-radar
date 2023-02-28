@@ -1,7 +1,19 @@
 import { generatePoints, type Item } from '../model';
 import { get, writable } from 'svelte/store';
 
-export const selected = writable(null as Item);
+export const selectedStore = writable(null as Item);
+export const selected = {
+	...selectedStore,
+	toggle: (item: Item) => {
+		selectedStore.update((current) => {
+			if (current && current.index == item.index) {
+				return null;
+			} else {
+				return { ...item };
+			}
+		});
+	}
+};
 
 function comparator(a: Item, b: Item) {
 	return a.index - b.index;
