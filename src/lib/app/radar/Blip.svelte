@@ -7,6 +7,7 @@
 	import BlipNumber from '../components/blip/BlipNumber.svelte';
 	import BlipDuplicate from '../components/blip/BlipDuplicate.svelte';
 	import BlipTag from '../components/blip/BlipTag.svelte';
+	import { dragged } from '../../stores/dnd';
 
 	export let item: ItemEnhanced;
 
@@ -26,9 +27,23 @@
 			navigate(`/edit/${item.index}`);
 		};
 	}
+
+	function handleDragStartBlip() {
+		dragged.update(() => item);
+	}
+
+	function handleDragEndBlip() {
+		dragged.update(() => null);
+	}
 </script>
 
-<BlipStack {radius} {item} selected={isSelected}>
+<BlipStack
+	{radius}
+	{item}
+	selected={isSelected}
+	on:dragStartBlip={handleDragStartBlip}
+	on:dragEndBlip={handleDragEndBlip}
+>
 	{#if item.duplicate}
 		<BlipDuplicate />
 	{/if}

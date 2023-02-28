@@ -2,7 +2,14 @@
 	import Target from '../components/blip/Target.svelte';
 	import Blip from './Blip.svelte';
 	import Quarter from './Quarter.svelte';
-	import { filtered } from '../../stores';
+	import { filtered, items } from '../../stores';
+	import { dragged } from '../../stores/dnd';
+
+	function handleDropBlip(e) {
+		const updated = { ...dragged.get(), ...e.detail };
+		dragged.update(() => null);
+		items.update(updated);
+	}
 </script>
 
 <div class="radar grid h-full justify-start">
@@ -14,7 +21,7 @@
 		class="relative aspect-square justify-self-center portrait:w-full portrait:max-w-full landscape:h-full landscape:max-h-full"
 		style="grid-area: target"
 	>
-		<Target />
+		<Target on:dropBlip={handleDropBlip} />
 		{#each $filtered as item}
 			<Blip {item} />
 		{/each}

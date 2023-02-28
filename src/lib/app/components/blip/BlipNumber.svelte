@@ -35,6 +35,7 @@
 	<BlipDirection {item} />
 	<div class="overflow-hidden hover:overflow-visible">
 		<a
+			draggable="false"
 			href={'#'}
 			tabindex="-1"
 			on:dblclick={edit(item)}
