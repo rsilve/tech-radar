@@ -9,7 +9,7 @@ RewriteRule ^ - [L]
 RewriteRule ^ /index.html
 
 
-Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'"
+Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; img-src 'self'; connect-src 'self'"
 
 Header set X-XSS-Protection "1; mode=block"
 Header set X-Content-Type-Options "nosniff"
