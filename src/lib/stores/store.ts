@@ -1,6 +1,6 @@
 import { derived, writable } from 'svelte/store';
 import { createArchive } from '../model';
-import { items } from './items';
+import { items, selected } from './items';
 
 export const searchCriteria = writable(null as string);
 
@@ -24,10 +24,11 @@ export const duplicate = derived(items, ($items) => {
 	}, {});
 });
 
-export const enhanced = derived([items, duplicate], ([$items, $duplicate]) => {
+export const enhanced = derived([items, duplicate, selected], ([$items, $duplicate, $selected]) => {
 	return $items.map((item) => ({
 		...item,
-		duplicate: $duplicate[item.name.toUpperCase()] > 1
+		duplicate: $duplicate[item.name.toUpperCase()] > 1,
+		selected: $selected?.index === item.index
 	}));
 });
 

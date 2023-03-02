@@ -11,9 +11,6 @@
 
 	export let item: ItemEnhanced;
 
-	let isSelected = false;
-	$: isSelected = $selected?.index === item?.index;
-
 	let radius = 50;
 
 	function select(item: Item) {
@@ -40,7 +37,6 @@
 <BlipStack
 	{radius}
 	{item}
-	selected={isSelected}
 	on:dragStartBlip={handleDragStartBlip}
 	on:dragEndBlip={handleDragEndBlip}
 >
