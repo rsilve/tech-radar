@@ -6,10 +6,6 @@
 
 	export let quarter: number;
 
-	function isSelected(item: Item, selected: Item) {
-		return item.index === (selected?.index || -1);
-	}
-
 	function select(item: Item) {
 		return () => {
 			selected.toggle(item);
@@ -29,13 +25,7 @@
 			<li class="title">Adopt</li>
 		{/if}
 		<li>
-			<ItemLabel
-				{item}
-				selected={isSelected(item, $selected)}
-				colorMap={$colorMap}
-				on:select={select(item)}
-				on:edit={edit(item)}
-			/>
+			<ItemLabel {item} colorMap={$colorMap} on:select={select(item)} on:edit={edit(item)} />
 		</li>
 	{/each}
 
@@ -44,13 +34,7 @@
 			<li class="title">Trial</li>
 		{/if}
 		<li>
-			<ItemLabel
-				{item}
-				selected={isSelected(item, $selected)}
-				colorMap={$colorMap}
-				on:select={select(item)}
-				on:edit={edit(item)}
-			/>
+			<ItemLabel {item} colorMap={$colorMap} on:select={select(item)} on:edit={edit(item)} />
 		</li>
 	{/each}
 
@@ -59,13 +43,7 @@
 			<li class="title">Assess</li>
 		{/if}
 		<li>
-			<ItemLabel
-				{item}
-				selected={isSelected(item, $selected)}
-				colorMap={$colorMap}
-				on:select={select(item)}
-				on:edit={edit(item)}
-			/>
+			<ItemLabel {item} colorMap={$colorMap} on:select={select(item)} on:edit={edit(item)} />
 		</li>
 	{/each}
 
@@ -74,13 +52,7 @@
 			<li class="title">Hold</li>
 		{/if}
 		<li>
-			<ItemLabel
-				{item}
-				selected={isSelected(item, $selected)}
-				colorMap={$colorMap}
-				on:select={select(item)}
-				on:edit={edit(item)}
-			/>
+			<ItemLabel {item} colorMap={$colorMap} on:select={select(item)} on:edit={edit(item)} />
 		</li>
 	{/each}
 </ul>

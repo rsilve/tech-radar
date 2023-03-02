@@ -8,7 +8,6 @@
 	const [singleClick, dblClick] = useDblClick();
 
 	export let item: ItemEnhanced;
-	export let selected = false;
 	export let colorMap: TagColors = {};
 
 	function select() {
@@ -24,7 +23,7 @@
 	}
 </script>
 
-<div style="text-decoration: {selected ? 'underline' : 'none'}">
+<div style="text-decoration: {item.selected ? 'underline' : 'none'}">
 	<a on:click={select} on:dblclick={edit} href={'#'} tabIndex="-1">
 		{item.name}
 		{#if item.duplicate}
