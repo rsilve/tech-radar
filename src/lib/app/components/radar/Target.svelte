@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { adoptionLevels } from '../../../model';
-	import Categories from '../../radar/Categories.svelte';
+	import Categories from './Categories.svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
