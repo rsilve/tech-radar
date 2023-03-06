@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Hst as HstType } from '@histoire/plugin-svelte';
-	import Target from './Target.svelte';
+	import Target from '../Target.svelte';
 	import BlipStack from './BlipStack.svelte';
 	import BlipNumber from './BlipNumber.svelte';
-	import { type Item, TAG_COLORS } from '../../../model';
+	import { type Item, TAG_COLORS } from '../../../../model';
 	import BlipDuplicate from './BlipDuplicate.svelte';
 	import BlipTag from './BlipTag.svelte';
 

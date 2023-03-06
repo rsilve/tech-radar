@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ItemEnhanced } from '../../../model';
-	import { toArc } from '../../../utils';
+	import type { ItemEnhanced } from '../../../../model';
+	import { toArc } from '../../../../utils';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();

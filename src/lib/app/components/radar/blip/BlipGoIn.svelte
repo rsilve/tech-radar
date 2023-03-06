@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Quarter } from '../../../model';
+	import type { Quarter } from '../../../../model';
 
 	export let quarter: Quarter;
 </script>

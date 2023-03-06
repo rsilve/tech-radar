@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Target from '../components/blip/Target.svelte';
-	import Blip from '../components/blip/Blip.svelte';
+	import Target from '../components/radar/Target.svelte';
+	import Blip from '../components/radar/blip/Blip.svelte';
 	import Quarter from './Quarter.svelte';
 	import { colorMap, dragged, filtered, items, selected } from '../../stores';
 	import { navigate } from 'svelte-navigator';
