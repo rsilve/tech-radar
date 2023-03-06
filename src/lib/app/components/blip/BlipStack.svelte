@@ -5,13 +5,13 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let radius: number;
 	export let item: ItemEnhanced;
+	let radius = 50;
 
 	function handleDragStart(e) {
 		e.dataTransfer.dropEffect = 'move';
 		e.dataTransfer.effectAllowed = 'move';
-		dispatch('dragStartBlip');
+		dispatch('dragStartBlip', item);
 	}
 	function handleDragEnd() {
 		dispatch('dragEndBlip');

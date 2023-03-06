@@ -1,9 +1,25 @@
 <script lang="ts">
 	import Target from '../components/blip/Target.svelte';
-	import Blip from './Blip.svelte';
+	import Blip from '../components/blip/Blip.svelte';
 	import Quarter from './Quarter.svelte';
-	import { filtered, items } from '../../stores';
-	import { dragged } from '../../stores/dnd';
+	import { colorMap, dragged, filtered, items, selected } from '../../stores';
+	import { navigate } from 'svelte-navigator';
+
+	function edit(e) {
+		navigate(`/edit/${e.detail.index}`);
+	}
+
+	function select(e) {
+		selected.toggle(e.detail);
+	}
+
+	function handleDragStartBlip(e) {
+		dragged.update(() => e.detail);
+	}
+
+	function handleDragEndBlip() {
+		dragged.update(() => null);
+	}
 
 	function handleDropBlip(e) {
 		const updated = { ...dragged.get(), ...e.detail };
@@ -22,7 +38,14 @@
 	>
 		<Target on:dropBlip={handleDropBlip} />
 		{#each $filtered as item}
-			<Blip {item} />
+			<Blip
+				{item}
+				colorMap={$colorMap}
+				on:edit={edit}
+				on:select={select}
+				on:dragStartBlip={handleDragStartBlip}
+				on:dragEndBlip={handleDragEndBlip}
+			/>
 		{/each}
 	</div>
 	<div class="mt-2 text-center text-xs opacity-50 print:hidden" style="grid-area: comment">

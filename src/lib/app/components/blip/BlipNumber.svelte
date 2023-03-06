@@ -11,14 +11,14 @@
 	function select(item: Item) {
 		return () =>
 			singleClick(() => {
-				dispatch('select', { value: item });
+				dispatch('select', item);
 			});
 	}
 
 	function edit(item: Item) {
 		return () =>
 			dblClick(() => {
-				dispatch('edit', { value: item });
+				dispatch('edit', item);
 			});
 	}
 
