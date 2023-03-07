@@ -19,7 +19,9 @@
 			dispatch('dropBlip', { quarter, level });
 		};
 	}
-	function handleDragEnter() {}
+	function handleDragEnter() {
+		/* do nothing */
+	}
 </script>
 
 <Categories />
