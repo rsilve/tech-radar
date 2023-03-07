@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { ItemEnhanced, TagColors } from '../../model';
-	import { useDblClick } from '../../utils';
-	import TagBadge from './TagBadge.svelte';
+	import type { ItemEnhanced, TagColors } from '../../../model';
+	import { useDblClick } from '../../../utils';
+	import TagBadge from '../TagBadge.svelte';
 
 	const dispatch = createEventDispatcher();
 	const [singleClick, dblClick] = useDblClick();

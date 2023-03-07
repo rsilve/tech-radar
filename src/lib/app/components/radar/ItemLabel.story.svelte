@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Hst as HstType } from '@histoire/plugin-svelte';
 	import { logEvent } from 'histoire/client';
-	import { TAG_COLORS, type Item } from '../../model';
+	import { TAG_COLORS, type Item } from '../../../model';
 	import ItemLabel from './ItemLabel.svelte';
 	export let Hst: HstType;
 
