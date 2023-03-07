@@ -12,13 +12,13 @@
 
 	function select() {
 		return singleClick(() => {
-			dispatch('select');
+			dispatch('select', item);
 		});
 	}
 
 	function edit() {
 		return dblClick(() => {
-			dispatch('edit');
+			dispatch('edit', item);
 		});
 	}
 </script>

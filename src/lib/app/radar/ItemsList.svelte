@@ -1,22 +1,8 @@
 <script lang="ts">
-	import { navigate } from 'svelte-navigator';
-	import type { Item } from '../../model';
-	import { colorMap, enhanced, selected } from '../../stores';
+	import { colorMap, enhanced } from '../../stores';
 	import ItemLabel from '../components/ItemLabel.svelte';
 
 	export let quarter: number;
-
-	function select(item: Item) {
-		return () => {
-			selected.toggle(item);
-		};
-	}
-
-	function edit(item: Item) {
-		return () => {
-			navigate(`/edit/${item.index}`);
-		};
-	}
 </script>
 
 <ul class="items-list columns-2">
@@ -25,7 +11,7 @@
 			<li class="title">Adopt</li>
 		{/if}
 		<li>
-			<ItemLabel {item} colorMap={$colorMap} on:select={select(item)} on:edit={edit(item)} />
+			<ItemLabel {item} colorMap={$colorMap} on:select on:edit />
 		</li>
 	{/each}
 
@@ -34,7 +20,7 @@
 			<li class="title">Trial</li>
 		{/if}
 		<li>
-			<ItemLabel {item} colorMap={$colorMap} on:select={select(item)} on:edit={edit(item)} />
+			<ItemLabel {item} colorMap={$colorMap} on:select on:edit />
 		</li>
 	{/each}
 
@@ -43,7 +29,7 @@
 			<li class="title">Assess</li>
 		{/if}
 		<li>
-			<ItemLabel {item} colorMap={$colorMap} on:select={select(item)} on:edit={edit(item)} />
+			<ItemLabel {item} colorMap={$colorMap} on:select on:edit />
 		</li>
 	{/each}
 
@@ -52,7 +38,7 @@
 			<li class="title">Hold</li>
 		{/if}
 		<li>
-			<ItemLabel {item} colorMap={$colorMap} on:select={select(item)} on:edit={edit(item)} />
+			<ItemLabel {item} colorMap={$colorMap} on:select on:edit />
 		</li>
 	{/each}
 </ul>

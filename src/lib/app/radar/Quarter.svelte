@@ -4,5 +4,5 @@
 </script>
 
 <div class="ml-2 flex h-full max-h-full pb-2 text-xs" style="grid-area: quarter-{quarter}">
-	<ItemsList {quarter} />
+	<ItemsList {quarter} on:select on:edit />
 </div>
