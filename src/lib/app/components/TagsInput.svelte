@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { addTag } from '../../model';
+	import { addTag, removeTag } from '../../model';
 	import { createEventDispatcher } from 'svelte';
 	import type { TagColors } from '../../model';
 
@@ -18,8 +18,12 @@
 	function add(event: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }) {
 		if (event.key === 'Enter') {
 			const el = event.currentTarget;
+			const value = el.value.trim();
+			if (!value) {
+				return;
+			}
 			setTimeout(() => {
-				tags = addTag(el.value.trim(), tags);
+				tags = addTag(value, tags);
 				el.value = '';
 				change(tags);
 			}, 100);
@@ -28,8 +32,7 @@
 
 	function remove(tag: string) {
 		return () => {
-			const filtered = tags.filter((item) => item.toUpperCase() !== tag.toUpperCase());
-			tags = [...filtered];
+			tags = removeTag(tag, tags);
 			change(tags);
 		};
 	}
