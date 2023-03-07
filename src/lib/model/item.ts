@@ -15,8 +15,13 @@ export type Item = {
 
 export function addTag(tag: string, tags: string[]): string[] {
 	return unique([...tags, tag], (item) => item.toUpperCase()).sort((a, b) =>
-		b.toUpperCase().localeCompare(a.toUpperCase())
+		a.toUpperCase().localeCompare(b.toUpperCase())
 	);
+}
+
+export function removeTag(tag: string, tags: string[]): string[] {
+	const filtered = tags.filter((item) => item.toUpperCase() !== tag.toUpperCase());
+	return [...filtered];
 }
 
 function sortMatrix(matrix: Item[][]) {
