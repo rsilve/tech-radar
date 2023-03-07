@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { categories } from '../../model';
+	import { categories } from '../../../model';
 </script>
 
 <div class="absolute top-0 right-0">

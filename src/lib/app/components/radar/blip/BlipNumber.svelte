@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { Item, ItemEnhanced } from '../../../model';
-	import { useDblClick } from '../../../utils';
+	import type { Item, ItemEnhanced } from '../../../../model';
+	import { useDblClick } from '../../../../utils';
 	import BlipDirection from './BlipDirection.svelte';
 	const dispatch = createEventDispatcher();
 	const [singleClick, dblClick] = useDblClick();
@@ -11,14 +11,14 @@
 	function select(item: Item) {
 		return () =>
 			singleClick(() => {
-				dispatch('select', { value: item });
+				dispatch('select', item);
 			});
 	}
 
 	function edit(item: Item) {
 		return () =>
 			dblClick(() => {
-				dispatch('edit', { value: item });
+				dispatch('edit', item);
 			});
 	}
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Hst as HstType } from '@histoire/plugin-svelte';
 	import { logEvent } from 'histoire/client';
-	import type { Item } from '../../../model';
+	import type { Item } from '../../../../model';
 	import BlipNumber from './BlipNumber.svelte';
 
 	export let Hst: HstType;

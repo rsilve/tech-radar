@@ -71,4 +71,5 @@ export function generatePoints(list: Item[]) {
 
 export type ItemEnhanced = Item & {
 	duplicate?: boolean;
+	selected?: boolean;
 };

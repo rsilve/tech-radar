@@ -1,9 +1,25 @@
 <script lang="ts">
-	import Target from '../components/blip/Target.svelte';
-	import Blip from './Blip.svelte';
+	import Target from '../components/radar/Target.svelte';
+	import Blip from '../components/radar/blip/Blip.svelte';
 	import Quarter from './Quarter.svelte';
-	import { filtered, items } from '../../stores';
-	import { dragged } from '../../stores/dnd';
+	import { colorMap, dragged, filtered, items, selected } from '../../stores';
+	import { navigate } from 'svelte-navigator';
+
+	function edit(e) {
+		navigate(`/edit/${e.detail.index}`);
+	}
+
+	function select(e) {
+		selected.toggle(e.detail);
+	}
+
+	function handleDragStartBlip(e) {
+		dragged.update(() => e.detail);
+	}
+
+	function handleDragEndBlip() {
+		dragged.update(() => null);
+	}
 
 	function handleDropBlip(e) {
 		const updated = { ...dragged.get(), ...e.detail };
@@ -12,17 +28,24 @@
 </script>
 
 <div class="radar grid h-full justify-start">
-	<Quarter quarter={1} />
-	<Quarter quarter={2} />
-	<Quarter quarter={3} />
-	<Quarter quarter={4} />
+	<Quarter quarter={1} on:edit={edit} on:select={select} />
+	<Quarter quarter={2} on:edit={edit} on:select={select} />
+	<Quarter quarter={3} on:edit={edit} on:select={select} />
+	<Quarter quarter={4} on:edit={edit} on:select={select} />
 	<div
 		class="relative aspect-square justify-self-center portrait:w-full portrait:max-w-full landscape:h-full landscape:max-h-full"
 		style="grid-area: target"
 	>
 		<Target on:dropBlip={handleDropBlip} />
 		{#each $filtered as item}
-			<Blip {item} />
+			<Blip
+				{item}
+				colorMap={$colorMap}
+				on:edit={edit}
+				on:select={select}
+				on:dragStartBlip={handleDragStartBlip}
+				on:dragEndBlip={handleDragEndBlip}
+			/>
 		{/each}
 	</div>
 	<div class="mt-2 text-center text-xs opacity-50 print:hidden" style="grid-area: comment">
