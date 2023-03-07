@@ -14,7 +14,7 @@
 	{#if item.duplicate}
 		<BlipDuplicate />
 	{/if}
-	{#each item.tags.reverse() as tag}
+	{#each [...item.tags].reverse() as tag}
 		<BlipTag color={colorMap[tag] || 'transparent'} />
 	{/each}
 	<BlipDirection {item} />
