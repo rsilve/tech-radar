@@ -3,6 +3,8 @@
 	import Upload from './components/Upload.svelte';
 	import Home from './components/Home.svelte';
 	import { archive, items } from '../stores';
+	import SettingsMenuItem from './settings/SettingsMenuItem.svelte';
+
 	export let id = 'app-drawer';
 
 	let closeElement: HTMLInputElement;
@@ -20,12 +22,17 @@
 	</div>
 	<div class="drawer-side">
 		<label for={id} class="drawer-overlay" />
-		<ul class="menu w-96 bg-base-100 text-base-content">
-			<li><Home {id} /></li>
-			<li><Download archive={$archive} onComplete={close} /></li>
-			<li>
-				<Upload onLoad={(list) => items.set(list)} onComplete={close} />
-			</li>
-		</ul>
+		<div class="flex w-96 flex-col ">
+			<ul class="menu flex-grow bg-base-100 text-base-content">
+				<li><Home {id} /></li>
+				<li><Download archive={$archive} onComplete={close} /></li>
+				<li>
+					<Upload onLoad={(list) => items.set(list)} onComplete={close} />
+				</li>
+			</ul>
+			<ul class="menu bg-base-100 pb-8 text-base-content">
+				<li><SettingsMenuItem on:click={close} /></li>
+			</ul>
+		</div>
 	</div>
 </div>

@@ -7,6 +7,7 @@
 	import Modal from './lib/app/components/Modal.svelte';
 	import { navigate, Route, Router } from 'svelte-navigator';
 	import Summary from './lib/app/Summary.svelte';
+	import Settings from './lib/app/settings/Settings.svelte';
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.altKey && event.ctrlKey && event.key === 'n') {
@@ -37,6 +38,11 @@
 			<Route path="/help">
 				<Modal>
 					<Help />
+				</Modal>
+			</Route>
+			<Route path="/settings">
+				<Modal>
+					<Settings />
 				</Modal>
 			</Route>
 			<Route path="/edit/*">
