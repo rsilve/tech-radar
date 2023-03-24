@@ -4,15 +4,14 @@
 	import { adoptionLevels as origin } from '../../model';
 	import { adoptionLevels } from '../../stores';
 
-	let levels = { ...origin };
+	let levels = { ...origin, ...$adoptionLevels };
 	function cancel() {
 		navigate('/');
 	}
 
 	function submit() {
 		adoptionLevels.update(() => levels);
-		console.log($adoptionLevels[1]);
-		console.log(origin[1]);
+		navigate('/');
 	}
 </script>
 
@@ -65,7 +64,7 @@
 					type="text"
 					placeholder="Type here"
 					class="input-bordered input"
-					bind:value={$adoptionLevels[4]}
+					bind:value={levels[4]}
 				/>
 			</div>
 		</div>
