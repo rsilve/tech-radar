@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Target from '../components/radar/Target.svelte';
+	import Target from './Target.svelte';
 	import Blip from '../components/radar/blip/Blip.svelte';
 	import Quarter from './Quarter.svelte';
 	import { colorMap, dragged, filtered, items, selected } from '../../stores';

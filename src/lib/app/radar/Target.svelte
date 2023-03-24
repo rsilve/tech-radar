@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { adoptionLevels } from '../../../model';
-	import Categories from './Categories.svelte';
+	import Categories from '../components/radar/Categories.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import { adoptionLevels } from '../../stores';
 
 	const dispatch = createEventDispatcher();
 
@@ -130,23 +130,23 @@
 	class="absolute -translate-y-6 -translate-x-6 -rotate-[30deg] text-xs uppercase opacity-50"
 	style="top: {coordTop(2)}%; left: {coordLeft(2)}%; text-shadow: 0 0 20px white;"
 >
-	{adoptionLevels['1']}
+	{$adoptionLevels['1']}
 </div>
 <div
 	class="absolute -translate-y-6 -translate-x-6 -rotate-[30deg] text-xs uppercase opacity-50"
 	style="top: {coordTop(3)}%; left: {coordLeft(3)}%; text-shadow: 0 0 20px white;"
 >
-	{adoptionLevels['2']}
+	{$adoptionLevels['2']}
 </div>
 <div
 	class="absolute -translate-y-6 -translate-x-6 -rotate-[30deg] text-xs uppercase opacity-50"
 	style="top: {coordTop(4)}%; left: {coordLeft(4)}%; text-shadow: 0 0 20px white;"
 >
-	{adoptionLevels['3']}
+	{$adoptionLevels['3']}
 </div>
 <div
 	class="absolute -translate-y-6 -translate-x-6 -rotate-[30deg] text-xs uppercase opacity-50"
 	style="top: {coordTop(5)}%; left: {coordLeft(5)}%; text-shadow: 0 0 20px white;"
 >
-	{adoptionLevels['4']}
+	{$adoptionLevels['4']}
 </div>

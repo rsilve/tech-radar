@@ -1,7 +1,7 @@
 <script lang="ts">
-	import CheatSheetCell from './CheatSheetCell.svelte';
+	import CheatSheetCell from '../components/CheatSheetCell.svelte';
 	import { writable } from 'svelte/store';
-	import { adoptionLevels } from '../../model';
+	import { adoptionLevels } from '../../stores';
 
 	export let level = 0;
 
@@ -31,9 +31,9 @@
 		<span class="flex-grow text-accent-focus">Select the cases that fit your perception</span>
 		<div>
 			Suggestion:
-			{#if adoptionLevels[score]}
+			{#if $adoptionLevels[score]}
 				<button tabindex="-1" class="btn-outline btn-xs btn" on:click|preventDefault={select}
-					>{adoptionLevels[score]}</button
+					>{$adoptionLevels[score]}</button
 				>
 			{:else}
 				none
@@ -45,10 +45,10 @@
 		<thead>
 			<tr>
 				<th>Stage (of adoption)</th>
-				<th>Adopt</th>
-				<th>Trial</th>
-				<th>Assess</th>
-				<th>Hold</th>
+				<th>{$adoptionLevels[1]}</th>
+				<th>{$adoptionLevels[2]}</th>
+				<th>{$adoptionLevels[3]}</th>
+				<th>{$adoptionLevels[4]}</th>
 			</tr>
 			<tr>
 				<th colspan="5">Characteristics</th>
@@ -87,7 +87,7 @@
 					>Build / construct / awareness and learning
 				</CheatSheetCell>
 				<CheatSheetCell stage={2} maturity={4} {state}
-					>Normally decribe the wonder of the thing
+					>Normally describe the wonder of the thing
 				</CheatSheetCell>
 			</tr>
 		</tbody>
