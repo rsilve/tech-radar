@@ -1,6 +1,7 @@
 <script lang="ts">
-	import ItemLabel from './ItemLabel.svelte';
-	import type { ItemEnhanced, TagColors } from '../../../model';
+	import ItemLabel from '../components/radar/ItemLabel.svelte';
+	import type { ItemEnhanced, TagColors } from '../../model';
+	import { adoptionLevels } from '../../stores';
 
 	export let items: ItemEnhanced[] = [];
 	export let colorMap: TagColors = {};
@@ -9,7 +10,7 @@
 <ul class="items-list columns-2">
 	{#each items.filter((value) => value.level === 1) as item, index}
 		{#if index === 0}
-			<li class="title">Adopt</li>
+			<li class="title">{$adoptionLevels[1]}</li>
 		{/if}
 		<li>
 			<ItemLabel {item} {colorMap} on:select on:edit />
@@ -18,7 +19,7 @@
 
 	{#each items.filter((value) => value.level === 2) as item, index}
 		{#if index === 0}
-			<li class="title">Trial</li>
+			<li class="title">{$adoptionLevels[2]}</li>
 		{/if}
 		<li>
 			<ItemLabel {item} {colorMap} on:select on:edit />
@@ -27,7 +28,7 @@
 
 	{#each items.filter((value) => value.level === 3) as item, index}
 		{#if index === 0}
-			<li class="title">Assess</li>
+			<li class="title">{$adoptionLevels[3]}</li>
 		{/if}
 		<li>
 			<ItemLabel {item} {colorMap} on:select on:edit />
@@ -36,7 +37,7 @@
 
 	{#each items.filter((value) => value.level === 4) as item, index}
 		{#if index === 0}
-			<li class="title">Hold</li>
+			<li class="title">{$adoptionLevels[4]}</li>
 		{/if}
 		<li>
 			<ItemLabel {item} {colorMap} on:select on:edit />

@@ -1,5 +1,5 @@
 <script>
-	import ItemsList from '../components/radar/ItemsList.svelte';
+	import ItemsList from './ItemsList.svelte';
 	import { colorMap, enhanced } from '../../stores/';
 
 	export let quarter = 0;
