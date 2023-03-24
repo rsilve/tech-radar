@@ -4,7 +4,7 @@
 	import ModalFooter from '../components/ModalFooter.svelte';
 	import { navigate, useFocus } from 'svelte-navigator';
 	import TagsInput from '../components/TagsInput.svelte';
-	import CheatSheet from '../components/CheatSheet.svelte';
+	import CheatSheet from './CheatSheet.svelte';
 	import ArrowLabel from '../components/ArrowLabel.svelte';
 
 	export let id: number = undefined;
