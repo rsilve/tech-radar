@@ -27,7 +27,7 @@
 				<label class="label">
 					<span class="label-text">{origin[1]}</span>
 					<span class="label-text-alt"
-						><a href={''} on:click={() => (levels[1] = origin[1])}>reset</a></span
+						><a href={'#'} on:click={() => (levels[1] = origin[1])}>reset</a></span
 					>
 				</label>
 				<input
