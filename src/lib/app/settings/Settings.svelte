@@ -20,11 +20,14 @@
 <div>
 	<h1 class="mb-0.5 mt-2 text-xl font-bold">Settings</h1>
 	<form on:submit|preventDefault={submit}>
-		<div>Configure the adoption levels label :</div>
+		<div>Configure adoption level labels :</div>
 		<div class="grid grid-cols-4 gap-x-4 pl-8">
 			<div class="form-control w-full max-w-xs">
 				<label class="label">
 					<span class="label-text">{origin[1]}</span>
+					<span class="label-text-alt"
+						><a href={''} on:click={() => (levels[1] = origin[1])}>reset</a></span
+					>
 				</label>
 				<input
 					type="text"
@@ -37,6 +40,9 @@
 			<div class="form-control w-full max-w-xs">
 				<label class="label">
 					<span class="label-text">{origin[2]}</span>
+					<span class="label-text-alt"
+						><a href={''} on:click={() => (levels[2] = origin[2])}>reset</a></span
+					>
 				</label>
 				<input
 					type="text"
@@ -49,6 +55,9 @@
 			<div class="form-control w-full max-w-xs">
 				<label class="label">
 					<span class="label-text">{origin[3]}</span>
+					<span class="label-text-alt"
+						><a href={''} on:click={() => (levels[3] = origin[3])}>reset</a></span
+					>
 				</label>
 				<input
 					type="text"
@@ -61,6 +70,9 @@
 			<div class="form-control w-full max-w-xs">
 				<label class="label">
 					<span class="label-text">{origin[4]}</span>
+					<span class="label-text-alt"
+						><a href={''} on:click={() => (levels[4] = origin[4])}>reset</a></span
+					>
 				</label>
 				<input
 					type="text"
