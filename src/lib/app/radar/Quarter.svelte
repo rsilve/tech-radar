@@ -1,6 +1,8 @@
 <script>
 	import ItemsList from './ItemsList.svelte';
-	import { colorMap, enhanced } from '../../stores/';
+	import { getContext } from 'svelte';
+
+	const { enhanced, colorMap } = getContext('global-context');
 
 	export let quarter = 0;
 </script>

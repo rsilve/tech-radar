@@ -2,9 +2,10 @@
 	import Download from './components/Download.svelte';
 	import Upload from './components/Upload.svelte';
 	import Home from './components/Home.svelte';
-	import { archive, items } from '../stores';
 	import SettingsMenuItem from './settings/SettingsMenuItem.svelte';
+	import { getContext } from 'svelte';
 
+	const { items, archive } = getContext('global-context');
 	export let id = 'app-drawer';
 
 	let closeElement: HTMLInputElement;

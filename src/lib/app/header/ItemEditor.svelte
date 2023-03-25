@@ -1,11 +1,14 @@
 <script lang="ts">
 	import type { Item, Level, Quarter } from '../../model';
-	import { colorMap, index, items, selected, tags } from '../../stores';
+	import { selected } from '../../stores';
 	import ModalFooter from '../components/ModalFooter.svelte';
 	import { navigate, useFocus } from 'svelte-navigator';
 	import TagsInput from '../components/TagsInput.svelte';
 	import CheatSheet from './CheatSheet.svelte';
 	import ArrowLabel from '../components/ArrowLabel.svelte';
+	import { getContext } from 'svelte';
+
+	const { items, index, colorMap, tags } = getContext('global-context');
 
 	export let id: number = undefined;
 
@@ -30,27 +33,16 @@
 		if (!name || name.trim().length === 0) {
 			return;
 		}
-		if (id) {
-			items.update({
-				...defaultItem,
-				name: name.trim(),
-				quarter,
-				level,
-				direction,
-				index: $selected.index,
-				tags: itemTags
-			} as Item);
-		} else {
-			items.add({
-				...defaultItem,
-				name: name.trim(),
-				quarter,
-				level,
-				direction,
-				index: $index,
-				tags: itemTags
-			} as Item);
-		}
+		items.addOrUpdate({
+			...defaultItem,
+			name: name.trim(),
+			quarter,
+			level,
+			direction,
+			index: id ? $selected.index : $index,
+			tags: itemTags
+		} as Item);
+
 		cancel();
 	}
 
@@ -60,6 +52,7 @@
 		}
 		cancel();
 	}
+
 	function cancel() {
 		name = undefined;
 		quarter = 1;
@@ -188,7 +181,7 @@
 			<button type="button" on:click={submit} class="btn">
 				{#if id}Update{:else}Add{/if}
 			</button>
-			<button type="button" on:click={cancel} class="btn-outline btn"> Cancel </button>
+			<button type="button" on:click={cancel} class="btn-outline btn"> Cancel</button>
 		</ModalFooter>
 	</form>
 </div>

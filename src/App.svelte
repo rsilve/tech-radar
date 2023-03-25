@@ -8,6 +8,7 @@
 	import { navigate, Route, Router } from 'svelte-navigator';
 	import Summary from './lib/app/Summary.svelte';
 	import Settings from './lib/app/settings/Settings.svelte';
+	import GlobalLoader from './lib/app/GlobalLoader.svelte';
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.altKey && event.ctrlKey && event.key === 'n') {
@@ -28,35 +29,37 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <main class="relative">
-	<Router>
-		<Route path="/*">
-			<Layout>
-				<Header slot="header" />
-				<Radar slot="radar" />
-				<Summary slot="search" />
-			</Layout>
-			<Route path="/help">
-				<Modal>
-					<Help />
-				</Modal>
-			</Route>
-			<Route path="/settings">
-				<Modal>
-					<Settings />
-				</Modal>
-			</Route>
-			<Route path="/edit/*">
-				<Route path="/">
+	<GlobalLoader>
+		<Router>
+			<Route path="/*">
+				<Layout>
+					<Header slot="header" />
+					<Radar slot="radar" />
+					<Summary slot="search" />
+				</Layout>
+				<Route path="/help">
 					<Modal>
-						<ItemEditor />
+						<Help />
 					</Modal>
 				</Route>
-				<Route path=":id" let:params>
+				<Route path="/settings">
 					<Modal>
-						<ItemEditor id={idToInt(params.id)} />
+						<Settings />
 					</Modal>
 				</Route>
+				<Route path="/edit/*">
+					<Route path="/">
+						<Modal>
+							<ItemEditor />
+						</Modal>
+					</Route>
+					<Route path=":id" let:params>
+						<Modal>
+							<ItemEditor id={idToInt(params.id)} />
+						</Modal>
+					</Route>
+				</Route>
 			</Route>
-		</Route>
-	</Router>
+		</Router>
+	</GlobalLoader>
 </main>

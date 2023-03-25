@@ -1,6 +1,9 @@
 <script lang="ts">
-	import { adoptionLevels, colorMap, items, tagsCount } from '../stores';
+	import { adoptionLevels } from '../stores';
 	import TagBadge from './components/TagBadge.svelte';
+	import { getContext } from 'svelte';
+
+	const { items, colorMap, tagsCount } = getContext('global-context');
 </script>
 
 <div>
