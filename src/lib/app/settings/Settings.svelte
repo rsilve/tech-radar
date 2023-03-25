@@ -27,7 +27,7 @@
 				<label class="label">
 					<span class="label-text">{origin[1]}</span>
 					<span class="label-text-alt"
-						><a href={'#'} on:click={() => (levels[1] = origin[1])}>reset</a></span
+						><a href={'#'} on:click={() => (levels[1] = origin[1])} tabindex="-1">reset</a></span
 					>
 				</label>
 				<input
@@ -42,7 +42,7 @@
 				<label class="label">
 					<span class="label-text">{origin[2]}</span>
 					<span class="label-text-alt"
-						><a href={'#'} on:click={() => (levels[2] = origin[2])}>reset</a></span
+						><a href={'#'} on:click={() => (levels[2] = origin[2])} tabindex="-1">reset</a></span
 					>
 				</label>
 				<input
@@ -57,7 +57,7 @@
 				<label class="label">
 					<span class="label-text">{origin[3]}</span>
 					<span class="label-text-alt"
-						><a href={'#'} on:click={() => (levels[3] = origin[3])}>reset</a></span
+						><a href={'#'} on:click={() => (levels[3] = origin[3])} tabindex="-1">reset</a></span
 					>
 				</label>
 				<input
@@ -72,7 +72,7 @@
 				<label class="label">
 					<span class="label-text">{origin[4]}</span>
 					<span class="label-text-alt"
-						><a href={'#'} on:click={() => (levels[4] = origin[4])}>reset</a></span
+						><a href={'#'} on:click={() => (levels[4] = origin[4])} tabindex="-1">reset</a></span
 					>
 				</label>
 				<input
