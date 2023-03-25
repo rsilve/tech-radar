@@ -25,7 +25,8 @@
 	class="absolute -translate-x-1/2 -translate-y-1/2 transition hover:z-50"
 	class:scale-[1.2]={item.selected}
 	class:brightness-125={item.selected}
-	style="top:{radius + toArc(item, radius / 5).x}%; left:{radius + toArc(item, radius / 5).y}%;"
+	style:top="{radius + toArc(item, radius / 5).x}%"
+	style:left="{radius + toArc(item, radius / 5).y}%"
 	data-tip={item.name}
 >
 	<div class="relative flex items-center -space-x-[1.5rem]">
