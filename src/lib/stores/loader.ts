@@ -36,7 +36,7 @@ function loadData(): Archive {
 	return DEFAULT_ARCHIVE;
 }
 
-function persist(list: Item[]) {
+function updateItems(list: Item[]) {
 	store.update((archive) => {
 		return { ...archive, items: list };
 	});
@@ -67,4 +67,4 @@ function load() {
 	};
 }
 
-export const loader = { ...store, load, persist };
+export const loader = { ...store, load, updateItems };
