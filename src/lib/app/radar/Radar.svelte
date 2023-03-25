@@ -26,7 +26,7 @@
 
 	function handleDropBlip(e) {
 		const updated = { ...dragged.get(), ...e.detail };
-		items.update(updated);
+		items.addOrUpdate(updated);
 	}
 </script>
 

@@ -26,7 +26,7 @@ function loadData(): Archive {
 	}
 	if (data.startsWith('[')) {
 		const items = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]') as Item[];
-		return { items, categories: [] };
+		return { ...DEFAULT_ARCHIVE, items };
 	}
 
 	if (data.startsWith('{')) {
