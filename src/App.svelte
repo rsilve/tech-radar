@@ -11,12 +11,9 @@
 	import GlobalLoader from './lib/app/GlobalLoader.svelte';
 
 	function handleKeydown(event: KeyboardEvent) {
-		if (event.altKey && event.ctrlKey && event.key === 'n') {
+		if (event.ctrlKey && event.key === 'b') {
 			event.preventDefault();
 			navigate('/edit');
-		}
-		if (event.altKey && event.ctrlKey && event.key === '/') {
-			console.log('Search');
 		}
 	}
 
