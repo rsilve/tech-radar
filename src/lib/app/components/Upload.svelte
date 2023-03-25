@@ -23,7 +23,7 @@
 				const text = await file.text();
 				const archive = readArchive(text);
 				if (archive) {
-					onLoad(archive.items);
+					onLoad(archive);
 				}
 				break;
 			}

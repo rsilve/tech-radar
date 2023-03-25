@@ -7,8 +7,9 @@
 	import CheatSheet from './CheatSheet.svelte';
 	import ArrowLabel from '../components/ArrowLabel.svelte';
 	import { getContext } from 'svelte';
+	import { GLOBAL_CONTEXT } from '../GlobalContext';
 
-	const { items, index, colorMap, tags } = getContext('global-context');
+	const { items, index, colorMap, tags } = getContext(GLOBAL_CONTEXT);
 
 	export let id: number = undefined;
 

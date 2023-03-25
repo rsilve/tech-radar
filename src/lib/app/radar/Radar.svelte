@@ -5,8 +5,9 @@
 	import { dragged, selected } from '../../stores';
 	import { navigate } from 'svelte-navigator';
 	import { getContext } from 'svelte';
+	import { GLOBAL_CONTEXT } from '../GlobalContext';
 
-	const { items, filtered, colorMap } = getContext('global-context');
+	const { items, filtered, colorMap } = getContext(GLOBAL_CONTEXT);
 
 	function edit(e) {
 		navigate(`/edit/${e.detail.index}`);
