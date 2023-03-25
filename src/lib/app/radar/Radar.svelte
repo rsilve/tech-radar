@@ -2,8 +2,11 @@
 	import Target from './Target.svelte';
 	import Blip from '../components/radar/blip/Blip.svelte';
 	import Quarter from './Quarter.svelte';
-	import { colorMap, dragged, filtered, items, selected } from '../../stores';
+	import { dragged, selected } from '../../stores';
 	import { navigate } from 'svelte-navigator';
+	import { getContext } from 'svelte';
+
+	const { items, filtered, colorMap } = getContext('global-context');
 
 	function edit(e) {
 		navigate(`/edit/${e.detail.index}`);

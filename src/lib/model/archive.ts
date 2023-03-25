@@ -2,6 +2,8 @@ import type { Item } from './item';
 
 export type Archive = { items: Item[]; categories: string[] };
 
+export const DEFAULT_ARCHIVE: Archive = { items: [], categories: [] };
+
 export function readArchive(jsonStr: string): Archive | undefined {
 	if (jsonStr.startsWith('[')) {
 		return { items: JSON.parse(jsonStr || '[]') as Item[], categories: [] };

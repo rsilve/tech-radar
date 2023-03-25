@@ -29,7 +29,7 @@ export function tagsFactory(items: Item[]) {
 		items.reduce((list, item) => {
 			return [...list, ...item.tags];
 		}, [])
-	).sort();
+	).sort() as string[];
 }
 
 export function tagsCountFromItems(items: Item[]): { name: string; count: number }[] {
