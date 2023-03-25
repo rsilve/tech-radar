@@ -4,6 +4,7 @@
 
 	let context = loader.load();
 	context.items.subscribe((items) => loader.updateItems(items));
+	context.adoptionLevels.subscribe((levels) => loader.updateLevels(levels));
 
 	setContext('global-context', context);
 </script>

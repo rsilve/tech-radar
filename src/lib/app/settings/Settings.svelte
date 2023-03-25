@@ -2,7 +2,9 @@
 	import ModalFooter from '../components/ModalFooter.svelte';
 	import { navigate } from 'svelte-navigator';
 	import { adoptionLevels as origin } from '../../model';
-	import { adoptionLevels } from '../../stores';
+	import { getContext } from 'svelte';
+
+	const { adoptionLevels } = getContext('global-context');
 
 	let levels = { ...origin, ...$adoptionLevels };
 	function cancel() {

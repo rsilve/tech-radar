@@ -1,7 +1,7 @@
 import { derived, type Readable, type Writable } from 'svelte/store';
-import { createArchive, type Item } from '../model';
 import { selected } from './selected';
 import { searchCriteria } from './searchCriteria';
+import type { Item } from '../model';
 
 export const indexStoreFactory = (items: Writable<Item[]>) =>
 	derived(items, ($items) => {
@@ -10,11 +10,6 @@ export const indexStoreFactory = (items: Writable<Item[]>) =>
 			0
 		);
 		return last + 1;
-	});
-
-export const archiveStoreFactory = (items: Writable<Item[]>) =>
-	derived(items, ($items) => {
-		return createArchive($items);
 	});
 
 export const duplicateStoreFactory = (items: Writable<Item[]>) =>

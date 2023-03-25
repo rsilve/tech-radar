@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
-import { adoptionLevels as origin } from '../model';
+import { type AdoptionLevels, adoptionLevels as origin } from '../model';
 
-const store = writable({ ...origin });
-
-export const adoptionLevels = store;
+export const adoptionLevelsStoreFactory = (levels: AdoptionLevels) => {
+	return writable({ ...origin, ...levels });
+};
