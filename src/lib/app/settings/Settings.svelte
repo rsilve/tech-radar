@@ -3,8 +3,9 @@
 	import { navigate } from 'svelte-navigator';
 	import { adoptionLevels as origin } from '../../model';
 	import { getContext } from 'svelte';
+	import { GLOBAL_CONTEXT } from '../GlobalContext';
 
-	const { adoptionLevels } = getContext('global-context');
+	const { adoptionLevels } = getContext(GLOBAL_CONTEXT);
 
 	let levels = { ...origin, ...$adoptionLevels };
 	function cancel() {

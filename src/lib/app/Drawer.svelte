@@ -4,8 +4,9 @@
 	import Home from './components/Home.svelte';
 	import SettingsMenuItem from './settings/SettingsMenuItem.svelte';
 	import { getContext } from 'svelte';
+	import { GLOBAL_CONTEXT } from './GlobalContext';
 
-	const { archive, items } = getContext('global-context');
+	const { archive, items, loadFromStorage } = getContext(GLOBAL_CONTEXT);
 	export let id = 'app-drawer';
 
 	let closeElement: HTMLInputElement;
@@ -28,7 +29,7 @@
 				<li><Home {id} /></li>
 				<li><Download archive={$archive} onComplete={close} /></li>
 				<li>
-					<Upload onLoad={(list) => items.set(list)} onComplete={close} />
+					<Upload onLoad={(archive) => loadFromStorage(archive)} onComplete={close} />
 				</li>
 			</ul>
 			<ul class="menu bg-base-100 pb-8 text-base-content">

@@ -36,8 +36,8 @@ function updateLevels(levels: AdoptionLevels) {
 	});
 }
 
-function load() {
-	const archive = loadData();
+function contextFactory(archive: Archive) {
+	console.log(archive);
 	store.update(() => archive);
 	const items = itemsStoreFactory(archive.items);
 	const index = indexStoreFactory(items);
@@ -48,6 +48,12 @@ function load() {
 	const colorMap = colorsMapStoreFactory(tags);
 	const tagsCount = tagsCountStoreFactory(items);
 	const adoptionLevels = adoptionLevelsStoreFactory(archive.adoptionLevels);
+
+	const loadFromStorage = (archive: Archive) => {
+		store.set(archive);
+		items.set(archive.items);
+		adoptionLevels.set(archive.adoptionLevels);
+	};
 	return {
 		archive: store,
 		items,
@@ -58,8 +64,14 @@ function load() {
 		tags,
 		colorMap,
 		tagsCount,
-		adoptionLevels
+		adoptionLevels,
+		loadFromStorage
 	};
+}
+
+function load() {
+	const archive = loadData();
+	return contextFactory(archive);
 }
 
 export const loader = { load, updateItems, updateLevels };

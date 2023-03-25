@@ -2,8 +2,9 @@
 	import CheatSheetCell from '../components/CheatSheetCell.svelte';
 	import { writable } from 'svelte/store';
 	import { getContext } from 'svelte';
+	import { GLOBAL_CONTEXT } from '../GlobalContext';
 
-	const { adoptionLevels } = getContext('global-context');
+	const { adoptionLevels } = getContext(GLOBAL_CONTEXT);
 
 	export let level = 0;
 

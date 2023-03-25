@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Categories from '../components/radar/Categories.svelte';
 	import { createEventDispatcher, getContext } from 'svelte';
+	import { GLOBAL_CONTEXT } from '../GlobalContext';
 
 	const dispatch = createEventDispatcher();
-	const { adoptionLevels } = getContext('global-context');
+	const { adoptionLevels } = getContext(GLOBAL_CONTEXT);
 
 	function coordTop(radius: number) {
 		return 100 / 2 + (Math.cos(Math.PI / 6) * 100 * radius) / 10;
