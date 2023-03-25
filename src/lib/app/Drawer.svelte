@@ -5,7 +5,7 @@
 	import SettingsMenuItem from './settings/SettingsMenuItem.svelte';
 	import { getContext } from 'svelte';
 
-	const { items, archive } = getContext('global-context');
+	const { archive, items } = getContext('global-context');
 	export let id = 'app-drawer';
 
 	let closeElement: HTMLInputElement;

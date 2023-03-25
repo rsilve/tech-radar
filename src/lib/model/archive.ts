@@ -1,22 +1,29 @@
 import type { Item } from './item';
+import { adoptionLevels } from './constants';
+import type { AdoptionLevels } from './type';
 
-export type Archive = { items: Item[]; categories: string[] };
+export type Archive = { items: Item[]; categories: string[]; adoptionLevels: AdoptionLevels };
 
-export const DEFAULT_ARCHIVE: Archive = { items: [], categories: [] };
+export const DEFAULT_ARCHIVE: Archive = {
+	items: [],
+	categories: [],
+	adoptionLevels
+};
 
-export function readArchive(jsonStr: string): Archive | undefined {
+export function readArchive(jsonStr?: string): Archive | undefined {
+	if (!jsonStr) {
+		return DEFAULT_ARCHIVE;
+	}
 	if (jsonStr.startsWith('[')) {
-		return { items: JSON.parse(jsonStr || '[]') as Item[], categories: [] };
+		return { ...DEFAULT_ARCHIVE, items: JSON.parse(jsonStr || '[]') as Item[] };
 	}
 	if (jsonStr.startsWith('{')) {
-		return JSON.parse(jsonStr || '{}') as Archive;
+		const value = JSON.parse(jsonStr || '{}');
+		return { ...DEFAULT_ARCHIVE, ...value };
 	}
-	return undefined;
+	return DEFAULT_ARCHIVE;
 }
 
 export function writeArchive(archive: Archive): string {
 	return JSON.stringify(archive);
-}
-export function createArchive(items: Item[], categories: string[] = []): Archive {
-	return { items, categories };
 }

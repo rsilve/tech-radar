@@ -1,7 +1,9 @@
 <script lang="ts">
 	import CheatSheetCell from '../components/CheatSheetCell.svelte';
 	import { writable } from 'svelte/store';
-	import { adoptionLevels } from '../../stores';
+	import { getContext } from 'svelte';
+
+	const { adoptionLevels } = getContext('global-context');
 
 	export let level = 0;
 

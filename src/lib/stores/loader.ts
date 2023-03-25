@@ -1,15 +1,15 @@
-import type { Archive, Item } from '../model';
-import { DEFAULT_ARCHIVE, writeArchive } from '../model';
+import type { AdoptionLevels, Archive, Item } from '../model';
+import { readArchive, writeArchive } from '../model';
 import { writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import {
-	archiveStoreFactory,
 	duplicateStoreFactory,
 	enhancedStoreFactory,
 	filteredStoreFactory,
 	indexStoreFactory
 } from './store';
 import { colorsMapStoreFactory, tagsCountStoreFactory, tagsStoreFactory } from './tags';
+import { adoptionLevelsStoreFactory } from './adoptionsLevels';
 
 const STORAGE_KEY = 'technos';
 
@@ -21,19 +21,7 @@ store.subscribe((archive) => {
 
 function loadData(): Archive {
 	const data = window.localStorage.getItem(STORAGE_KEY);
-	if (!data) {
-		return DEFAULT_ARCHIVE;
-	}
-	if (data.startsWith('[')) {
-		const items = JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '[]') as Item[];
-		return { ...DEFAULT_ARCHIVE, items };
-	}
-
-	if (data.startsWith('{')) {
-		return JSON.parse(window.localStorage.getItem(STORAGE_KEY) || '{}') as Archive;
-	}
-
-	return DEFAULT_ARCHIVE;
+	return readArchive(data);
 }
 
 function updateItems(list: Item[]) {
@@ -42,29 +30,36 @@ function updateItems(list: Item[]) {
 	});
 }
 
+function updateLevels(levels: AdoptionLevels) {
+	store.update((archive) => {
+		return { ...archive, adoptionLevels: levels };
+	});
+}
+
 function load() {
 	const archive = loadData();
 	store.update(() => archive);
 	const items = itemsStoreFactory(archive.items);
 	const index = indexStoreFactory(items);
-	const archiveStore = archiveStoreFactory(items);
 	const duplicate = duplicateStoreFactory(items);
 	const enhanced = enhancedStoreFactory(items, duplicate);
 	const filtered = filteredStoreFactory(enhanced);
 	const tags = tagsStoreFactory(items);
 	const colorMap = colorsMapStoreFactory(tags);
 	const tagsCount = tagsCountStoreFactory(items);
+	const adoptionLevels = adoptionLevelsStoreFactory(archive.adoptionLevels);
 	return {
+		archive: store,
 		items,
 		index,
-		archive: archiveStore,
 		duplicate,
 		enhanced,
 		filtered,
 		tags,
 		colorMap,
-		tagsCount
+		tagsCount,
+		adoptionLevels
 	};
 }
 
-export const loader = { ...store, load, updateItems };
+export const loader = { load, updateItems, updateLevels };

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import ItemLabel from '../components/radar/ItemLabel.svelte';
 	import type { ItemEnhanced, TagColors } from '../../model';
-	import { adoptionLevels } from '../../stores';
+	import { getContext } from 'svelte';
+
+	const { adoptionLevels } = getContext('global-context');
 
 	export let items: ItemEnhanced[] = [];
 	export let colorMap: TagColors = {};
