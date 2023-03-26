@@ -15,6 +15,7 @@
 	}
 
 	createContext(loadFromUrl());
+	history.replaceState(null, null, window.location.pathname);
 </script>
 
 <slot />
