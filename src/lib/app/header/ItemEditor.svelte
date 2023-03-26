@@ -23,6 +23,7 @@
 	let level: Level = defaultItem?.level || 1;
 	let direction: -1 | 1 | undefined = defaultItem?.direction;
 	let itemTags: string[] = defaultItem?.tags || [];
+	let comment = defaultItem.comment;
 
 	if (id && !$selected) {
 		cancel();
@@ -41,7 +42,8 @@
 			level,
 			direction,
 			index: id ? $selected.index : $index,
-			tags: itemTags
+			tags: itemTags,
+			comment
 		} as Item);
 
 		cancel();
@@ -58,6 +60,7 @@
 		name = undefined;
 		quarter = 1;
 		level = 1;
+		comment = undefined;
 		$selected = undefined;
 		navigate('/');
 	}
@@ -170,6 +173,11 @@
 					colorMap={$colorMap}
 					on:change={onTagsChange}
 				/>
+			</div>
+
+			<span class="self-start pt-3">Comment</span>
+			<div class="self-start">
+				<textarea class="textarea-bordered textarea w-full" bind:value={comment} />
 			</div>
 		</div>
 		<ModalFooter>
