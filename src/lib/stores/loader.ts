@@ -10,6 +10,7 @@ import {
 } from './store';
 import { colorsMapStoreFactory, tagsCountStoreFactory, tagsStoreFactory } from './tags';
 import { adoptionLevelsStoreFactory } from './adoptionsLevels';
+import { shareStoreFactory } from './share';
 
 const STORAGE_KEY = 'technos';
 
@@ -19,9 +20,8 @@ store.subscribe((archive) => {
 	if (archive) window.localStorage.setItem(STORAGE_KEY, writeArchive(archive));
 });
 
-function loadData(): Archive {
-	const data = window.localStorage.getItem(STORAGE_KEY);
-	return readArchive(data);
+function loadFromStorage(): string {
+	return window.localStorage.getItem(STORAGE_KEY);
 }
 
 function updateItems(list: Item[]) {
@@ -37,7 +37,6 @@ function updateLevels(levels: AdoptionLevels) {
 }
 
 function contextFactory(archive: Archive) {
-	console.log(archive);
 	store.update(() => archive);
 	const items = itemsStoreFactory(archive.items);
 	const index = indexStoreFactory(items);
@@ -48,6 +47,7 @@ function contextFactory(archive: Archive) {
 	const colorMap = colorsMapStoreFactory(tags);
 	const tagsCount = tagsCountStoreFactory(items);
 	const adoptionLevels = adoptionLevelsStoreFactory(archive.adoptionLevels);
+	const share = shareStoreFactory(store);
 	const loadFromStorage = (archive: Archive) => {
 		store.set(archive);
 		items.set(archive.items);
@@ -69,13 +69,15 @@ function contextFactory(archive: Archive) {
 		colorMap,
 		tagsCount,
 		adoptionLevels,
+		share,
 		loadFromStorage,
 		reset
 	};
 }
 
-function load() {
-	const archive = loadData();
+function load(dataString?: string) {
+	const data = dataString || loadFromStorage();
+	const archive = readArchive(data);
 	return contextFactory(archive);
 }
 
