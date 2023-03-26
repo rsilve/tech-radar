@@ -15,6 +15,11 @@
 	function close() {
 		closeElement?.click();
 	}
+
+	function onReset() {
+		reset();
+		close();
+	}
 </script>
 
 <div class="drawer">
@@ -33,7 +38,7 @@
 					<Upload onLoad={(archive) => loadFromStorage(archive)} onComplete={close} />
 				</li>
 				<li>
-					<Reset {reset} />
+					<Reset reset={onReset} />
 				</li>
 			</ul>
 			<ul class="menu bg-base-100 pb-8 text-base-content">

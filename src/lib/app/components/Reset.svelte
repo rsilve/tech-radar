@@ -1,10 +1,12 @@
 <script lang="ts">
 	import PlusIcon from './icons/PlusIcon.svelte';
+	import AutoConfirm from './AutoConfirm.svelte';
 
 	export let reset;
 </script>
 
-<div class="cursor-pointer whitespace-nowrap pt-2 pb-2" on:click={reset} on:keydown={reset}>
+<AutoConfirm duration={2000} on:confirm={reset}>
+	<span slot="confirm">Actual data will be lost. Confirm</span>
 	<PlusIcon />
 	New radar
-</div>
+</AutoConfirm>
