@@ -1,13 +1,12 @@
 <script>
 	import AbstractIcon from './AbstractIcon.svelte';
-
 	export let alt = '';
 </script>
 
 <AbstractIcon>
 	<svg
-		viewBox="0 96 960 960"
 		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 96 960 960"
 		fill="currentColor"
 		stroke="currentColor"
 		role="img"
@@ -15,7 +14,7 @@
 	>
 		<title>{alt}</title>
 		<path
-			d="m120 816v-60h720v60zm0-210v-60h720v60zm0-210v-60h720v60z"
+			d="M220 896q-24 0-42-18t-18-42V693h60v143h520V693h60v143q0 24-18 42t-42 18H220Zm260-153L287 550l43-43 120 120V256h60v371l120-120 43 43-193 193Z"
 			stroke-width="24"
 			fill="currentColor"
 			stroke="currentColor"

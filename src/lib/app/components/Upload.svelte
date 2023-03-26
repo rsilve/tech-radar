@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { readArchive, type Item } from '../../model';
+	import UploadIcon from './icons/UploadIcon.svelte';
 
 	export let onLoad: (items: Item[]) => void = () => {
 		/* do nothing */
@@ -40,7 +41,7 @@
 </script>
 
 <div class="cursor-pointer whitespace-nowrap pt-2 pb-2" on:click={upload} on:keydown={upload}>
-	<u>↑</u>
+	<UploadIcon />
 	Upload
 	<input type="file" class="hidden" bind:this={input} bind:files accept="application/json" />
 </div>
