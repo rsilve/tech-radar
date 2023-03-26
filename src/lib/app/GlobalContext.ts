@@ -11,7 +11,6 @@ export function createContext(dataString?: string) {
 	context.share.subscribe((b64) => {
 		const url = new URL(document.location.href);
 		url.searchParams.set('data', encodeURIComponent(b64));
-		console.log(url.toString());
 	});
 
 	setContext(GLOBAL_CONTEXT, context);
