@@ -1,5 +1,5 @@
 import type { AdoptionLevels, Archive, Item } from '../model';
-import { readArchive, writeArchive } from '../model';
+import { DEFAULT_ARCHIVE, readArchive, writeArchive } from '../model';
 import { writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import {
@@ -48,11 +48,15 @@ function contextFactory(archive: Archive) {
 	const colorMap = colorsMapStoreFactory(tags);
 	const tagsCount = tagsCountStoreFactory(items);
 	const adoptionLevels = adoptionLevelsStoreFactory(archive.adoptionLevels);
-
 	const loadFromStorage = (archive: Archive) => {
 		store.set(archive);
 		items.set(archive.items);
 		adoptionLevels.set(archive.adoptionLevels);
+	};
+	const reset = () => {
+		store.set(DEFAULT_ARCHIVE);
+		items.set(DEFAULT_ARCHIVE.items);
+		adoptionLevels.set(DEFAULT_ARCHIVE.adoptionLevels);
 	};
 	return {
 		archive: store,
@@ -65,7 +69,8 @@ function contextFactory(archive: Archive) {
 		colorMap,
 		tagsCount,
 		adoptionLevels,
-		loadFromStorage
+		loadFromStorage,
+		reset
 	};
 }
 
