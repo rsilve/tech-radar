@@ -19,7 +19,7 @@
 		</a>
 	</div>
 	<div class="flex-none pl-2">
-		<a href="/edit" use:link use:registerFocus class="btn-primary btn-circle btn text-2xl">
+		<a href="/edit" use:link use:registerFocus class="btn-primary btn-circle btn text-3xl">
 			<PlusIcon alt="Edit - Ctrl-b" />
 		</a>
 	</div>

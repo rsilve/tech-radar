@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { writeArchive, type Archive } from '../../model';
+	import DownloadIcon from './icons/DownloadIcon.svelte';
 
 	export let archive: Archive;
 	export let onComplete: () => void = () => {
@@ -23,7 +24,7 @@
 </script>
 
 <div class="cursor-pointer whitespace-nowrap pt-2 pb-2" on:click={download} on:keydown={download}>
-	<u>↓</u>
+	<DownloadIcon />
 	Download
 </div>
 <a bind:this={link} href={'#'} class="hidden">x</a>
