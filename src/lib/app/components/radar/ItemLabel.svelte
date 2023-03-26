@@ -33,6 +33,12 @@
 			{#each item.tags as tag}
 				<TagBadge {tag} {colorMap} />
 			{/each}
+			{#if item.comment}
+				<span
+					class="tooltip inline-block flex h-4 w-4 items-center justify-center rounded-full border border-accent text-xs"
+					data-tip="Comment">C</span
+				>
+			{/if}
 		</span>
 	</a>
 </div>

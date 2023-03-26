@@ -11,6 +11,7 @@ export type Item = {
 	y: number;
 	direction?: -1 | 1;
 	tags: string[];
+	comment?: string;
 };
 
 export function addTag(tag: string, tags: string[]): string[] {
