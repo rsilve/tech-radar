@@ -6,6 +6,8 @@
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from './GlobalContext';
 	import Reset from './components/Reset.svelte';
+	import ShareIcon from './components/icons/ShareIcon.svelte';
+	import ShareMenuItem from './drawer/ShareMenuItem.svelte';
 
 	const { archive, items, loadFromStorage, reset } = getContext(GLOBAL_CONTEXT);
 	export let id = 'app-drawer';
@@ -36,6 +38,9 @@
 				<li><Download archive={$archive} onComplete={close} /></li>
 				<li>
 					<Upload onLoad={(archive) => loadFromStorage(archive)} onComplete={close} />
+				</li>
+				<li>
+					<ShareMenuItem />
 				</li>
 				<li>
 					<Reset reset={onReset} />
