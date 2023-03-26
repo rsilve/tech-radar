@@ -27,8 +27,8 @@
 		{/if}
 	</div>
 {:else}
-	<input type="checkbox" id="zz" class="hidden" on:change={askConfirm} />
-	<label for="zz">
+	<input type="checkbox" id="auto_reset" class="hidden" on:change={askConfirm} />
+	<label for="auto_reset">
 		<slot />
 	</label>
 {/if}
