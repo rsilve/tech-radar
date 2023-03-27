@@ -1,23 +1,11 @@
 <script lang="ts">
 	import { searchCriteria } from '../../stores';
-
-	let searchInput: HTMLInputElement;
-	function handleKeydown(event: KeyboardEvent) {
-		let key = event.key;
-
-		if (key === '/' && searchInput) {
-			searchInput.focus();
-		}
-	}
 </script>
-
-<svelte:window on:keydown={handleKeydown} />
 
 <div class="form-control">
 	<label class="input-group">
 		<input
 			type="text"
-			bind:this={searchInput}
 			bind:value={$searchCriteria}
 			placeholder="Search ..."
 			class="input-bordered input w-full"
