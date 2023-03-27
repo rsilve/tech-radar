@@ -6,7 +6,6 @@
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from './GlobalContext';
 	import Reset from './components/Reset.svelte';
-	import ShareIcon from './components/icons/ShareIcon.svelte';
 	import ShareMenuItem from './drawer/ShareMenuItem.svelte';
 
 	const { archive, items, loadFromStorage, reset } = getContext(GLOBAL_CONTEXT);
@@ -34,8 +33,12 @@
 		<label for={id} class="drawer-overlay" />
 		<div class="flex w-96 flex-col ">
 			<ul class="menu flex-grow bg-base-100 text-base-content">
-				<li><Home {id} /></li>
-				<li><Download archive={$archive} onComplete={close} /></li>
+				<li>
+					<Home {id} />
+				</li>
+				<li>
+					<Download archive={$archive} onComplete={close} />
+				</li>
 				<li>
 					<Upload onLoad={(archive) => loadFromStorage(archive)} onComplete={close} />
 				</li>
@@ -47,7 +50,13 @@
 				</li>
 			</ul>
 			<ul class="menu bg-base-100 pb-8 text-base-content">
-				<li><SettingsMenuItem on:click={close} /></li>
+				<li>
+					<SettingsMenuItem on:click={close} />
+				</li>
+				<li>
+					<a href="https://github.com/rsilve/tech-radar.git" target="_blank" tabindex="-1">Github</a
+					>
+				</li>
 			</ul>
 		</div>
 	</div>
