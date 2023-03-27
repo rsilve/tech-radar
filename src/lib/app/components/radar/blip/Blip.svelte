@@ -11,6 +11,7 @@
 </script>
 
 <BlipStack {item} on:dragStartBlip on:dragEndBlip>
+	<div class="relative flex h-7 w-7" />
 	{#if item.duplicate}
 		<BlipDuplicate />
 	{/if}

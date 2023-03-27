@@ -6,6 +6,9 @@
 	import { type Item, TAG_COLORS } from '../../../../model';
 	import BlipDuplicate from './BlipDuplicate.svelte';
 	import BlipTag from './BlipTag.svelte';
+	import { createContext } from '../../../GlobalContext';
+
+	createContext();
 
 	export let Hst: HstType;
 

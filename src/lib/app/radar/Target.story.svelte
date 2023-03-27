@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { Hst as HstType } from '@histoire/plugin-svelte';
-	import Target from '../../radar/Target.svelte';
+	import Target from './Target.svelte';
+	import { createContext } from '../GlobalContext';
+
 	export let Hst: HstType;
+
+	createContext();
 </script>
 
 <Hst.Story>
