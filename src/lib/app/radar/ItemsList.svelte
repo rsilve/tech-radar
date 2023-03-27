@@ -10,7 +10,7 @@
 	export let colorMap: TagColors = {};
 </script>
 
-<ul class="items-list columns-2">
+<ul class="items-list">
 	{#each items.filter((value) => value.level === 1) as item, index}
 		{#if index === 0}
 			<li class="title">{$adoptionLevels[1]}</li>

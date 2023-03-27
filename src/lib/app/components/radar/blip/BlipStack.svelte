@@ -32,4 +32,7 @@
 	<div class="relative flex items-center -space-x-[1.5rem]">
 		<slot />
 	</div>
+	<div class="absolute right-0 top-0">
+		<slot name="label" />
+	</div>
 </div>
