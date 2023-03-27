@@ -17,5 +17,5 @@
 	{#each [...item.tags].reverse() as tag}
 		<BlipTag color={colorMap[tag] || 'transparent'} />
 	{/each}
-	<BlipNumber {item} on:select on:edit />
+	<BlipNumber {item} on:select on:edit slot="label" />
 </BlipStack>
