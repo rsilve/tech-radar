@@ -7,6 +7,7 @@
 	import { GLOBAL_CONTEXT } from './GlobalContext';
 	import Reset from './components/Reset.svelte';
 	import ShareMenuItem from './drawer/ShareMenuItem.svelte';
+	import EditableLabel from './drawer/EditableLabel.svelte';
 
 	const { archive, items, loadFromStorage, reset } = getContext(GLOBAL_CONTEXT);
 	export let id = 'app-drawer';
@@ -21,6 +22,9 @@
 		reset();
 		close();
 	}
+	function handleNameEdit(e: FocusEvent) {
+		archive.update((a) => ({ ...a, name: e.target.innerText }));
+	}
 </script>
 
 <div class="drawer">
@@ -32,7 +36,7 @@
 	<div class="drawer-side">
 		<label for={id} class="drawer-overlay" />
 		<div class="flex w-96 flex-col ">
-			<ul class="menu flex-grow bg-base-100 text-base-content">
+			<ul class="menu bg-base-100 text-base-content">
 				<li>
 					<Home {id} />
 				</li>
@@ -49,6 +53,10 @@
 					<Reset reset={onReset} />
 				</li>
 			</ul>
+			<div class="flex-grow bg-base-100 bg-base-100 pl-4 pr-5 text-base-content">
+				<div class="pl-1 text-sm font-bold uppercase text-accent">Current</div>
+				<div><EditableLabel {archive} /></div>
+			</div>
 			<ul class="menu bg-base-100 pb-8 text-base-content">
 				<li>
 					<SettingsMenuItem on:click={close} />

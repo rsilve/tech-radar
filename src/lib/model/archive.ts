@@ -2,7 +2,12 @@ import type { Item } from './item';
 import { adoptionLevels } from './constants';
 import type { AdoptionLevels } from './type';
 
-export type Archive = { items: Item[]; categories: string[]; adoptionLevels: AdoptionLevels };
+export type Archive = {
+	name?: string;
+	items: Item[];
+	categories: string[];
+	adoptionLevels: AdoptionLevels;
+};
 
 export const DEFAULT_ARCHIVE: Archive = {
 	items: [],

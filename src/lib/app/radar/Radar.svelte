@@ -7,7 +7,7 @@
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from '../GlobalContext';
 
-	const { items, filtered, colorMap } = getContext(GLOBAL_CONTEXT);
+	const { items, filtered, colorMap, archive } = getContext(GLOBAL_CONTEXT);
 
 	function edit(e) {
 		navigate(`/edit/${e.detail.index}`);
@@ -64,9 +64,10 @@
 		position: initial;
 		grid-template-columns: minmax(max-content, 1fr) 3fr minmax(max-content, 1fr);
 		grid-template-areas:
+			'name name name'
 			'quarter-2 target quarter-1'
 			'quarter-3 target quarter-4'
 			'comment comment comment';
-		grid-template-rows: 1fr 1fr min-content;
+		grid-template-rows: min-content 1fr 1fr min-content;
 	}
 </style>
