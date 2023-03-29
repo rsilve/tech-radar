@@ -10,6 +10,7 @@ export type Archive = {
 };
 
 export const DEFAULT_ARCHIVE: Archive = {
+	name: 'No name',
 	items: [],
 	categories: [],
 	adoptionLevels

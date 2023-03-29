@@ -53,9 +53,12 @@
 					<Reset reset={onReset} />
 				</li>
 			</ul>
-			<div class="flex-grow bg-base-100 bg-base-100 pl-4 pr-5 text-base-content">
+			<div class="flex flex-grow flex-col bg-base-100 bg-base-100 pl-4 pr-5 text-base-content">
+				<div class="divider mt-0" />
 				<div class="pl-1 text-sm font-bold uppercase text-accent">Current</div>
 				<div><EditableLabel {archive} /></div>
+				<div class="flex-grow" />
+				<div class="divider mb-0" />
 			</div>
 			<ul class="menu bg-base-100 pb-8 text-base-content">
 				<li>
