@@ -1,5 +1,5 @@
-import type { AdoptionLevels, Radar, Item } from '../model';
-import { DEFAULT_RADAR, readRadar, writeRadar } from '../model';
+import type { AdoptionLevels, Item, Radar } from '../model';
+import { DEFAULT_RADAR, type History, readHistory, readRadar, writeRadar } from '../model';
 import { writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import {
@@ -13,15 +13,31 @@ import { adoptionLevelsStoreFactory } from './adoptionsLevels';
 import { shareStoreFactory } from './share';
 
 const STORAGE_KEY = 'technos';
+const STORAGE_HISTORY_KEY = 'tech-radar-history';
 
 const store = writable(undefined as Radar);
+const historyStore = writable({} as History);
 
 store.subscribe((radar) => {
-	if (radar) window.localStorage.setItem(STORAGE_KEY, writeRadar(radar));
+	if (radar) {
+		window.localStorage.setItem(STORAGE_KEY, writeRadar(radar));
+		historyStore.update((history) => {
+			history[radar.id] = { editedAt: new Date().toISOString(), radar };
+			return history;
+		});
+	}
+});
+
+historyStore.subscribe((history) => {
+	window.localStorage.setItem(STORAGE_HISTORY_KEY, JSON.stringify(history));
 });
 
 function loadFromStorage(): string {
 	return window.localStorage.getItem(STORAGE_KEY);
+}
+
+function loadHistoryFromStorage(): string {
+	return window.localStorage.getItem(STORAGE_HISTORY_KEY);
 }
 
 function updateItems(list: Item[]) {
@@ -36,8 +52,9 @@ function updateLevels(levels: AdoptionLevels) {
 	});
 }
 
-function contextFactory(radar: Radar) {
+function contextFactory(radar: Radar, history: History) {
 	store.update(() => radar);
+	historyStore.update(() => history);
 	const items = itemsStoreFactory(radar.items);
 	const index = indexStoreFactory(items);
 	const duplicate = duplicateStoreFactory(items);
@@ -54,7 +71,7 @@ function contextFactory(radar: Radar) {
 		adoptionLevels.set(radar.adoptionLevels);
 	};
 	const reset = () => {
-		const radar = DEFAULT_RADAR()
+		const radar = DEFAULT_RADAR();
 		store.set(radar);
 		items.set(radar.items);
 		adoptionLevels.set(radar.adoptionLevels);
@@ -72,14 +89,17 @@ function contextFactory(radar: Radar) {
 		adoptionLevels,
 		share,
 		loadFromStorage,
-		reset
+		reset,
+		history: historyStore
 	};
 }
 
 function load(dataString?: string) {
 	const data = dataString || loadFromStorage();
 	const radar = readRadar(data);
-	return contextFactory(radar);
+	const historyData = loadHistoryFromStorage();
+	const history = readHistory(historyData);
+	return contextFactory(radar, history);
 }
 
 export const loader = { load, updateItems, updateLevels };
