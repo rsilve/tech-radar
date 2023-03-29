@@ -7,8 +7,9 @@
 	import { GLOBAL_CONTEXT } from './GlobalContext';
 	import Reset from './components/Reset.svelte';
 	import ShareMenuItem from './drawer/ShareMenuItem.svelte';
+	import HistoryMenu from './drawer/HistoryMenu.svelte';
 
-	const { archive, items, loadFromStorage, reset } = getContext(GLOBAL_CONTEXT);
+	const { radar, items, loadRadar, reset, history } = getContext(GLOBAL_CONTEXT);
 	export let id = 'app-drawer';
 
 	let closeElement: HTMLInputElement;
@@ -19,6 +20,11 @@
 
 	function onReset() {
 		reset();
+		close();
+	}
+
+	function handleLoadRadar(event) {
+		loadRadar(event.detail.radar);
 		close();
 	}
 </script>
@@ -32,15 +38,15 @@
 	<div class="drawer-side">
 		<label for={id} class="drawer-overlay" />
 		<div class="flex w-96 flex-col ">
-			<ul class="menu flex-grow bg-base-100 text-base-content">
+			<ul class="menu bg-base-100 text-base-content">
 				<li>
 					<Home {id} />
 				</li>
 				<li>
-					<Download archive={$archive} onComplete={close} />
+					<Download radar={$radar} onComplete={close} />
 				</li>
 				<li>
-					<Upload onLoad={(archive) => loadFromStorage(archive)} onComplete={close} />
+					<Upload on:loadRadar={handleLoadRadar} onComplete={close} />
 				</li>
 				<li>
 					<ShareMenuItem />
@@ -49,6 +55,7 @@
 					<Reset reset={onReset} />
 				</li>
 			</ul>
+			<HistoryMenu {radar} {history} on:loadRadar={handleLoadRadar} />
 			<ul class="menu bg-base-100 pb-8 text-base-content">
 				<li>
 					<SettingsMenuItem on:click={close} />

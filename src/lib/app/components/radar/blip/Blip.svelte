@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { ItemEnhanced, TagColors } from '../../../../model';
-	import BlipDirection from './BlipDirection.svelte';
 	import BlipStack from './BlipStack.svelte';
 	import BlipNumber from './BlipNumber.svelte';
 	import BlipDuplicate from './BlipDuplicate.svelte';

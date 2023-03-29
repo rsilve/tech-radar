@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { readArchive, type Item } from '../../model';
+	import { readRadar } from '../../model';
 	import UploadIcon from './icons/UploadIcon.svelte';
+	import { createEventDispatcher } from 'svelte';
 
-	export let onLoad: (items: Item[]) => void = () => {
-		/* do nothing */
-	};
+	const dispatch = createEventDispatcher();
+
 	export let onComplete: () => void = () => {
 		/* do nothing */
 	};
@@ -22,9 +22,9 @@
 			// https://developer.mozilla.org/en-US/docs/Web/API/FileList
 			for (const file of fileList) {
 				const text = await file.text();
-				const archive = readArchive(text);
-				if (archive) {
-					onLoad(archive);
+				const radar = readRadar(text);
+				if (radar) {
+					dispatch('loadRadar', { radar });
 				}
 				break;
 			}

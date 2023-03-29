@@ -64,9 +64,10 @@
 		position: initial;
 		grid-template-columns: minmax(max-content, 1fr) 3fr minmax(max-content, 1fr);
 		grid-template-areas:
+			'name name name'
 			'quarter-2 target quarter-1'
 			'quarter-3 target quarter-4'
 			'comment comment comment';
-		grid-template-rows: 1fr 1fr min-content;
+		grid-template-rows: min-content 1fr 1fr min-content;
 	}
 </style>

@@ -1,5 +1,12 @@
-import type { AdoptionLevels, Archive, Item } from '../model';
-import { DEFAULT_ARCHIVE, readArchive, writeArchive } from '../model';
+import type { AdoptionLevels, Item, Radar } from '../model';
+import {
+	addToHistory,
+	DEFAULT_RADAR,
+	type History,
+	readHistory,
+	readRadar,
+	writeRadar
+} from '../model';
 import { writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import {
@@ -13,32 +20,52 @@ import { adoptionLevelsStoreFactory } from './adoptionsLevels';
 import { shareStoreFactory } from './share';
 
 const STORAGE_KEY = 'technos';
+const STORAGE_HISTORY_KEY = 'tech-radar-history';
 
-const store = writable(undefined as Archive);
+const store = writable(undefined as Radar);
+const historyStore = writable(undefined as History);
 
-store.subscribe((archive) => {
-	if (archive) window.localStorage.setItem(STORAGE_KEY, writeArchive(archive));
+store.subscribe((radar) => {
+	if (radar) {
+		window.localStorage.setItem(STORAGE_KEY, writeRadar(radar));
+		historyStore.update((history) => {
+			addToHistory(radar, history);
+			return history;
+		});
+	}
+});
+
+historyStore.subscribe((history) => {
+	if (history) {
+		window.localStorage.setItem(STORAGE_HISTORY_KEY, JSON.stringify(history));
+	}
 });
 
 function loadFromStorage(): string {
 	return window.localStorage.getItem(STORAGE_KEY);
 }
 
+function loadHistoryFromStorage(): string {
+	return window.localStorage.getItem(STORAGE_HISTORY_KEY);
+}
+
 function updateItems(list: Item[]) {
-	store.update((archive) => {
-		return { ...archive, items: list };
+	store.update((radar) => {
+		return { ...radar, items: list };
 	});
 }
 
 function updateLevels(levels: AdoptionLevels) {
-	store.update((archive) => {
-		return { ...archive, adoptionLevels: levels };
+	store.update((radar) => {
+		return { ...radar, adoptionLevels: levels };
 	});
 }
 
-function contextFactory(archive: Archive) {
-	store.update(() => archive);
-	const items = itemsStoreFactory(archive.items);
+function contextFactory(radar: Radar, history: History) {
+	historyStore.update(() => history);
+	store.update(() => radar);
+
+	const items = itemsStoreFactory(radar.items);
 	const index = indexStoreFactory(items);
 	const duplicate = duplicateStoreFactory(items);
 	const enhanced = enhancedStoreFactory(items, duplicate);
@@ -46,20 +73,21 @@ function contextFactory(archive: Archive) {
 	const tags = tagsStoreFactory(items);
 	const colorMap = colorsMapStoreFactory(tags);
 	const tagsCount = tagsCountStoreFactory(items);
-	const adoptionLevels = adoptionLevelsStoreFactory(archive.adoptionLevels);
+	const adoptionLevels = adoptionLevelsStoreFactory(radar.adoptionLevels);
 	const share = shareStoreFactory(store);
-	const loadFromStorage = (archive: Archive) => {
-		store.set(archive);
-		items.set(archive.items);
-		adoptionLevels.set(archive.adoptionLevels);
+	const loadRadar = (radar: Radar) => {
+		store.set(radar);
+		items.set(radar.items);
+		adoptionLevels.set(radar.adoptionLevels);
 	};
 	const reset = () => {
-		store.set(DEFAULT_ARCHIVE);
-		items.set(DEFAULT_ARCHIVE.items);
-		adoptionLevels.set(DEFAULT_ARCHIVE.adoptionLevels);
+		const radar = DEFAULT_RADAR();
+		store.set(radar);
+		items.set(radar.items);
+		adoptionLevels.set(radar.adoptionLevels);
 	};
 	return {
-		archive: store,
+		radar: store,
 		items,
 		index,
 		duplicate,
@@ -70,15 +98,18 @@ function contextFactory(archive: Archive) {
 		tagsCount,
 		adoptionLevels,
 		share,
-		loadFromStorage,
-		reset
+		loadRadar,
+		reset,
+		history: historyStore
 	};
 }
 
 function load(dataString?: string) {
 	const data = dataString || loadFromStorage();
-	const archive = readArchive(data);
-	return contextFactory(archive);
+	const radar = readRadar(data);
+	const historyData = loadHistoryFromStorage();
+	const history = readHistory(historyData);
+	return contextFactory(radar, history);
 }
 
 export const loader = { load, updateItems, updateLevels };
