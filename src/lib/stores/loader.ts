@@ -54,9 +54,10 @@ function contextFactory(radar: Radar) {
 		adoptionLevels.set(radar.adoptionLevels);
 	};
 	const reset = () => {
-		store.set(DEFAULT_RADAR);
-		items.set(DEFAULT_RADAR.items);
-		adoptionLevels.set(DEFAULT_RADAR.adoptionLevels);
+		const radar = DEFAULT_RADAR()
+		store.set(radar);
+		items.set(radar.items);
+		adoptionLevels.set(radar.adoptionLevels);
 	};
 	return {
 		radar: store,

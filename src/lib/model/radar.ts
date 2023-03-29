@@ -15,25 +15,25 @@ function generateId(): string {
 	return hashids.encode(new Date().getTime());
 }
 
-export const DEFAULT_RADAR: Radar = {
+export const DEFAULT_RADAR: () => Radar = () => ({
 	name: 'No name',
 	items: [],
 	categories: [],
 	adoptionLevels
-};
+});
 
 export function readRadar(jsonStr?: string): Radar | undefined {
 	if (!jsonStr) {
-		return DEFAULT_RADAR;
+		return DEFAULT_RADAR();
 	}
 	if (jsonStr.startsWith('[')) {
-		return { ...DEFAULT_RADAR, items: JSON.parse(jsonStr || '[]') as Item[] };
+		return { ...DEFAULT_RADAR(), items: JSON.parse(jsonStr || '[]') as Item[] };
 	}
 	if (jsonStr.startsWith('{')) {
 		const value = JSON.parse(jsonStr || '{}');
-		return { ...DEFAULT_RADAR, ...value };
+		return { ...DEFAULT_RADAR(), ...value };
 	}
-	return DEFAULT_RADAR;
+	return DEFAULT_RADAR();
 }
 
 export function writeRadar(radar: Radar): string {
