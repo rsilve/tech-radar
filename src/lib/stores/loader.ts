@@ -1,5 +1,12 @@
 import type { AdoptionLevels, Item, Radar } from '../model';
-import { DEFAULT_RADAR, type History, readHistory, readRadar, writeRadar } from '../model';
+import {
+	addToHistory,
+	DEFAULT_RADAR,
+	type History,
+	readHistory,
+	readRadar,
+	writeRadar
+} from '../model';
 import { writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import {
@@ -16,20 +23,22 @@ const STORAGE_KEY = 'technos';
 const STORAGE_HISTORY_KEY = 'tech-radar-history';
 
 const store = writable(undefined as Radar);
-const historyStore = writable({} as History);
+const historyStore = writable(undefined as History);
 
 store.subscribe((radar) => {
 	if (radar) {
 		window.localStorage.setItem(STORAGE_KEY, writeRadar(radar));
 		historyStore.update((history) => {
-			history[radar.id] = { editedAt: new Date().toISOString(), radar };
+			addToHistory(radar, history);
 			return history;
 		});
 	}
 });
 
 historyStore.subscribe((history) => {
-	window.localStorage.setItem(STORAGE_HISTORY_KEY, JSON.stringify(history));
+	if (history) {
+		window.localStorage.setItem(STORAGE_HISTORY_KEY, JSON.stringify(history));
+	}
 });
 
 function loadFromStorage(): string {
@@ -53,8 +62,9 @@ function updateLevels(levels: AdoptionLevels) {
 }
 
 function contextFactory(radar: Radar, history: History) {
-	store.update(() => radar);
 	historyStore.update(() => history);
+	store.update(() => radar);
+
 	const items = itemsStoreFactory(radar.items);
 	const index = indexStoreFactory(items);
 	const duplicate = duplicateStoreFactory(items);
@@ -65,7 +75,7 @@ function contextFactory(radar: Radar, history: History) {
 	const tagsCount = tagsCountStoreFactory(items);
 	const adoptionLevels = adoptionLevelsStoreFactory(radar.adoptionLevels);
 	const share = shareStoreFactory(store);
-	const loadFromStorage = (radar: Radar) => {
+	const loadRadar = (radar: Radar) => {
 		store.set(radar);
 		items.set(radar.items);
 		adoptionLevels.set(radar.adoptionLevels);
@@ -88,7 +98,7 @@ function contextFactory(radar: Radar, history: History) {
 		tagsCount,
 		adoptionLevels,
 		share,
-		loadFromStorage,
+		loadRadar,
 		reset,
 		history: historyStore
 	};

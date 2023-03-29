@@ -4,7 +4,7 @@ import type { AdoptionLevels } from './type';
 import Hashids from 'hashids';
 
 export type Radar = {
-	id: string,
+	id: string;
 	name?: string;
 	items: Item[];
 	categories: string[];
@@ -32,8 +32,10 @@ export function readRadar(jsonStr?: string): Radar | undefined {
 		return { ...DEFAULT_RADAR(), items: JSON.parse(jsonStr || '[]') as Item[] };
 	}
 	if (jsonStr.startsWith('{')) {
-		const value = JSON.parse(jsonStr || '{}');
-		return { ...DEFAULT_RADAR(), ...value };
+		try {
+			const value = JSON.parse(jsonStr || '{}');
+			return { ...DEFAULT_RADAR(), ...value };
+		} catch {}
 	}
 	return DEFAULT_RADAR();
 }

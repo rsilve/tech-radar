@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { readRadar, type Radar } from '../../model';
+	import { readRadar } from '../../model';
 	import UploadIcon from './icons/UploadIcon.svelte';
+	import { createEventDispatcher } from 'svelte';
 
-	export let onLoad: (radar: Radar) => void = () => {
-		/* do nothing */
-	};
+	const dispatch = createEventDispatcher();
+
 	export let onComplete: () => void = () => {
 		/* do nothing */
 	};
@@ -24,7 +24,7 @@
 				const text = await file.text();
 				const radar = readRadar(text);
 				if (radar) {
-					onLoad(radar);
+					dispatch('loadRadar', { radar });
 				}
 				break;
 			}

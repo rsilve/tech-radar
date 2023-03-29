@@ -1,6 +1,6 @@
 import type { Radar } from './radar';
 
-type HistoryItem = {
+export type HistoryItem = {
 	editedAt: string;
 	radar: Radar;
 };
@@ -11,12 +11,20 @@ export function addToHistory(radar: Radar, history: History) {
 	history[radar.id] = { editedAt: new Date().toISOString(), radar };
 }
 
-export function getHistory(history: History): Radar[] {
+export function getHistory(history: History): HistoryItem[] {
 	return Object.entries(history)
-		.sort(([, a], [, b]) => a.editedAt.localeCompare(b.editedAt))
-		.map(([, v]) => v.radar);
+		.sort(([, a], [, b]) => b.editedAt.localeCompare(a.editedAt))
+		.map(([, v]) => v)
+		.slice(1);
 }
 
 export function readHistory(jsonStr?: string): History {
-	return JSON.parse(jsonStr || '{}');
+	if (!jsonStr) {
+		return {};
+	}
+	try {
+		return JSON.parse(jsonStr || '{}');
+	} catch {
+		return {};
+	}
 }
