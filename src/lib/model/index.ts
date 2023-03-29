@@ -1,5 +1,5 @@
 export * from './type';
 export * from './item';
-export * from './archive';
+export * from './radar';
 export * from './constants';
 export * from './tags';

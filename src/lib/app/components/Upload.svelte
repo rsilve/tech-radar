@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { readArchive, type Item } from '../../model';
+	import { readRadar, type Item } from '../../model';
 	import UploadIcon from './icons/UploadIcon.svelte';
 
 	export let onLoad: (items: Item[]) => void = () => {
@@ -22,7 +22,7 @@
 			// https://developer.mozilla.org/en-US/docs/Web/API/FileList
 			for (const file of fileList) {
 				const text = await file.text();
-				const archive = readArchive(text);
+				const archive = readRadar(text);
 				if (archive) {
 					onLoad(archive);
 				}

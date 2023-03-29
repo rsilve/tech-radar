@@ -1,5 +1,5 @@
-import type { AdoptionLevels, Archive, Item } from '../model';
-import { DEFAULT_ARCHIVE, readArchive, writeArchive } from '../model';
+import type { AdoptionLevels, Radar, Item } from '../model';
+import { DEFAULT_RADAR, readRadar, writeRadar } from '../model';
 import { writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import {
@@ -14,10 +14,10 @@ import { shareStoreFactory } from './share';
 
 const STORAGE_KEY = 'technos';
 
-const store = writable(undefined as Archive);
+const store = writable(undefined as Radar);
 
 store.subscribe((archive) => {
-	if (archive) window.localStorage.setItem(STORAGE_KEY, writeArchive(archive));
+	if (archive) window.localStorage.setItem(STORAGE_KEY, writeRadar(archive));
 });
 
 function loadFromStorage(): string {
@@ -36,7 +36,7 @@ function updateLevels(levels: AdoptionLevels) {
 	});
 }
 
-function contextFactory(archive: Archive) {
+function contextFactory(archive: Radar) {
 	store.update(() => archive);
 	const items = itemsStoreFactory(archive.items);
 	const index = indexStoreFactory(items);
@@ -48,15 +48,15 @@ function contextFactory(archive: Archive) {
 	const tagsCount = tagsCountStoreFactory(items);
 	const adoptionLevels = adoptionLevelsStoreFactory(archive.adoptionLevels);
 	const share = shareStoreFactory(store);
-	const loadFromStorage = (archive: Archive) => {
+	const loadFromStorage = (archive: Radar) => {
 		store.set(archive);
 		items.set(archive.items);
 		adoptionLevels.set(archive.adoptionLevels);
 	};
 	const reset = () => {
-		store.set(DEFAULT_ARCHIVE);
-		items.set(DEFAULT_ARCHIVE.items);
-		adoptionLevels.set(DEFAULT_ARCHIVE.adoptionLevels);
+		store.set(DEFAULT_RADAR);
+		items.set(DEFAULT_RADAR.items);
+		adoptionLevels.set(DEFAULT_RADAR.adoptionLevels);
 	};
 	return {
 		archive: store,
@@ -77,7 +77,7 @@ function contextFactory(archive: Archive) {
 
 function load(dataString?: string) {
 	const data = dataString || loadFromStorage();
-	const archive = readArchive(data);
+	const archive = readRadar(data);
 	return contextFactory(archive);
 }
 

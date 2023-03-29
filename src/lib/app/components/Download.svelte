@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { writeArchive, type Archive } from '../../model';
+	import { writeRadar, type Radar } from '../../model';
 	import DownloadIcon from './icons/DownloadIcon.svelte';
 
-	export let archive: Archive;
+	export let archive: Radar;
 	export let onComplete: () => void = () => {
 		/* do nothing */
 	};
@@ -10,7 +10,7 @@
 	let link: HTMLAnchorElement;
 
 	function download() {
-		let str = writeArchive(archive);
+		let str = writeRadar(archive);
 		const file = new File([str], 'tech-radar.json', {
 			type: 'application/json'
 		});

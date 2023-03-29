@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Writable } from 'svelte/store';
-	import type { Archive } from '../../model';
+	import type { Radar } from '../../model';
 	import EditIcon from '../components/icons/EditIcon.svelte';
 
-	export let archive: Writable<Archive>;
+	export let archive: Writable<Radar>;
 
 	let editor: HTMLDivElement & HTMLInputElement;
 

@@ -2,34 +2,34 @@ import type { Item } from './item';
 import { adoptionLevels } from './constants';
 import type { AdoptionLevels } from './type';
 
-export type Archive = {
+export type Radar = {
 	name?: string;
 	items: Item[];
 	categories: string[];
 	adoptionLevels: AdoptionLevels;
 };
 
-export const DEFAULT_ARCHIVE: Archive = {
+export const DEFAULT_RADAR: Radar = {
 	name: 'No name',
 	items: [],
 	categories: [],
 	adoptionLevels
 };
 
-export function readArchive(jsonStr?: string): Archive | undefined {
+export function readRadar(jsonStr?: string): Radar | undefined {
 	if (!jsonStr) {
-		return DEFAULT_ARCHIVE;
+		return DEFAULT_RADAR;
 	}
 	if (jsonStr.startsWith('[')) {
-		return { ...DEFAULT_ARCHIVE, items: JSON.parse(jsonStr || '[]') as Item[] };
+		return { ...DEFAULT_RADAR, items: JSON.parse(jsonStr || '[]') as Item[] };
 	}
 	if (jsonStr.startsWith('{')) {
 		const value = JSON.parse(jsonStr || '{}');
-		return { ...DEFAULT_ARCHIVE, ...value };
+		return { ...DEFAULT_RADAR, ...value };
 	}
-	return DEFAULT_ARCHIVE;
+	return DEFAULT_RADAR;
 }
 
-export function writeArchive(archive: Archive): string {
-	return JSON.stringify(archive);
+export function writeRadar(radar: Radar): string {
+	return JSON.stringify(radar);
 }
