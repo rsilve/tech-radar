@@ -4,6 +4,7 @@ import type { AdoptionLevels } from './type';
 import Hashids from 'hashids';
 
 export type Radar = {
+	id: string,
 	name?: string;
 	items: Item[];
 	categories: string[];
@@ -16,6 +17,7 @@ function generateId(): string {
 }
 
 export const DEFAULT_RADAR: () => Radar = () => ({
+	id: generateId(),
 	name: 'No name',
 	items: [],
 	categories: [],
