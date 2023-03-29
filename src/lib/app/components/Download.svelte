@@ -2,7 +2,7 @@
 	import { writeRadar, type Radar } from '../../model';
 	import DownloadIcon from './icons/DownloadIcon.svelte';
 
-	export let archive: Radar;
+	export let radar: Radar;
 	export let onComplete: () => void = () => {
 		/* do nothing */
 	};
@@ -10,7 +10,7 @@
 	let link: HTMLAnchorElement;
 
 	function download() {
-		let str = writeRadar(archive);
+		let str = writeRadar(radar);
 		const file = new File([str], 'tech-radar.json', {
 			type: 'application/json'
 		});

@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { readRadar, type Item } from '../../model';
+	import { readRadar, Radar } from '../../model';
 	import UploadIcon from './icons/UploadIcon.svelte';
 
-	export let onLoad: (items: Item[]) => void = () => {
+	export let onLoad: (radar: Radar) => void = () => {
 		/* do nothing */
 	};
 	export let onComplete: () => void = () => {
@@ -22,9 +22,9 @@
 			// https://developer.mozilla.org/en-US/docs/Web/API/FileList
 			for (const file of fileList) {
 				const text = await file.text();
-				const archive = readRadar(text);
-				if (archive) {
-					onLoad(archive);
+				const radar = readRadar(text);
+				if (radar) {
+					onLoad(radar);
 				}
 				break;
 			}

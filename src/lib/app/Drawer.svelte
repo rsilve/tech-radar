@@ -9,7 +9,7 @@
 	import ShareMenuItem from './drawer/ShareMenuItem.svelte';
 	import EditableLabel from './drawer/EditableLabel.svelte';
 
-	const { archive, items, loadFromStorage, reset } = getContext(GLOBAL_CONTEXT);
+	const { radar, items, loadFromStorage, reset } = getContext(GLOBAL_CONTEXT);
 	export let id = 'app-drawer';
 
 	let closeElement: HTMLInputElement;
@@ -21,9 +21,6 @@
 	function onReset() {
 		reset();
 		close();
-	}
-	function handleNameEdit(e: FocusEvent) {
-		archive.update((a) => ({ ...a, name: e.target.innerText }));
 	}
 </script>
 
@@ -41,10 +38,10 @@
 					<Home {id} />
 				</li>
 				<li>
-					<Download archive={$archive} onComplete={close} />
+					<Download radar={$radar} onComplete={close} />
 				</li>
 				<li>
-					<Upload onLoad={(archive) => loadFromStorage(archive)} onComplete={close} />
+					<Upload onLoad={(radar) => loadFromStorage(radar)} onComplete={close} />
 				</li>
 				<li>
 					<ShareMenuItem />
@@ -56,7 +53,7 @@
 			<div class="flex flex-grow flex-col bg-base-100 bg-base-100 pl-4 pr-5 text-base-content">
 				<div class="divider mt-0" />
 				<div class="pl-1 text-sm font-bold uppercase text-accent">Current</div>
-				<div><EditableLabel {archive} /></div>
+				<div><EditableLabel {radar} /></div>
 				<div class="flex-grow" />
 				<div class="divider mb-0" />
 			</div>

@@ -16,8 +16,8 @@ const STORAGE_KEY = 'technos';
 
 const store = writable(undefined as Radar);
 
-store.subscribe((archive) => {
-	if (archive) window.localStorage.setItem(STORAGE_KEY, writeRadar(archive));
+store.subscribe((radar) => {
+	if (radar) window.localStorage.setItem(STORAGE_KEY, writeRadar(radar));
 });
 
 function loadFromStorage(): string {
@@ -25,20 +25,20 @@ function loadFromStorage(): string {
 }
 
 function updateItems(list: Item[]) {
-	store.update((archive) => {
-		return { ...archive, items: list };
+	store.update((radar) => {
+		return { ...radar, items: list };
 	});
 }
 
 function updateLevels(levels: AdoptionLevels) {
-	store.update((archive) => {
-		return { ...archive, adoptionLevels: levels };
+	store.update((radar) => {
+		return { ...radar, adoptionLevels: levels };
 	});
 }
 
-function contextFactory(archive: Radar) {
-	store.update(() => archive);
-	const items = itemsStoreFactory(archive.items);
+function contextFactory(radar: Radar) {
+	store.update(() => radar);
+	const items = itemsStoreFactory(radar.items);
 	const index = indexStoreFactory(items);
 	const duplicate = duplicateStoreFactory(items);
 	const enhanced = enhancedStoreFactory(items, duplicate);
@@ -46,12 +46,12 @@ function contextFactory(archive: Radar) {
 	const tags = tagsStoreFactory(items);
 	const colorMap = colorsMapStoreFactory(tags);
 	const tagsCount = tagsCountStoreFactory(items);
-	const adoptionLevels = adoptionLevelsStoreFactory(archive.adoptionLevels);
+	const adoptionLevels = adoptionLevelsStoreFactory(radar.adoptionLevels);
 	const share = shareStoreFactory(store);
-	const loadFromStorage = (archive: Radar) => {
-		store.set(archive);
-		items.set(archive.items);
-		adoptionLevels.set(archive.adoptionLevels);
+	const loadFromStorage = (radar: Radar) => {
+		store.set(radar);
+		items.set(radar.items);
+		adoptionLevels.set(radar.adoptionLevels);
 	};
 	const reset = () => {
 		store.set(DEFAULT_RADAR);
@@ -59,7 +59,7 @@ function contextFactory(archive: Radar) {
 		adoptionLevels.set(DEFAULT_RADAR.adoptionLevels);
 	};
 	return {
-		archive: store,
+		radar: store,
 		items,
 		index,
 		duplicate,
@@ -77,8 +77,8 @@ function contextFactory(archive: Radar) {
 
 function load(dataString?: string) {
 	const data = dataString || loadFromStorage();
-	const archive = readRadar(data);
-	return contextFactory(archive);
+	const radar = readRadar(data);
+	return contextFactory(radar);
 }
 
 export const loader = { load, updateItems, updateLevels };

@@ -3,17 +3,17 @@
 	import type { Radar } from '../../model';
 	import EditIcon from '../components/icons/EditIcon.svelte';
 
-	export let archive: Writable<Radar>;
+	export let radar: Writable<Radar>;
 
 	let editor: HTMLDivElement & HTMLInputElement;
 
 	function handleNameEdit() {
-		archive.update((a) => ({ ...a, name: editor.innerText.trim() }));
+		radar.update((a) => ({ ...a, name: editor.innerText.trim() }));
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			archive.update((a) => ({ ...a, name: editor.innerText.trim() }));
+			radar.update((a) => ({ ...a, name: editor.innerText.trim() }));
 			editor.blur();
 		}
 	}
@@ -40,7 +40,7 @@
 		on:focus={handleFocus}
 		on:blur={handleNameEdit}
 		on:keydown={handleKeydown}
-		bind:this={editor}>{$archive.name}</span
+		bind:this={editor}>{$radar.name}</span
 	>
 	<span class="hidden group-hover:block" on:click={handleClick}><EditIcon /></span>
 </div>

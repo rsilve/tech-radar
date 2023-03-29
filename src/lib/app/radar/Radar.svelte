@@ -7,7 +7,7 @@
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from '../GlobalContext';
 
-	const { items, filtered, colorMap, archive } = getContext(GLOBAL_CONTEXT);
+	const { items, filtered, colorMap } = getContext(GLOBAL_CONTEXT);
 
 	function edit(e) {
 		navigate(`/edit/${e.detail.index}`);
