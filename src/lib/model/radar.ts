@@ -1,6 +1,7 @@
 import type { Item } from './item';
 import { adoptionLevels } from './constants';
 import type { AdoptionLevels } from './type';
+import Hashids from 'hashids';
 
 export type Radar = {
 	name?: string;
@@ -8,6 +9,11 @@ export type Radar = {
 	categories: string[];
 	adoptionLevels: AdoptionLevels;
 };
+
+function generateId(): string {
+	const hashids = new Hashids((Math.random() * 10000).toString());
+	return hashids.encode(new Date().getTime());
+}
 
 export const DEFAULT_RADAR: Radar = {
 	name: 'No name',

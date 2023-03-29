@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { readRadar, Radar } from '../../model';
+	import { readRadar, type Radar } from '../../model';
 	import UploadIcon from './icons/UploadIcon.svelte';
 
 	export let onLoad: (radar: Radar) => void = () => {
