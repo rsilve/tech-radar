@@ -53,7 +53,7 @@
 			</a>
 		</span>
 	{/each}
-	{#if tags.length < 4}
+	{#if tags.length < 5}
 		<input
 			type="text"
 			list="tag_editor"
@@ -68,6 +68,6 @@
 			{/each}
 		</datalist>
 	{:else}
-		<span class="text-accent">No more than 4 tags per blip</span>
+		<span class="text-accent">No more than 5 tags per blip</span>
 	{/if}
 </div>
