@@ -35,9 +35,9 @@
 		<!-- Page content here -->
 		<slot />
 	</div>
-	<div class="drawer-side">
+	<div class="drawer-side max-h-screen">
 		<label class="drawer-overlay" for={id} />
-		<div class="flex max-h-full w-96 flex-col">
+		<div class="flex max-h-screen w-96 flex-col">
 			<ul class="menu bg-base-100 text-base-content">
 				<li>
 					<Home {id} />
