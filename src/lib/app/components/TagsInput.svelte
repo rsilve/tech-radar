@@ -40,10 +40,7 @@
 
 <div class="flex items-center gap-2">
 	{#each tags as tag}
-		<span
-			class="badge-accent badge badge-lg whitespace-nowrap"
-			style="background-color: {colorMap[tag] || '#cccccc'}"
-		>
+		<span class="badge-accent badge badge-lg whitespace-nowrap" style="background-color: {colorMap[tag] || '#cccccc'}">
 			{tag}
 			<a href={'#'} on:click={remove(tag)} tabindex="-1">
 				<svg
@@ -51,12 +48,7 @@
 					fill="none"
 					viewBox="0 0 24 24"
 					class="inline-block h-4 w-4 stroke-current"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M6 18L18 6M6 6l12 12"
-					/>
+					><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 				</svg>
 			</a>
 		</span>
