@@ -30,20 +30,20 @@
 </script>
 
 <div class="drawer">
-	<input {id} bind:this={closeElement} type="checkbox" class="drawer-toggle" />
+	<input bind:this={closeElement} class="drawer-toggle" {id} type="checkbox" />
 	<div class="drawer-content">
 		<!-- Page content here -->
 		<slot />
 	</div>
 	<div class="drawer-side">
-		<label for={id} class="drawer-overlay" />
-		<div class="flex w-96 flex-col ">
+		<label class="drawer-overlay" for={id} />
+		<div class="flex max-h-full w-96 flex-col">
 			<ul class="menu bg-base-100 text-base-content">
 				<li>
 					<Home {id} />
 				</li>
 				<li>
-					<Download radar={$radar} onComplete={close} />
+					<Download onComplete={close} radar={$radar} />
 				</li>
 				<li>
 					<Upload on:loadRadar={handleLoadRadar} onComplete={close} />
@@ -55,14 +55,13 @@
 					<Reset reset={onReset} />
 				</li>
 			</ul>
-			<HistoryMenu {radar} {history} on:loadRadar={handleLoadRadar} />
+			<HistoryMenu {history} on:loadRadar={handleLoadRadar} {radar} />
 			<ul class="menu bg-base-100 pb-8 text-base-content">
 				<li>
 					<SettingsMenuItem on:click={close} />
 				</li>
 				<li>
-					<a href="https://github.com/rsilve/tech-radar.git" target="_blank" tabindex="-1">Github</a
-					>
+					<a href="https://github.com/rsilve/tech-radar.git" tabindex="-1" target="_blank">Github</a>
 				</li>
 			</ul>
 		</div>

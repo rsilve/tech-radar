@@ -30,12 +30,7 @@
 						><a href={'#'} on:click={() => (levels[1] = origin[1])} tabindex="-1">reset</a></span
 					>
 				</label>
-				<input
-					type="text"
-					placeholder="Type here"
-					class="input-bordered input"
-					bind:value={levels[1]}
-				/>
+				<input type="text" placeholder="Type here" class="input-bordered input" bind:value={levels[1]} />
 			</div>
 
 			<div class="form-control w-full max-w-xs">
@@ -45,12 +40,7 @@
 						><a href={'#'} on:click={() => (levels[2] = origin[2])} tabindex="-1">reset</a></span
 					>
 				</label>
-				<input
-					type="text"
-					placeholder="Type here"
-					class="input-bordered input"
-					bind:value={levels[2]}
-				/>
+				<input type="text" placeholder="Type here" class="input-bordered input" bind:value={levels[2]} />
 			</div>
 
 			<div class="form-control w-full max-w-xs">
@@ -60,12 +50,7 @@
 						><a href={'#'} on:click={() => (levels[3] = origin[3])} tabindex="-1">reset</a></span
 					>
 				</label>
-				<input
-					type="text"
-					placeholder="Type here"
-					class="input-bordered input"
-					bind:value={levels[3]}
-				/>
+				<input type="text" placeholder="Type here" class="input-bordered input" bind:value={levels[3]} />
 			</div>
 
 			<div class="form-control w-full max-w-xs">
@@ -75,12 +60,7 @@
 						><a href={'#'} on:click={() => (levels[4] = origin[4])} tabindex="-1">reset</a></span
 					>
 				</label>
-				<input
-					type="text"
-					placeholder="Type here"
-					class="input-bordered input"
-					bind:value={levels[4]}
-				/>
+				<input type="text" placeholder="Type here" class="input-bordered input" bind:value={levels[4]} />
 			</div>
 		</div>
 	</form>

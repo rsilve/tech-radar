@@ -1,20 +1,8 @@
 import type { AdoptionLevels, Item, Radar } from '../model';
-import {
-	addToHistory,
-	DEFAULT_RADAR,
-	type History,
-	readHistory,
-	readRadar,
-	writeRadar
-} from '../model';
+import { addToHistory, DEFAULT_RADAR, type History, readHistory, readRadar, writeRadar } from '../model';
 import { writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
-import {
-	duplicateStoreFactory,
-	enhancedStoreFactory,
-	filteredStoreFactory,
-	indexStoreFactory
-} from './store';
+import { duplicateStoreFactory, enhancedStoreFactory, filteredStoreFactory, indexStoreFactory } from './store';
 import { colorsMapStoreFactory, tagsCountStoreFactory, tagsStoreFactory } from './tags';
 import { adoptionLevelsStoreFactory } from './adoptionsLevels';
 import { shareStoreFactory } from './share';

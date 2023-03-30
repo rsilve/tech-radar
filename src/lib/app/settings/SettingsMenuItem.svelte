@@ -10,11 +10,7 @@
 	}
 </script>
 
-<div
-	class="cursor-pointer whitespace-nowrap pt-2 pb-2"
-	on:click={openSettings}
-	on:keydown={openSettings}
->
+<div class="cursor-pointer whitespace-nowrap pt-2 pb-2" on:click={openSettings} on:keydown={openSettings}>
 	<GearIcon />
 	Settings
 </div>

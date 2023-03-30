@@ -5,10 +5,7 @@ import type { Item } from '../model';
 
 export const indexStoreFactory = (items: Writable<Item[]>) =>
 	derived(items, ($items) => {
-		const last = $items.reduce(
-			(previousValue, currentValue) => Math.max(previousValue, currentValue.index),
-			0
-		);
+		const last = $items.reduce((previousValue, currentValue) => Math.max(previousValue, currentValue.index), 0);
 		return last + 1;
 	});
 
@@ -21,10 +18,7 @@ export const duplicateStoreFactory = (items: Writable<Item[]>) =>
 		}, {} as Record<string, number>);
 	});
 
-export const enhancedStoreFactory = (
-	items: Writable<Item[]>,
-	duplicate: Readable<Record<string, number>>
-) =>
+export const enhancedStoreFactory = (items: Writable<Item[]>, duplicate: Readable<Record<string, number>>) =>
 	derived([items, duplicate, selected], ([$items, $duplicate, $selected]) => {
 		return $items.map((item) => ({
 			...item,

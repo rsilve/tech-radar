@@ -15,9 +15,7 @@
 
 	items.select(id);
 
-	const defaultItem: Partial<Item> = id
-		? $selected
-		: { name: '', x: 0, y: 0, quarter: 1, level: 1 };
+	const defaultItem: Partial<Item> = id ? $selected : { name: '', x: 0, y: 0, quarter: 1, level: 1 };
 	let name: string = defaultItem?.name;
 	let quarter: Quarter = defaultItem?.quarter || 1;
 	let level: Level = defaultItem?.level || 1;
@@ -134,45 +132,22 @@
 			<span>Direction</span>
 			<div class="flex items-center gap-4">
 				<label class="label cursor-pointer">
-					<input
-						type="radio"
-						class="radio mr-1"
-						bind:group={direction}
-						name="direction"
-						value={1}
-					/>
+					<input type="radio" class="radio mr-1" bind:group={direction} name="direction" value={1} />
 					Go in
 				</label>
 				<label class="label cursor-pointer">
-					<input
-						type="radio"
-						class="radio mr-1"
-						bind:group={direction}
-						name="direction"
-						value={-1}
-					/>
+					<input type="radio" class="radio mr-1" bind:group={direction} name="direction" value={-1} />
 					Go out
 				</label>
 				<label class="label cursor-pointer">
-					<input
-						type="radio"
-						class="radio mr-1"
-						bind:group={direction}
-						name="direction"
-						value={undefined}
-					/>
+					<input type="radio" class="radio mr-1" bind:group={direction} name="direction" value={undefined} />
 					None
 				</label>
 			</div>
 
 			<span>Tags</span>
 			<div>
-				<TagsInput
-					tags={itemTags}
-					existingTags={$tags}
-					colorMap={$colorMap}
-					on:change={onTagsChange}
-				/>
+				<TagsInput tags={itemTags} existingTags={$tags} colorMap={$colorMap} on:change={onTagsChange} />
 			</div>
 
 			<span class="self-start pt-3">Comment</span>
@@ -182,9 +157,7 @@
 		</div>
 		<ModalFooter>
 			{#if id}
-				<button type="button" on:click={remove} class="btn-outline btn" tabindex="-1">
-					Delete
-				</button>
+				<button type="button" on:click={remove} class="btn-outline btn" tabindex="-1"> Delete </button>
 			{/if}
 			<span class="flex-grow" />
 			<button type="button" on:click={submit} class="btn">

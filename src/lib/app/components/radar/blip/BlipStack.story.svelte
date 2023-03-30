@@ -98,9 +98,7 @@
 					<div class="-mr-3 h-4 w-4 rounded-full border border-slate-300" />
 
 					<div class="flex h-5 w-5 items-center justify-center rounded-full border border-slate-50">
-						<div
-							class="flex h-4 w-4 items-center justify-center rounded-full border border-dotted border-slate-50"
-						>
+						<div class="flex h-4 w-4 items-center justify-center rounded-full border border-dotted border-slate-50">
 							1
 						</div>
 					</div>
