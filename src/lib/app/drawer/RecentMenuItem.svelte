@@ -2,6 +2,7 @@
 	import type { HistoryItem } from '../../model';
 	import { createEventDispatcher } from 'svelte';
 	import MoreIcon from '../components/icons/MoreIcon.svelte';
+	import TrashIcon from '../components/icons/TrashIcon.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -23,13 +24,18 @@
 	<div class="flex-grow cursor-pointer" on:click={load} on:keypress={load}>
 		{item.radar.name}
 	</div>
-	<div class="hidden group-hover:block">
-		{#if actionOpened}
-			<button class="btn-ghost btn-xs btn">suppr</button>
-		{:else}
+
+	{#if actionOpened}
+		<div>
+			<button class="btn-ghost btn-xs btn">
+				<TrashIcon />
+			</button>
+		</div>
+	{:else}
+		<div class="hidden group-hover:block">
 			<button class="btn-ghost btn-xs btn" on:click={handleMore}>
 				<MoreIcon />
 			</button>
-		{/if}
-	</div>
+		</div>
+	{/if}
 </div>
