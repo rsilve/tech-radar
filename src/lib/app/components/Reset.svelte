@@ -6,7 +6,7 @@
 </script>
 
 <AutoConfirm duration={2000} on:confirm={reset}>
-	<span slot="confirm">Actual data will be lost. Confirm</span>
+	<span slot="confirm">Actual data will be lost. Click to confirm</span>
 	<PlusIcon />
 	New radar
 </AutoConfirm>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
+	const id = Math.random() * 1000;
 	const dispatch = createEventDispatcher();
 	export let duration = 1500;
 	let waitConfirm = false;
@@ -19,7 +20,7 @@
 </script>
 
 {#if waitConfirm}
-	<div class="bg-warning text-warning-content" on:click={confirm}>
+	<div class="cursor-pointer bg-warning text-warning-content" on:click={confirm}>
 		{#if $$slots.confirm}
 			<slot name="confirm" />
 		{:else}
@@ -27,8 +28,8 @@
 		{/if}
 	</div>
 {:else}
-	<input type="checkbox" id="auto_reset" class="hidden" on:change={askConfirm} />
-	<label for="auto_reset">
+	<input type="checkbox" id="auto_reset_{id}" class="hidden" on:change={askConfirm} />
+	<label for="auto_reset_{id}">
 		<slot />
 	</label>
 {/if}
