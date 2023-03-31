@@ -1,22 +1,19 @@
 <script lang="ts">
 	import type { HistoryItem } from '../../model';
 	import { createEventDispatcher } from 'svelte';
-	import MoreIcon from '../components/icons/MoreIcon.svelte';
 	import TrashIcon from '../components/icons/TrashIcon.svelte';
+	import AutoConfirm from '../components/AutoConfirm.svelte';
 
 	const dispatch = createEventDispatcher();
 
 	export let item: HistoryItem;
 
-	let actionOpened = false;
-
 	function load() {
 		dispatch('loadRadar', { radar: item.radar });
 	}
 
-	function handleMore() {
-		actionOpened = true;
-		setTimeout(() => (actionOpened = false), 2000);
+	function remove() {
+		dispatch('removeRadar', { radar: item.radar });
 	}
 </script>
 
@@ -25,17 +22,12 @@
 		{item.radar.name}
 	</div>
 
-	{#if actionOpened}
-		<div>
-			<button class="btn-ghost btn-xs btn">
+	<div class="hidden group-hover:block">
+		<AutoConfirm on:confirm={remove}>
+			<span class="pl-2 pr-2" slot="confirm">Click to confirm</span>
+			<span class="btn-ghost btn-xs btn">
 				<TrashIcon />
-			</button>
-		</div>
-	{:else}
-		<div class="hidden group-hover:block">
-			<button class="btn-ghost btn-xs btn" on:click={handleMore}>
-				<MoreIcon />
-			</button>
-		</div>
-	{/if}
+			</span>
+		</AutoConfirm>
+	</div>
 </div>

@@ -11,6 +11,10 @@ export function addToHistory(radar: Radar, history: History) {
 	history[radar.id] = { editedAt: new Date().toISOString(), radar };
 }
 
+export function removeFromHistory(radar: Radar, history: History) {
+	delete history[radar.id];
+}
+
 export function getHistory(history: History): HistoryItem[] {
 	return Object.entries(history)
 		.sort(([, a], [, b]) => b.editedAt.localeCompare(a.editedAt))

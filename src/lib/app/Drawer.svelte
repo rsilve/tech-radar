@@ -18,13 +18,13 @@
 		closeElement?.click();
 	}
 
-	function onReset() {
-		reset();
+	function handleLoadRadar(event) {
+		loadRadar(event.detail.radar);
 		close();
 	}
 
-	function handleLoadRadar(event) {
-		loadRadar(event.detail.radar);
+	function onReset() {
+		reset();
 		close();
 	}
 </script>
@@ -61,7 +61,7 @@
 					<SettingsMenuItem on:click={close} />
 				</li>
 				<li>
-					<a href="https://github.com/rsilve/tech-radar.git" tabindex="-1" target="_blank">Github</a>
+					<a href="https://github.com/rsilve/tech-radar" tabindex="-1" target="_blank">Github</a>
 				</li>
 			</ul>
 		</div>
