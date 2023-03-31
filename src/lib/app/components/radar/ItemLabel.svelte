@@ -29,7 +29,7 @@
 		{#if item.duplicate}
 			<span class="badge-warning badge badge-xs" />
 		{/if}
-		<span class="inline-flex items-baseline gap-1">
+		<span class="inline-flex items-center gap-1">
 			{#each item.tags as tag}
 				<TagBadge {tag} {colorMap} />
 			{/each}

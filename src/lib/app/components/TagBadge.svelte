@@ -6,7 +6,6 @@
 	export let colorMap: TagColors = {};
 </script>
 
-<span class="badge badge-xs" style="text-shadow: 0 0 1px black; background-color: {colorMap[tag] || '#cccccc'}">
-	{tag}
-	{count ?? ''}
+<span class="group badge badge-xs" style="text-shadow: 0 0 1px black; background-color: {colorMap[tag] || '#cccccc'}">
+	<span class="w-0 overflow-hidden  whitespace-nowrap transition-all group-hover:w-fit">{tag} {count ?? ''}</span>
 </span>
