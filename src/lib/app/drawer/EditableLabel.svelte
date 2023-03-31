@@ -16,6 +16,9 @@
 			radar.update((a) => ({ ...a, name: editor.innerText.trim() }));
 			editor.blur();
 		}
+		if (event.key === 'Escape') {
+			editor.blur();
+		}
 	}
 
 	function handleClick() {
@@ -33,14 +36,14 @@
 	}
 </script>
 
-<div class="group flex items-center ">
+<div class="group flex items-center pl-4 pr-5">
 	<span
+		bind:this={editor}
 		class="flex-grow pl-1"
 		contenteditable
-		on:focus={handleFocus}
 		on:blur={handleNameEdit}
-		on:keydown={handleKeydown}
-		bind:this={editor}>{$radar.name}</span
+		on:focus={handleFocus}
+		on:keydown={handleKeydown}>{$radar.name}</span
 	>
 	<span class="hidden group-hover:block" on:click={handleClick}><EditIcon /></span>
 </div>

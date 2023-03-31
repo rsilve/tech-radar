@@ -7,13 +7,13 @@
 	export let history;
 </script>
 
-<div class="flex flex-grow flex-col overflow-y-auto bg-base-100  pl-4 pr-5 text-base-content">
+<div class="flex flex-grow flex-col overflow-y-auto bg-base-100 text-base-content">
 	<div class="divider mt-0" />
-	<div class="pl-1 text-sm font-bold uppercase text-accent">Current</div>
+	<div class="pl-5 pr-5 pt-1 pb-1 text-sm font-bold uppercase text-accent">Current</div>
 	<div>
 		<EditableLabel {radar} />
 	</div>
-	<div class="pl-1 pt-3 text-sm font-bold uppercase text-accent">Recent</div>
+	<div class="pl-5 pr-5 pt-3 text-sm font-bold uppercase text-accent">Recent</div>
 	{#each getHistory($history) as historyItem}
 		<RecentMenuItem item={historyItem} on:loadRadar />
 	{/each}
