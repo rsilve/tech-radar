@@ -3,6 +3,8 @@ import { adoptionLevels } from './constants';
 import type { AdoptionLevels } from './type';
 import Hashids from 'hashids';
 
+const DEFAULT_RADAR_NAME = 'Untitled';
+
 export type Radar = {
 	id: string;
 	name?: string;
@@ -18,7 +20,7 @@ function generateId(): string {
 
 export const DEFAULT_RADAR: () => Radar = () => ({
 	id: generateId(),
-	name: 'No name',
+	name: DEFAULT_RADAR_NAME,
 	items: [],
 	categories: [],
 	adoptionLevels
@@ -42,4 +44,17 @@ export function readRadar(jsonStr?: string): Radar | undefined {
 
 export function writeRadar(radar: Radar): string {
 	return JSON.stringify(radar);
+}
+
+function radarName(name: string) {
+	if (name.startsWith('Copy of') || name === 'Untitled') {
+		return name;
+	}
+	return `Copy of ${name}`;
+}
+
+export function copyRadar(radar: Radar) {
+	const copy = { ...radar };
+	delete copy.id;
+	return { ...DEFAULT_RADAR(), ...copy, name: radarName(radar.name) };
 }
