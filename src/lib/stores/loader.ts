@@ -1,5 +1,5 @@
 import type { AdoptionLevels, Item, Radar } from '../model';
-import { addToHistory, DEFAULT_RADAR, type History, readHistory, readRadar, writeRadar } from '../model';
+import { addToHistory, copyRadar, DEFAULT_RADAR, type History, readHistory, readRadar, writeRadar } from '../model';
 import { writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import { duplicateStoreFactory, enhancedStoreFactory, filteredStoreFactory, indexStoreFactory } from './store';
@@ -68,11 +68,11 @@ function contextFactory(radar: Radar, history: History) {
 		items.set(radar.items);
 		adoptionLevels.set(radar.adoptionLevels);
 	};
-	const reset = () => {
-		const radar = DEFAULT_RADAR();
-		store.set(radar);
-		items.set(radar.items);
-		adoptionLevels.set(radar.adoptionLevels);
+	const reset = (radar?: Radar) => {
+		const newRadar = radar ? copyRadar(radar) : DEFAULT_RADAR();
+		store.set(newRadar);
+		items.set(newRadar.items);
+		adoptionLevels.set(newRadar.adoptionLevels);
 	};
 	return {
 		radar: store,

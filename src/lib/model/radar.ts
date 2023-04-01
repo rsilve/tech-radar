@@ -18,7 +18,7 @@ function generateId(): string {
 
 export const DEFAULT_RADAR: () => Radar = () => ({
 	id: generateId(),
-	name: 'No name',
+	name: 'Untitled',
 	items: [],
 	categories: [],
 	adoptionLevels
@@ -42,4 +42,10 @@ export function readRadar(jsonStr?: string): Radar | undefined {
 
 export function writeRadar(radar: Radar): string {
 	return JSON.stringify(radar);
+}
+
+export function copyRadar(radar: Radar) {
+	const copy = { ...radar };
+	delete copy.id;
+	return { ...DEFAULT_RADAR(), ...copy, name: `Copy of ${radar.name}` };
 }

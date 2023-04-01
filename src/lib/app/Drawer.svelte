@@ -27,6 +27,10 @@
 		reset();
 		close();
 	}
+
+	function handleCopyRadar(event) {
+		reset(event.detail.radar);
+	}
 </script>
 
 <div class="drawer">
@@ -55,7 +59,7 @@
 					<Reset reset={onReset} />
 				</li>
 			</ul>
-			<HistoryMenu {history} on:loadRadar={handleLoadRadar} {radar} />
+			<HistoryMenu {history} on:copyRadar={handleCopyRadar} on:loadRadar={handleLoadRadar} {radar} />
 			<ul class="menu bg-base-100 pb-8 text-base-content">
 				<li>
 					<SettingsMenuItem on:click={close} />
