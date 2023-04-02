@@ -3,8 +3,9 @@
 	import type { ItemEnhanced, TagColors } from '../../model';
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from '../GlobalContext';
+	import type { AppContext } from '../../stores';
 
-	const { adoptionLevels } = getContext(GLOBAL_CONTEXT);
+	const { adoptionLevels } = getContext<AppContext>(GLOBAL_CONTEXT);
 
 	export let items: ItemEnhanced[] = [];
 	export let colorMap: TagColors = {};

@@ -1,7 +1,7 @@
 import type { Item } from './item';
 import { adoptionLevels } from './constants';
 import type { AdoptionLevels } from './type';
-import Hashids from 'hashids';
+import { uid } from 'radash';
 
 const DEFAULT_RADAR_NAME = 'Untitled';
 
@@ -13,13 +13,8 @@ export type Radar = {
 	adoptionLevels: AdoptionLevels;
 };
 
-function generateId(): string {
-	const hashids = new Hashids((Math.random() * 10000).toString());
-	return hashids.encode(new Date().getTime());
-}
-
 export const DEFAULT_RADAR: () => Radar = () => ({
-	id: generateId(),
+	id: uid(6),
 	name: DEFAULT_RADAR_NAME,
 	items: [],
 	categories: [],
@@ -57,4 +52,23 @@ export function copyRadar(radar: Radar) {
 	const copy = { ...radar };
 	delete copy.id;
 	return { ...DEFAULT_RADAR(), ...copy, name: radarName(radar.name) };
+}
+
+export function addOrUpdateItem(list: Item[], item: Item) {
+	const filtered = list.filter((v) => v.index !== item.index);
+	if (
+		filtered.some(
+			(value) =>
+				value.name.toUpperCase() === item.name.toUpperCase() &&
+				value.level === item.level &&
+				value.quarter === item.quarter
+		)
+	) {
+		return filtered;
+	}
+	return [...filtered, { ...item }];
+}
+
+export function removeItem(list: Item[], id: number) {
+	return list.filter((v) => v.index !== id);
 }

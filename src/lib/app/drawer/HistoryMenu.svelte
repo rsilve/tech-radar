@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { getHistory, removeFromHistory } from '../../model';
-	import RecentMenuItem from './RecentMenuItem.svelte';
+	import RecentMenuItem from '../components/drawer/RecentMenuItem.svelte';
 
-	export let radar;
 	export let history;
 
 	function handleRemoveRadar(event) {

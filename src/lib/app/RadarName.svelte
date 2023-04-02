@@ -2,8 +2,9 @@
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from './GlobalContext';
 	import EditIcon from './components/icons/EditIcon.svelte';
+	import type { AppContext } from '../stores';
 
-	const { radar } = getContext(GLOBAL_CONTEXT);
+	const { radar } = getContext<AppContext>(GLOBAL_CONTEXT);
 </script>
 
 <div class="m-auto flex w-96 flex-row items-center gap-2 pb-3 text-center">

@@ -1,13 +1,14 @@
 <script lang="ts">
-	import Target from './Target.svelte';
 	import Blip from '../components/radar/blip/Blip.svelte';
 	import Quarter from './Quarter.svelte';
-	import { dragged, selected } from '../../stores';
+	import { type AppContext, dragged, selected } from '../../stores';
 	import { navigate } from 'svelte-navigator';
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from '../GlobalContext';
+	import Target from './Target.svelte';
+	import { addOrUpdateItem } from '../../model';
 
-	const { items, filtered, colorMap } = getContext(GLOBAL_CONTEXT);
+	const { items, filtered, colorMap } = getContext<AppContext>(GLOBAL_CONTEXT);
 
 	function edit(e) {
 		navigate(`/edit/${e.detail.index}`);
@@ -27,7 +28,9 @@
 
 	function handleDropBlip(e) {
 		const updated = { ...dragged.get(), ...e.detail };
-		items.addOrUpdate(updated);
+		items.update((list) => {
+			return addOrUpdateItem(list, updated);
+		});
 	}
 </script>
 

@@ -1,15 +1,16 @@
 <script lang="ts">
-	import Download from './components/Download.svelte';
-	import Upload from './components/Upload.svelte';
-	import Home from './components/Home.svelte';
-	import SettingsMenuItem from './settings/SettingsMenuItem.svelte';
+	import Download from '../components/Download.svelte';
+	import Upload from '../components/Upload.svelte';
+	import Home from '../components/Home.svelte';
+	import SettingsMenuItem from '../settings/SettingsMenuItem.svelte';
 	import { getContext } from 'svelte';
-	import { GLOBAL_CONTEXT } from './GlobalContext';
-	import Reset from './components/Reset.svelte';
-	import ShareMenuItem from './drawer/ShareMenuItem.svelte';
-	import HistoryMenu from './drawer/HistoryMenu.svelte';
+	import { GLOBAL_CONTEXT } from '../GlobalContext';
+	import Reset from '../components/Reset.svelte';
+	import ShareMenuItem from './ShareMenuItem.svelte';
+	import HistoryMenu from './HistoryMenu.svelte';
+	import type { AppContext } from '../../stores';
 
-	const { radar, items, loadRadar, reset, history } = getContext(GLOBAL_CONTEXT);
+	const { radar, items, loadRadar, reset, history } = getContext<AppContext>(GLOBAL_CONTEXT);
 	export let id = 'app-drawer';
 
 	let closeElement: HTMLInputElement;
@@ -59,7 +60,7 @@
 					<Reset reset={onReset} />
 				</li>
 			</ul>
-			<HistoryMenu {history} on:copyRadar={handleCopyRadar} on:loadRadar={handleLoadRadar} {radar} />
+			<HistoryMenu {history} on:copyRadar={handleCopyRadar} on:loadRadar={handleLoadRadar} />
 			<ul class="menu bg-base-100 pb-8 text-base-content">
 				<li>
 					<SettingsMenuItem on:click={close} />

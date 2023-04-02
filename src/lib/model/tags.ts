@@ -32,7 +32,9 @@ export function tagsFactory(items: Item[]) {
 	).sort() as string[];
 }
 
-export function tagsCountFromItems(items: Item[]): { name: string; count: number }[] {
+export type TagsCount = { name: string; count: number };
+
+export function tagsCountFromItems(items: Item[]): TagsCount[] {
 	const maps: Record<string, number> = items
 		.map((item) => item.tags)
 		.flat()

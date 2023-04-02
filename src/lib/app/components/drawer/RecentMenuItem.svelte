@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { HistoryItem } from '../../model';
+	import type { HistoryItem } from '../../../model';
 	import { createEventDispatcher } from 'svelte';
-	import TrashIcon from '../components/icons/TrashIcon.svelte';
-	import AutoConfirm from '../components/AutoConfirm.svelte';
-	import CopyIcon from '../components/icons/CopyIcon.svelte';
-	import { humanize } from '../../utils/date';
+	import TrashIcon from '../icons/TrashIcon.svelte';
+	import AutoConfirm from '../AutoConfirm.svelte';
+	import CopyIcon from '../icons/CopyIcon.svelte';
+	import { humanize } from '../../../utils/date';
 
 	const dispatch = createEventDispatcher();
 
