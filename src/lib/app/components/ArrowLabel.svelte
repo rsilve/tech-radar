@@ -3,11 +3,15 @@
 	export { forLabel as for };
 
 	let up = false;
+
+	function handleToggle() {
+		up = !up;
+	}
 </script>
 
-<label for={forLabel} class="cursor-pointer gap-2" on:click={() => (up = !up)}>
+<label class="cursor-pointer gap-2" for={forLabel} on:click={handleToggle} on:keypress={handleToggle}>
 	<slot />
-	<input type="checkbox" class="hidden" bind:checked={up} tabindex="-1" />
+	<input bind:checked={up} class="hidden" tabindex="-1" type="checkbox" />
 	<span>
 		<i class="arrow" />
 	</span>

@@ -4,10 +4,12 @@
 	import { adoptionLevels as origin } from '../../model';
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from '../GlobalContext';
+	import type { AppContext } from '../../stores';
 
-	const { adoptionLevels } = getContext(GLOBAL_CONTEXT);
+	const { adoptionLevels } = getContext<AppContext>(GLOBAL_CONTEXT);
 
 	let levels = { ...origin, ...$adoptionLevels };
+
 	function cancel() {
 		navigate('/');
 	}
@@ -24,49 +26,49 @@
 		<div>Configure adoption level labels :</div>
 		<div class="grid grid-cols-4 gap-x-4 pl-8">
 			<div class="form-control w-full max-w-xs">
-				<label class="label">
+				<label class="label" for="adopt">
 					<span class="label-text">{origin[1]}</span>
 					<span class="label-text-alt"
 						><a href={'#'} on:click={() => (levels[1] = origin[1])} tabindex="-1">reset</a></span
 					>
 				</label>
-				<input type="text" placeholder="Type here" class="input-bordered input" bind:value={levels[1]} />
+				<input bind:value={levels[1]} class="input-bordered input" id="adopt" placeholder="Type here" type="text" />
 			</div>
 
 			<div class="form-control w-full max-w-xs">
-				<label class="label">
+				<label class="label" for="trial">
 					<span class="label-text">{origin[2]}</span>
 					<span class="label-text-alt"
 						><a href={'#'} on:click={() => (levels[2] = origin[2])} tabindex="-1">reset</a></span
 					>
 				</label>
-				<input type="text" placeholder="Type here" class="input-bordered input" bind:value={levels[2]} />
+				<input bind:value={levels[2]} class="input-bordered input" id="trial" placeholder="Type here" type="text" />
 			</div>
 
 			<div class="form-control w-full max-w-xs">
-				<label class="label">
+				<label class="label" for="assess">
 					<span class="label-text">{origin[3]}</span>
 					<span class="label-text-alt"
 						><a href={'#'} on:click={() => (levels[3] = origin[3])} tabindex="-1">reset</a></span
 					>
 				</label>
-				<input type="text" placeholder="Type here" class="input-bordered input" bind:value={levels[3]} />
+				<input bind:value={levels[3]} class="input-bordered input" id="assess" placeholder="Type here" type="text" />
 			</div>
 
 			<div class="form-control w-full max-w-xs">
-				<label class="label">
+				<label class="label" for="hold">
 					<span class="label-text">{origin[4]}</span>
 					<span class="label-text-alt"
 						><a href={'#'} on:click={() => (levels[4] = origin[4])} tabindex="-1">reset</a></span
 					>
 				</label>
-				<input type="text" placeholder="Type here" class="input-bordered input" bind:value={levels[4]} />
+				<input bind:value={levels[4]} class="input-bordered input" id="hold" placeholder="Type here" type="text" />
 			</div>
 		</div>
 	</form>
 
 	<ModalFooter>
-		<button type="button" on:click={submit} class="btn"> Apply </button>
-		<button type="button" on:click={cancel} class="btn-outline btn"> Close </button>
+		<button class="btn" on:click={submit} type="button"> Apply</button>
+		<button class="btn-outline btn" on:click={cancel} type="button"> Close</button>
 	</ModalFooter>
 </div>

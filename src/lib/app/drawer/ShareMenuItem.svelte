@@ -2,10 +2,12 @@
 	import ShareIcon from '../components/icons/ShareIcon.svelte';
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from '../GlobalContext';
+	import type { AppContext } from '../../stores';
 
-	const { share } = getContext(GLOBAL_CONTEXT);
+	const { share } = getContext<AppContext>(GLOBAL_CONTEXT);
 
 	let copied = false;
+
 	async function copyLink() {
 		const url = new URL(document.location.href);
 		url.searchParams.set('data', encodeURIComponent($share));
@@ -17,7 +19,8 @@
 	}
 </script>
 
-<div class="cursor-pointer whitespace-nowrap pt-2 pb-2" on:click={copyLink}>
-	<ShareIcon /> <span class="flex-grow">Share</span>
-	{#if copied}<span class="badge-success badge badge-sm">URL copied to clipboard</span>{/if}
+<div class="cursor-pointer whitespace-nowrap pt-2 pb-2" on:click={copyLink} on:keypress={copyLink}>
+	<ShareIcon />
+	<span class="flex-grow">Share</span>
+	{#if copied}<span class="badge badge-success badge-sm">URL copied to clipboard</span>{/if}
 </div>

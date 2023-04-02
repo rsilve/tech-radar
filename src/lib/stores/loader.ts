@@ -1,6 +1,6 @@
-import type { AdoptionLevels, Item, Radar } from '../model';
+import type { AdoptionLevels, Item, ItemEnhanced, Radar, TagColors, TagsCount } from '../model';
 import { addToHistory, copyRadar, DEFAULT_RADAR, type History, readHistory, readRadar, writeRadar } from '../model';
-import { writable } from 'svelte/store';
+import { type Readable, type Writable, writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import { duplicateStoreFactory, enhancedStoreFactory, filteredStoreFactory, indexStoreFactory } from './store';
 import { colorsMapStoreFactory, tagsCountStoreFactory, tagsStoreFactory } from './tags';
@@ -49,7 +49,24 @@ function updateLevels(levels: AdoptionLevels) {
 	});
 }
 
-function contextFactory(radar: Radar, history: History) {
+export type AppContext = {
+	radar: Writable<Radar>;
+	items: Writable<Item[]>;
+	index: Readable<number>;
+	duplicate: Readable<Record<string, number>>;
+	enhanced: Readable<ItemEnhanced[]>;
+	filtered: Readable<ItemEnhanced[]>;
+	tags: Readable<string[]>;
+	colorMap: Readable<TagColors>;
+	tagsCount: Readable<TagsCount[]>;
+	adoptionLevels: Writable<AdoptionLevels>;
+	share: Readable<string>;
+	loadRadar: (radar: Radar) => void;
+	reset: (radar?: Radar) => void;
+	history: Writable<History>;
+};
+
+function contextFactory(radar: Radar, history: History): AppContext {
 	historyStore.update(() => history);
 	store.update(() => radar);
 

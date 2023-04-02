@@ -31,13 +31,13 @@
 		<div style="background: white; padding: 1em; height: 50%">
 			<div style="position: relative; aspect-ratio: 1; border: 1px dotted #ccc; ">
 				<Target />
-				<BlipStack {radius} {item}>
+				<BlipStack {item}>
 					<BlipDuplicate />
 					<BlipTag color={TAG_COLORS[1]} />
 					<BlipTag color={TAG_COLORS[2]} />
 					<BlipNumber {item} />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item }}>
+				<BlipStack item={{ ...item }}>
 					<div class="h-1 w-1 rounded-full border border-slate-200" />
 				</BlipStack>
 			</div>
@@ -47,39 +47,39 @@
 		<div style="background: white; padding: 1em; height: 50%">
 			<div style="position: relative; aspect-ratio: 1; border: 1px dotted #ccc; ">
 				<Target />
-				<BlipStack {radius} item={{ ...item, x: 0 }}>
+				<BlipStack item={{ ...item, x: 0 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
 
-				<BlipStack {radius} item={{ ...item, x: 0.1 }}>
+				<BlipStack item={{ ...item, x: 0.1 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
 
-				<BlipStack {radius} item={{ ...item, x: 0.2 }}>
+				<BlipStack item={{ ...item, x: 0.2 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item, x: 0.3 }}>
+				<BlipStack item={{ ...item, x: 0.3 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item, x: 0.4 }}>
+				<BlipStack item={{ ...item, x: 0.4 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item, x: 0.5 }}>
+				<BlipStack item={{ ...item, x: 0.5 }}>
 					<div class="h-2 w-2 rounded-full bg-slate-50" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item, x: 0.6 }}>
+				<BlipStack item={{ ...item, x: 0.6 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item, x: 0.7 }}>
+				<BlipStack item={{ ...item, x: 0.7 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item, x: 0.8 }}>
+				<BlipStack item={{ ...item, x: 0.8 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item, x: 0.9 }}>
+				<BlipStack item={{ ...item, x: 0.9 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item, x: 1 }}>
+				<BlipStack item={{ ...item, x: 1 }}>
 					<div class="h-1 w-1 rounded-full bg-slate-50" />
 				</BlipStack>
 			</div>
@@ -90,10 +90,10 @@
 		<div style="background: white; padding: 1em; height: 50%">
 			<div style="position: relative; aspect-ratio: 1; border: 1px dotted #ccc; ">
 				<Target />
-				<BlipStack {radius} item={{ ...item }}>
+				<BlipStack item={{ ...item }}>
 					<div class="h-1 w-1 rounded-full border border-slate-200" />
 				</BlipStack>
-				<BlipStack {radius} item={{ ...item }}>
+				<BlipStack item={{ ...item }}>
 					<div class="-mr-3 h-4 w-4 rounded-full border border-slate-300" />
 					<div class="-mr-3 h-4 w-4 rounded-full border border-slate-300" />
 

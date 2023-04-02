@@ -1,5 +1,5 @@
 <script>
-	import Drawer from './Drawer.svelte';
+	import Drawer from './drawer/Drawer.svelte';
 	import RadarName from './RadarName.svelte';
 </script>
 

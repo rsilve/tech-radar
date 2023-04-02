@@ -20,8 +20,10 @@
 	}
 </script>
 
-<td class:active={isSelected} on:click={setState}>
-	<div class="content"><slot /></div>
+<td class:active={isSelected} on:click={setState} on:keypress={setState}>
+	<div class="content">
+		<slot />
+	</div>
 </td>
 
 <style>
@@ -32,6 +34,7 @@
 		line-height: 1.2em;
 		vertical-align: top;
 	}
+
 	.content {
 		border: 1px solid rgba(0, 0, 0, 0);
 		border-radius: 0.3rem;
@@ -40,6 +43,7 @@
 		padding: 0.2rem;
 		box-sizing: border-box;
 	}
+
 	.active div {
 		border: 1px solid rgba(0, 0, 0, 0.5);
 		background-color: rgba(0, 0, 0, 0.1);

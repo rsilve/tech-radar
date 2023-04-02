@@ -20,7 +20,7 @@
 </script>
 
 {#if waitConfirm}
-	<div class="cursor-pointer bg-warning text-warning-content" on:click={confirm}>
+	<div class="cursor-pointer bg-warning text-warning-content" on:click={confirm} on:keypress={confirm}>
 		{#if $$slots.confirm}
 			<slot name="confirm" />
 		{:else}

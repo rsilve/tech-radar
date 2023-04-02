@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { Hst as HstType } from '@histoire/plugin-svelte';
 	import { logEvent } from 'histoire/client';
-	import { TAG_COLORS, type Item } from '../../../model';
+	import { type Item, TAG_COLORS } from '../../../model';
 	import ItemLabel from './ItemLabel.svelte';
+
 	export let Hst: HstType;
 
 	const item: Item = {
@@ -28,10 +29,5 @@
 </script>
 
 <Hst.Story>
-	<ItemLabel {item} {duplicate} {selected} {colorMap} on:select={select} on:edit={edit} />
-
-	<svelte:fragment slot="controls">
-		<Hst.Checkbox bind:value={duplicate} title="Duplicate" />
-		<Hst.Checkbox bind:value={selected} title="Selected" />
-	</svelte:fragment>
+	<ItemLabel {colorMap} {item} on:edit={edit} on:select={select} />
 </Hst.Story>

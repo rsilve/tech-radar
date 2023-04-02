@@ -1,7 +1,7 @@
 import { derived, type Readable, type Writable } from 'svelte/store';
 import { selected } from './selected';
 import { searchCriteria } from './searchCriteria';
-import type { Item } from '../model';
+import type { Item, ItemEnhanced } from '../model';
 
 export const indexStoreFactory = (items: Writable<Item[]>) =>
 	derived(items, ($items) => {
@@ -18,7 +18,10 @@ export const duplicateStoreFactory = (items: Writable<Item[]>) =>
 		}, {} as Record<string, number>);
 	});
 
-export const enhancedStoreFactory = (items: Writable<Item[]>, duplicate: Readable<Record<string, number>>) =>
+export const enhancedStoreFactory = (
+	items: Writable<Item[]>,
+	duplicate: Readable<Record<string, number>>
+): Readable<ItemEnhanced[]> =>
 	derived([items, duplicate, selected], ([$items, $duplicate, $selected]) => {
 		return $items.map((item) => ({
 			...item,

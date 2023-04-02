@@ -2,8 +2,9 @@
 	import TagBadge from './components/TagBadge.svelte';
 	import { getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from './GlobalContext';
+	import type { AppContext } from '../stores';
 
-	const { items, colorMap, tagsCount, adoptionLevels } = getContext(GLOBAL_CONTEXT);
+	const { items, colorMap, tagsCount, adoptionLevels } = getContext<AppContext>(GLOBAL_CONTEXT);
 </script>
 
 <div class="flex flex-col items-center gap-1">
