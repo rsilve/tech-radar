@@ -3,6 +3,7 @@
 	import type { Item, ItemEnhanced } from '../../../../model';
 	import { useDblClick } from '../../../../utils';
 	import BlipDirection from './BlipDirection.svelte';
+
 	const dispatch = createEventDispatcher();
 	const [singleClick, dblClick] = useDblClick();
 
@@ -32,16 +33,18 @@
 	class:bg-slate-500={!hasTagsOrDuplicate(item)}
 	class:bg-transparent={hasTagsOrDuplicate(item)}
 >
-	<BlipDirection {item} />
-	<div class="overflow-hidden hover:overflow-visible">
-		<a
-			draggable="false"
-			href={'#'}
-			tabindex="-1"
-			on:dblclick={edit(item)}
-			on:click={select(item)}
-			class="whitespace-nowrap"
-			style="text-shadow: 1px 1px 1px rgba(0,0,0,.7)">{item.name}</a
-		>
+	<div class="grid grid-cols-1 grid-rows-1 items-center">
+		<BlipDirection {item} />
+		<div class="overflow-hidden hover:overflow-visible" style="grid-area: 1 / 1 / 2 / 2">
+			<a
+				class="whitespace-nowrap"
+				draggable="false"
+				href={'#'}
+				on:click={select(item)}
+				on:dblclick={edit(item)}
+				style="text-shadow: 1px 1px 1px rgba(0,0,0,.7)"
+				tabindex="-1">{item.name}</a
+			>
+		</div>
 	</div>
 </div>
