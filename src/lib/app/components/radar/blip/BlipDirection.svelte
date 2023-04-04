@@ -7,7 +7,7 @@
 </script>
 
 {#if item.direction && item.direction > 0}
-	<BlipGoIn quarter={item.quarter} />
+	<BlipGoIn {item} />
 {:else if item.direction && item.direction < 0}
-	<BlipGoOut quarter={item.quarter} />
+	<BlipGoOut {item} />
 {/if}

@@ -1,15 +1,16 @@
 <script lang="ts">
-	import type { Quarter } from '../../../../model';
+	import type { ItemEnhanced } from '../../../../model';
+	import ArrowRightIcon from '../../icons/ArrowRightIcon.svelte';
+	import { unitToRadial } from '../../../../utils';
 
-	export let quarter: Quarter;
+	export let item: ItemEnhanced;
+	let angle = 0;
+
+	$: {
+		angle = unitToRadial(item).x + Math.PI / 2;
+	}
 </script>
 
-{#if quarter === 1}
-	<div class="absolute bottom-0 left-0 h-0 w-0 border-2 border-t-0 border-r-0 border-slate-800/60 p-1" />
-{:else if quarter === 2}
-	<div class="absolute bottom-0 right-0 h-0 w-0 border-2 border-t-0 border-l-0 border-slate-800/60 p-1" />
-{:else if quarter === 3}
-	<div class="absolute top-0 right-0 h-0 w-0 border-2 border-b-0 border-l-0 border-slate-800/60 p-1" />
-{:else}
-	<div class="absolute top-0 left-0 h-0 w-0 border-2 border-b-0 border-r-0 border-slate-800/60 p-1" />
-{/if}
+<div class="translate-x-5 text-neutral" style="grid-area: 1 / 1 / 2 / 2" style:rotate="-{angle}rad">
+	<ArrowRightIcon />
+</div>

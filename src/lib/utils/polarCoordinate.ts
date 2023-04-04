@@ -9,7 +9,7 @@ function weightedLevel(item: Item) {
 	return 2 * item.y;
 }
 
-function unitToRadial(item: Item): Coord {
+export function unitToRadial(item: Item): Coord {
 	return {
 		x: ((item.x + item.quarter - 1) * Math.PI) / 2 + Math.PI / 2,
 		y: weightedLevel(item)
