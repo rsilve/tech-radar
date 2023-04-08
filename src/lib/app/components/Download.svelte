@@ -27,4 +27,4 @@
 	<DownloadIcon />
 	Download
 </div>
-<a bind:this={link} class="hidden">x</a>
+<a bind:this={link} class="hidden" href={'#'}>x</a>

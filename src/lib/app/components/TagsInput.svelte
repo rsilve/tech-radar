@@ -40,9 +40,12 @@
 
 <div class="flex items-center gap-2">
 	{#each tags as tag}
-		<span class="badge-accent badge badge-lg whitespace-nowrap" style="background-color: {colorMap[tag] || '#cccccc'}">
+		<span
+			class="badge-accent badge badge-lg whitespace-nowrap pr-0"
+			style="background-color: {colorMap[tag] || '#cccccc'}"
+		>
 			{tag}
-			<a class="cursor-pointer" on:click={remove(tag)} tabindex="-1">
+			<button class="btn-ghost btn-xs btn" on:click={remove(tag)} tabindex="-1">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -50,7 +53,7 @@
 					class="inline-block h-4 w-4 stroke-current"
 					><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 				</svg>
-			</a>
+			</button>
 		</span>
 	{/each}
 	{#if tags.length < 5}
