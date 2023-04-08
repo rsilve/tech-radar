@@ -37,9 +37,8 @@
 		<BlipDirection {item} />
 		<div class="overflow-hidden hover:overflow-visible" style="grid-area: 1 / 1 / 2 / 2">
 			<a
-				class="whitespace-nowrap"
+				class="cursor-pointer whitespace-nowrap"
 				draggable="false"
-				href={'#'}
 				on:click={select(item)}
 				on:dblclick={edit(item)}
 				style="text-shadow: 1px 1px 1px rgba(0,0,0,.7)"

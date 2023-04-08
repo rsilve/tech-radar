@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { writeRadar, type Radar } from '../../model';
+	import { type Radar, writeRadar } from '../../model';
 	import DownloadIcon from './icons/DownloadIcon.svelte';
 
 	export let radar: Radar;
@@ -27,4 +27,4 @@
 	<DownloadIcon />
 	Download
 </div>
-<a bind:this={link} href={'#'} class="hidden">x</a>
+<a bind:this={link} class="hidden">x</a>
