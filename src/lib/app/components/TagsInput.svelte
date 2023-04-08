@@ -42,7 +42,7 @@
 	{#each tags as tag}
 		<span class="badge-accent badge badge-lg whitespace-nowrap" style="background-color: {colorMap[tag] || '#cccccc'}">
 			{tag}
-			<a href={'#'} on:click={remove(tag)} tabindex="-1">
+			<a class="cursor-pointer" on:click={remove(tag)} tabindex="-1">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"

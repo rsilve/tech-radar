@@ -22,4 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-/deploy.sh
+/scripts/deploy.sh
+/scripts/access-log.sh
+/scripts/accesslogs/
+/scripts/
