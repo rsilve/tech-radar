@@ -36,13 +36,13 @@
 	<div class="grid grid-cols-1 grid-rows-1 items-center">
 		<BlipDirection {item} />
 		<div class="overflow-hidden hover:overflow-visible" style="grid-area: 1 / 1 / 2 / 2">
-			<a
+			<span
 				class="cursor-pointer whitespace-nowrap"
 				draggable="false"
 				on:click={select(item)}
 				on:dblclick={edit(item)}
-				style="text-shadow: 1px 1px 1px rgba(0,0,0,.7)"
-				tabindex="-1">{item.name}</a
+				on:keypress={select(item)}
+				style="text-shadow: 1px 1px 1px rgba(0,0,0,.7)">{item.name}</span
 			>
 		</div>
 	</div>
