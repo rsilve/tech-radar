@@ -1,4 +1,4 @@
-import type { AdoptionLevels, Item, ItemEnhanced, Radar, TagColors, TagsCount } from '../model';
+import type { AdoptionLevels, Categories, Item, ItemEnhanced, Radar, TagColors, TagsCount } from '../model';
 import { addToHistory, copyRadar, DEFAULT_RADAR, type History, readHistory, readRadar, writeRadar } from '../model';
 import { type Readable, type Writable, writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
@@ -6,6 +6,7 @@ import { duplicateStoreFactory, enhancedStoreFactory, filteredStoreFactory, inde
 import { colorsMapStoreFactory, tagsCountStoreFactory, tagsStoreFactory } from './tags';
 import { adoptionLevelsStoreFactory } from './adoptionsLevels';
 import { shareStoreFactory } from './share';
+import { categoriesStoreFactory } from './categories';
 
 const STORAGE_KEY = 'technos';
 const STORAGE_HISTORY_KEY = 'tech-radar-history';
@@ -64,6 +65,7 @@ export type AppContext = {
 	loadRadar: (radar: Radar) => void;
 	reset: (radar?: Radar) => void;
 	history: Writable<History>;
+	categories: Writable<Categories>;
 };
 
 function contextFactory(radar: Radar, history: History): AppContext {
@@ -79,17 +81,20 @@ function contextFactory(radar: Radar, history: History): AppContext {
 	const colorMap = colorsMapStoreFactory(tags);
 	const tagsCount = tagsCountStoreFactory(items);
 	const adoptionLevels = adoptionLevelsStoreFactory(radar.adoptionLevels);
+	const categories = categoriesStoreFactory(radar.categories);
 	const share = shareStoreFactory(store);
 	const loadRadar = (radar: Radar) => {
 		store.set(radar);
 		items.set(radar.items);
 		adoptionLevels.set(radar.adoptionLevels);
+		categories.set(radar.categories);
 	};
 	const reset = (radar?: Radar) => {
 		const newRadar = radar ? copyRadar(radar) : DEFAULT_RADAR();
 		store.set(newRadar);
 		items.set(newRadar.items);
 		adoptionLevels.set(newRadar.adoptionLevels);
+		categories.set(newRadar.categories);
 	};
 	return {
 		radar: store,
@@ -105,7 +110,8 @@ function contextFactory(radar: Radar, history: History): AppContext {
 		share,
 		loadRadar,
 		reset,
-		history: historyStore
+		history: historyStore,
+		categories
 	};
 }
 

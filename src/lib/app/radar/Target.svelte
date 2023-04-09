@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Categories from '../components/radar/Categories.svelte';
+	import Categories from './Categories.svelte';
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { GLOBAL_CONTEXT } from '../GlobalContext';
 	import type { AppContext } from '../../stores';
