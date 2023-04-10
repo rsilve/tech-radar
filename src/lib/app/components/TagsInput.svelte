@@ -2,6 +2,7 @@
 	import { addTag, removeTag } from '../../model';
 	import { createEventDispatcher } from 'svelte';
 	import type { TagColors } from '../../model';
+	import PlusIcon from './icons/PlusIcon.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -38,7 +39,7 @@
 	}
 </script>
 
-<div class="flex items-center gap-2">
+<div class="space-x-1">
 	{#each tags as tag}
 		<span
 			class="badge-accent badge badge-lg whitespace-nowrap pr-0"
@@ -56,21 +57,23 @@
 			</button>
 		</span>
 	{/each}
-	{#if tags.length < 5}
-		<input
-			type="text"
-			list="tag_editor"
-			autocomplete="false"
-			class="input-bordered input w-full"
-			placeholder="Add a tag"
-			on:keydown={add}
-		/>
+
+	<div class="inline-block">
+		<label class="input-group-sm input-group">
+			<PlusIcon />
+			<input
+				type="text"
+				list="tag_editor"
+				autocomplete="false"
+				class="input-bordered input input-sm"
+				placeholder="Add a tag"
+				on:keydown={add}
+			/>
+		</label>
 		<datalist id="tag_editor">
 			{#each existingTags as tag}
 				<option value={tag}>{tag}</option>
 			{/each}
 		</datalist>
-	{:else}
-		<span class="text-accent">No more than 5 tags per blip</span>
-	{/if}
+	</div>
 </div>
