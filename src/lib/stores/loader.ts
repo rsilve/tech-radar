@@ -50,6 +50,12 @@ function updateLevels(levels: AdoptionLevels) {
 	});
 }
 
+function updateCategories(categories: Categories) {
+	store.update((radar) => {
+		return { ...radar, categories };
+	});
+}
+
 export type AppContext = {
 	radar: Writable<Radar>;
 	items: Writable<Item[]>;
@@ -83,18 +89,19 @@ function contextFactory(radar: Radar, history: History): AppContext {
 	const adoptionLevels = adoptionLevelsStoreFactory(radar.adoptionLevels);
 	const categories = categoriesStoreFactory(radar.categories);
 	const share = shareStoreFactory(store);
-	const loadRadar = (radar: Radar) => {
+
+	const set = (radar: Radar) => {
 		store.set(radar);
 		items.set(radar.items);
 		adoptionLevels.set(radar.adoptionLevels);
 		categories.set(radar.categories);
 	};
+	const loadRadar = (radar: Radar) => {
+		set(radar);
+	};
 	const reset = (radar?: Radar) => {
 		const newRadar = radar ? copyRadar(radar) : DEFAULT_RADAR();
-		store.set(newRadar);
-		items.set(newRadar.items);
-		adoptionLevels.set(newRadar.adoptionLevels);
-		categories.set(newRadar.categories);
+		set(newRadar);
 	};
 	return {
 		radar: store,
@@ -123,4 +130,4 @@ function load(dataString?: string) {
 	return contextFactory(radar, history);
 }
 
-export const loader = { load, updateItems, updateLevels };
+export const loader = { load, updateItems, updateLevels, updateCategories };
