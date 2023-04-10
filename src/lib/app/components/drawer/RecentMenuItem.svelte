@@ -5,6 +5,7 @@
 	import AutoConfirm from '../AutoConfirm.svelte';
 	import CopyIcon from '../icons/CopyIcon.svelte';
 	import { humanize } from '../../../utils/date';
+	import MergeIcon from '../icons/MergeIcon.svelte';
 
 	const dispatch = createEventDispatcher();
 
@@ -21,6 +22,8 @@
 	function copy() {
 		dispatch('copyRadar', { radar: item.radar });
 	}
+
+	function merge() {}
 </script>
 
 <div class="group flex max-w-full flex-row items-center pl-5 pr-5 pt-1 pb-1 hover:bg-base-300">
@@ -30,12 +33,15 @@
 
 	<div class="hidden group-hover:block">
 		<div class="flex flex-row gap-1">
-			<button class="btn-ghost btn-xs btn" on:click={copy}>
+			<button class="btn-ghost btn-xs btn" on:click={merge} title="Merge this radar with current">
+				<MergeIcon />
+			</button>
+			<button class="btn-ghost btn-xs btn" on:click={copy} title="Copy this radar">
 				<CopyIcon />
 			</button>
 			<AutoConfirm on:confirm={remove}>
 				<span class="whitespace-nowrap pl-2 pr-2" slot="confirm">Click to confirm</span>
-				<span class="btn-ghost btn-xs btn">
+				<span class="btn-ghost btn-xs btn" title="Delete this radar">
 					<TrashIcon />
 				</span>
 			</AutoConfirm>
