@@ -8,6 +8,7 @@ export function createContext(dataString?: string) {
 
 	context.items.subscribe((items) => loader.updateItems(items));
 	context.adoptionLevels.subscribe((levels) => loader.updateLevels(levels));
+	context.categories.subscribe((categories) => loader.updateCategories(categories));
 
 	setContext(GLOBAL_CONTEXT, context);
 }

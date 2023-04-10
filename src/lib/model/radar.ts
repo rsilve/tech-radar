@@ -1,7 +1,7 @@
 import type { Item } from './item';
-import { adoptionLevels } from './constants';
-import type { AdoptionLevels } from './type';
-import { uid } from 'radash';
+import { adoptionLevels, categories } from './constants';
+import type { AdoptionLevels, Categories } from './type';
+import { isArray, uid } from 'radash';
 
 const DEFAULT_RADAR_NAME = 'Untitled';
 
@@ -9,7 +9,7 @@ export type Radar = {
 	id: string;
 	name?: string;
 	items: Item[];
-	categories: string[];
+	categories: Categories;
 	adoptionLevels: AdoptionLevels;
 };
 
@@ -17,7 +17,7 @@ export const DEFAULT_RADAR: () => Radar = () => ({
 	id: uid(6),
 	name: DEFAULT_RADAR_NAME,
 	items: [],
-	categories: [],
+	categories,
 	adoptionLevels
 });
 
@@ -31,6 +31,9 @@ export function readRadar(jsonStr?: string): Radar | undefined {
 	if (jsonStr.startsWith('{')) {
 		try {
 			const value = JSON.parse(jsonStr || '{}');
+			if (value['categories'] && isArray(value['categories']) && value['categories'].length === 0) {
+				delete value['categories'];
+			}
 			return { ...DEFAULT_RADAR(), ...value };
 		} catch {}
 	}
