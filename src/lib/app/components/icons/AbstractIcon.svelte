@@ -1,4 +1,4 @@
-<span><slot /></span>
+<span class="bg-transparent p-0"><slot /></span>
 
 <style>
 	span :global(svg) {

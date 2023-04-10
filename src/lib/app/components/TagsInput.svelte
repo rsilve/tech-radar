@@ -10,24 +10,33 @@
 	export let existingTags: string[] = [];
 	export let colorMap: TagColors = {};
 
+	let input: HTMLInputElement;
+
 	function change(newTags: string[]) {
 		dispatch('change', {
 			tags: newTags
 		});
 	}
 
-	function add(event: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }) {
+	function addNewTag() {
+		const value = input.value.trim();
+		if (!value) {
+			return;
+		}
+		setTimeout(() => {
+			tags = addTag(value, tags);
+			input.value = '';
+			change(tags);
+		}, 100);
+	}
+
+	function handleAddTag() {
+		addNewTag();
+	}
+
+	function add(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
-			const el = event.currentTarget;
-			const value = el.value.trim();
-			if (!value) {
-				return;
-			}
-			setTimeout(() => {
-				tags = addTag(value, tags);
-				el.value = '';
-				change(tags);
-			}, 100);
+			addNewTag();
 		}
 	}
 
@@ -42,11 +51,11 @@
 <div class="space-x-1">
 	{#each tags as tag}
 		<span
-			class="badge-accent badge badge-lg whitespace-nowrap pr-0"
+			class="badge badge-accent badge-lg whitespace-nowrap pr-0"
 			style="background-color: {colorMap[tag] || '#cccccc'}"
 		>
 			{tag}
-			<button class="btn-ghost btn-xs btn" on:click={remove(tag)} tabindex="-1">
+			<button type="button" class="btn-ghost btn-xs btn" on:click={remove(tag)} tabindex="-1">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -60,7 +69,6 @@
 
 	<div class="inline-block">
 		<label class="input-group-sm input-group">
-			<PlusIcon />
 			<input
 				type="text"
 				list="tag_editor"
@@ -68,7 +76,11 @@
 				class="input-bordered input input-sm"
 				placeholder="Add a tag"
 				on:keydown={add}
+				bind:this={input}
 			/>
+			<button type="button" on:click={handleAddTag} class="btn-outline btn-accent btn-square btn-sm btn" tabindex="-1"
+				><PlusIcon /></button
+			>
 		</label>
 		<datalist id="tag_editor">
 			{#each existingTags as tag}
