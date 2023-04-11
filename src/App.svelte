@@ -50,9 +50,9 @@
 							<ItemEditor />
 						</Modal>
 					</Route>
-					<Route path=":id" let:params>
+					<Route let:params path=":id">
 						<Modal>
-							<ItemEditor id={idToInt(params.id)} />
+							<ItemEditor id={params.id} />
 						</Modal>
 					</Route>
 				</Route>

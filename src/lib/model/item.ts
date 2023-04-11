@@ -1,9 +1,9 @@
-import { levels, quarters, type Level, type Quarter } from './type';
-import { unique } from 'radash';
+import { type Level, levels, type Quarter, quarters } from './type';
+import { uid, unique } from 'radash';
 import { sortByTags } from '../utils/sortByTags';
 
 export type Item = {
-	index: number;
+	index: string;
 	name: string;
 	quarter: Quarter;
 	level: Level;
@@ -14,8 +14,18 @@ export type Item = {
 	comment?: string;
 };
 
+export const DEFAULT_ITEM = (): Item => {
+	return { index: uid(5), name: '', x: 0, y: 0, quarter: 1, level: 1, tags: [] };
+};
+
 export function addTag(tag: string, tags: string[]): string[] {
 	return unique([...tags, tag], (item) => item.toUpperCase()).sort((a, b) =>
+		a.toUpperCase().localeCompare(b.toUpperCase())
+	);
+}
+
+export function mergeTag(tagsA: string[], tagsB: string[]): string[] {
+	return unique([...tagsA, ...tagsB], (item) => item.toUpperCase()).sort((a, b) =>
 		a.toUpperCase().localeCompare(b.toUpperCase())
 	);
 }

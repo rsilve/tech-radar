@@ -10,7 +10,7 @@
 	import HistoryMenu from './HistoryMenu.svelte';
 	import type { AppContext } from '../../stores';
 
-	const { radar, items, loadRadar, reset, history } = getContext<AppContext>(GLOBAL_CONTEXT);
+	const { radar, items, loadRadar, reset, history, merge } = getContext<AppContext>(GLOBAL_CONTEXT);
 	export let id = 'app-drawer';
 
 	let closeElement: HTMLInputElement;
@@ -31,6 +31,10 @@
 
 	function handleCopyRadar(event) {
 		reset(event.detail.radar);
+	}
+
+	function handleMergeRadar(event) {
+		merge(event.detail.radar);
 	}
 </script>
 
@@ -60,7 +64,12 @@
 					<Reset reset={onReset} />
 				</li>
 			</ul>
-			<HistoryMenu {history} on:copyRadar={handleCopyRadar} on:loadRadar={handleLoadRadar} />
+			<HistoryMenu
+				{history}
+				on:copyRadar={handleCopyRadar}
+				on:loadRadar={handleLoadRadar}
+				on:mergeRadar={handleMergeRadar}
+			/>
 			<ul class="menu bg-base-100 pb-8 text-base-content">
 				<li>
 					<SettingsMenuItem on:click={close} />

@@ -16,7 +16,7 @@
 	<div class="divider mt-0" />
 	<div class="pl-5 pr-5 text-sm font-bold uppercase text-accent">Recent</div>
 	{#each getHistory($history) as historyItem}
-		<RecentMenuItem item={historyItem} on:copyRadar on:loadRadar on:removeRadar={handleRemoveRadar} />
+		<RecentMenuItem item={historyItem} on:mergeRadar on:copyRadar on:loadRadar on:removeRadar={handleRemoveRadar} />
 	{/each}
 	<div class="flex-grow" />
 	<div class="divider mb-0" />

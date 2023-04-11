@@ -23,7 +23,9 @@
 		dispatch('copyRadar', { radar: item.radar });
 	}
 
-	function merge() {}
+	function merge() {
+		dispatch('mergeRadar', { radar: item.radar });
+	}
 </script>
 
 <div class="group flex max-w-full flex-row items-center pl-5 pr-5 pt-1 pb-1 hover:bg-base-300">

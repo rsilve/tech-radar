@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Item, Level, Quarter } from '../../model';
-	import { addOrUpdateItem, removeItem } from '../../model';
+	import { addOrUpdateItem, DEFAULT_ITEM, removeItem } from '../../model';
 	import { type AppContext, selected } from '../../stores';
 	import ModalFooter from '../components/ModalFooter.svelte';
 	import { navigate, useFocus } from 'svelte-navigator';
@@ -12,11 +12,11 @@
 
 	const { items, index, colorMap, tags } = getContext<AppContext>(GLOBAL_CONTEXT);
 
-	export let id: number = undefined;
+	export let id: string | undefined = undefined;
 
-	$selected = $items.filter((v) => v.index === id).at(0);
+	$selected = $items.find((v: Item) => v.index === id);
 
-	const defaultItem: Partial<Item> = id ? $selected : { name: '', x: 0, y: 0, quarter: 1, level: 1 };
+	const defaultItem: Partial<Item> = id ? $selected : DEFAULT_ITEM();
 	let name: string = defaultItem?.name;
 	let quarter: Quarter = defaultItem?.quarter || 1;
 	let level: Level = defaultItem?.level || 1;
@@ -41,7 +41,6 @@
 				quarter,
 				level,
 				direction,
-				index: id ? $selected.index : $index,
 				tags: itemTags,
 				comment
 			} as Item);

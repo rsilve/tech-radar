@@ -1,6 +1,15 @@
 import type { AdoptionLevels, Categories, Item, ItemEnhanced, Radar, TagColors, TagsCount } from '../model';
-import { addToHistory, copyRadar, DEFAULT_RADAR, type History, readHistory, readRadar, writeRadar } from '../model';
-import { type Readable, type Writable, writable } from 'svelte/store';
+import {
+	addToHistory,
+	copyRadar,
+	DEFAULT_RADAR,
+	type History,
+	mergeRadar,
+	readHistory,
+	readRadar,
+	writeRadar
+} from '../model';
+import { get, type Readable, type Writable, writable } from 'svelte/store';
 import { itemsStoreFactory } from './items';
 import { duplicateStoreFactory, enhancedStoreFactory, filteredStoreFactory, indexStoreFactory } from './store';
 import { colorsMapStoreFactory, tagsCountStoreFactory, tagsStoreFactory } from './tags';
@@ -72,6 +81,7 @@ export type AppContext = {
 	reset: (radar?: Radar) => void;
 	history: Writable<History>;
 	categories: Writable<Categories>;
+	merge: (radar?: Radar) => void;
 };
 
 function contextFactory(radar: Radar, history: History): AppContext {
@@ -103,6 +113,16 @@ function contextFactory(radar: Radar, history: History): AppContext {
 		const newRadar = radar ? copyRadar(radar) : DEFAULT_RADAR();
 		set(newRadar);
 	};
+
+	const merge = (radar?: Radar) => {
+		if (radar) {
+			const current = get(store);
+			const merged = mergeRadar(radar, current);
+			merged.name = `${current.name} / ${radar.name}`;
+			console.log(radar, current, merged);
+			set(merged);
+		}
+	};
 	return {
 		radar: store,
 		items,
@@ -118,7 +138,8 @@ function contextFactory(radar: Radar, history: History): AppContext {
 		loadRadar,
 		reset,
 		history: historyStore,
-		categories
+		categories,
+		merge
 	};
 }
 
