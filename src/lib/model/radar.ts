@@ -67,7 +67,9 @@ function radarName(name: string) {
 export function copyRadar(radar: Radar) {
 	const copy = { ...radar };
 	delete copy.id;
-	return { ...DEFAULT_RADAR(), ...copy, name: radarName(radar.name) };
+	const newRadar: Radar = JSON.parse(JSON.stringify({ ...DEFAULT_RADAR(), ...copy, name: radarName(radar.name) }));
+	newRadar.items.forEach((item) => (item.index = generateId()));
+	return newRadar;
 }
 
 export function addOrUpdateItem(list: Item[], item: Item) {

@@ -83,6 +83,8 @@ describe('merge radar', () => {
 		};
 
 		const merge = mergeRadar(a, b);
+		expect(a).toEqual(a);
+		expect(b).toEqual(b);
 		expect(merge.items.length).toEqual(2);
 	});
 });

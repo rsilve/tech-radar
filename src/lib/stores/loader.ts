@@ -119,8 +119,7 @@ function contextFactory(radar: Radar, history: History): AppContext {
 			const current = get(store);
 			const merged = mergeRadar(radar, current);
 			merged.name = `${current.name} / ${radar.name}`;
-			console.log(radar, current, merged);
-			set(merged);
+			reset(merged);
 		}
 	};
 	return {
