@@ -26,3 +26,12 @@ dist-ssr
 /scripts/access-log.sh
 /scripts/accesslogs/
 /scripts/
+
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
