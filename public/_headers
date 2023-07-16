@@ -1,5 +1,5 @@
 /*
-    Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' *.cloudflareinsights.com; style-src 'self'; img-src 'self'; connect-src 'self'
+    Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' cloudflareinsights.com *.cloudflareinsights.com; style-src 'self'; img-src 'self'; connect-src 'self'
     X-XSS-Protection: 1; mode=block
     X-Content-Type-Options: nosniff
     X-Frame-Options: DENY
